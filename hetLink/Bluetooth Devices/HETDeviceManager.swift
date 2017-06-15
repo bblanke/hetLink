@@ -29,6 +29,10 @@ class HETDeviceManager : NSObject{
         
         bleManager = CBCentralManager(delegate: self, queue: nil)
     }
+    
+    func connect(device: CBPeripheral){
+        bleManager.connect(device, options: nil)
+    }
 }
 
 extension HETDeviceManager : CBCentralManagerDelegate {
@@ -47,10 +51,15 @@ extension HETDeviceManager : CBCentralManagerDelegate {
             discoveredDevices[index!] = peripheral
         }
         
-        delegate.didDiscoverHETDevice(device: peripheral)
+        delegate.deviceManager(didDiscover: peripheral)
+    }
+    
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        delegate.deviceManager(didConnect: peripheral)
     }
 }
 
 protocol HETDeviceManagerDelegate: class {
-    func didDiscoverHETDevice(device: CBPeripheral)
+    func deviceManager(didDiscover device: CBPeripheral)
+    func deviceManager(didConnect device: CBPeripheral)
 }

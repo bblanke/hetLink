@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3D30A61F1EF063F100DB7774 /* DevicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D30A61E1EF063F100DB7774 /* DevicesViewController.swift */; };
 		3D30A6221EF0641500DB7774 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D30A6211EF0640C00DB7774 /* CoreBluetooth.framework */; };
 		3D30A6241EF078B300DB7774 /* HETDeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D30A6231EF078B300DB7774 /* HETDeviceManager.swift */; };
+		3DC284D31EF3184B008EC6A4 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC284D21EF3184B008EC6A4 /* ChartView.swift */; };
+		3DC284D51EF3188F008EC6A4 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC284D41EF3188F008EC6A4 /* Charts.framework */; };
+		3DC284D61EF3188F008EC6A4 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC284D41EF3188F008EC6A4 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3DC284DA1EF318E8008EC6A4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC284D91EF318E8008EC6A4 /* Colors.swift */; };
 		3DF86FD51EF19A080006662D /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF86FD41EF19A080006662D /* SplitViewController.swift */; };
 		3DFD32311EF02C5C0028805B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD32301EF02C5C0028805B /* AppDelegate.swift */; };
 		3DFD32341EF02C5D0028805B /* hetLink.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD32321EF02C5D0028805B /* hetLink.xcdatamodeld */; };
@@ -39,15 +42,31 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3DC284D71EF3188F008EC6A4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3DC284D61EF3188F008EC6A4 /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		3D30A61E1EF063F100DB7774 /* DevicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesViewController.swift; sourceTree = "<group>"; };
 		3D30A6211EF0640C00DB7774 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		3D30A6231EF078B300DB7774 /* HETDeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HETDeviceManager.swift; sourceTree = "<group>"; };
+		3DC284D21EF3184B008EC6A4 /* ChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		3DC284D41EF3188F008EC6A4 /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DC284D91EF318E8008EC6A4 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3DF86FD41EF19A080006662D /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		3DFD322D1EF02C5C0028805B /* hetLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hetLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DFD32301EF02C5C0028805B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DFD32331EF02C5D0028805B /* hetLink.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hetLink.xcdatamodel; sourceTree = "<group>"; };
-		3DFD32351EF02C5D0028805B /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		3DFD32351EF02C5D0028805B /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MasterViewController.swift; path = "Sidebar Master View/MasterViewController.swift"; sourceTree = "<group>"; };
 		3DFD32371EF02C5D0028805B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		3DFD323A1EF02C5D0028805B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3DFD323C1EF02C5D0028805B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,6 +86,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D30A6221EF0641500DB7774 /* CoreBluetooth.framework in Frameworks */,
+				3DC284D51EF3188F008EC6A4 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,26 +115,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3D30A6251EF080FF00DB7774 /* Bluetooth Devices */ = {
+		3D30A6251EF080FF00DB7774 /* Bluetooth */ = {
 			isa = PBXGroup;
 			children = (
 				3D30A6231EF078B300DB7774 /* HETDeviceManager.swift */,
 			);
+			name = Bluetooth;
 			path = "Bluetooth Devices";
 			sourceTree = "<group>";
 		};
-		3D30A6281EF0829E00DB7774 /* Sidebar Master View */ = {
+		3DC284D11EF31794008EC6A4 /* Charts */ = {
 			isa = PBXGroup;
 			children = (
-				3DFD32351EF02C5D0028805B /* MasterViewController.swift */,
-				3D30A61E1EF063F100DB7774 /* DevicesViewController.swift */,
+				3DC284D21EF3184B008EC6A4 /* ChartView.swift */,
 			);
-			path = "Sidebar Master View";
+			name = Charts;
+			sourceTree = "<group>";
+		};
+		3DC284D81EF318D3008EC6A4 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				3DC284D91EF318E8008EC6A4 /* Colors.swift */,
+			);
+			name = Configuration;
 			sourceTree = "<group>";
 		};
 		3DFD32241EF02C5C0028805B = {
 			isa = PBXGroup;
 			children = (
+				3DC284D41EF3188F008EC6A4 /* Charts.framework */,
 				3DFD322F1EF02C5C0028805B /* hetLink */,
 				3DFD32491EF02C5D0028805B /* hetLinkTests */,
 				3DFD32541EF02C5D0028805B /* hetLinkUITests */,
@@ -136,10 +165,12 @@
 		3DFD322F1EF02C5C0028805B /* hetLink */ = {
 			isa = PBXGroup;
 			children = (
-				3D30A6281EF0829E00DB7774 /* Sidebar Master View */,
-				3D30A6251EF080FF00DB7774 /* Bluetooth Devices */,
-				3DF86FD41EF19A080006662D /* SplitViewController.swift */,
+				3DC284D81EF318D3008EC6A4 /* Configuration */,
+				3DC284D11EF31794008EC6A4 /* Charts */,
+				3D30A6251EF080FF00DB7774 /* Bluetooth */,
 				3DFD32301EF02C5C0028805B /* AppDelegate.swift */,
+				3DF86FD41EF19A080006662D /* SplitViewController.swift */,
+				3DFD32351EF02C5D0028805B /* MasterViewController.swift */,
 				3DFD32371EF02C5D0028805B /* DetailViewController.swift */,
 				3DFD32391EF02C5D0028805B /* Main.storyboard */,
 				3DFD323C1EF02C5D0028805B /* Assets.xcassets */,
@@ -178,6 +209,7 @@
 				3DFD32291EF02C5C0028805B /* Sources */,
 				3DFD322A1EF02C5C0028805B /* Frameworks */,
 				3DFD322B1EF02C5C0028805B /* Resources */,
+				3DC284D71EF3188F008EC6A4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -306,9 +338,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DFD32311EF02C5C0028805B /* AppDelegate.swift in Sources */,
+				3DC284DA1EF318E8008EC6A4 /* Colors.swift in Sources */,
 				3DF86FD51EF19A080006662D /* SplitViewController.swift in Sources */,
 				3DFD32341EF02C5D0028805B /* hetLink.xcdatamodeld in Sources */,
-				3D30A61F1EF063F100DB7774 /* DevicesViewController.swift in Sources */,
+				3DC284D31EF3184B008EC6A4 /* ChartView.swift in Sources */,
 				3D30A6241EF078B300DB7774 /* HETDeviceManager.swift in Sources */,
 				3DFD32361EF02C5D0028805B /* MasterViewController.swift in Sources */,
 				3DFD32381EF02C5D0028805B /* DetailViewController.swift in Sources */,

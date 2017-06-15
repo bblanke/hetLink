@@ -9,11 +9,11 @@
 import UIKit
 import CoreBluetooth
 
-class SplitViewController: UISplitViewController {
+class SplitViewController: UISplitViewController{
 
     var bleDeviceManager : HETDeviceManager!
     
-    var devicesViewController : DevicesViewController!
+    var masterVC : MasterViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,9 @@ class SplitViewController: UISplitViewController {
         bleDeviceManager = HETDeviceManager(delegate: self)
         
         let masterNavigationController = viewControllers.first! as! UINavigationController
-        devicesViewController = masterNavigationController.topViewController as! DevicesViewController
+        masterVC = masterNavigationController.topViewController as! MasterViewController
+        
+        masterVC.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,7 +33,17 @@ class SplitViewController: UISplitViewController {
 }
 
 extension SplitViewController: HETDeviceManagerDelegate {
-    func didDiscoverHETDevice(device: CBPeripheral) {
-        devicesViewController.reloadHETDevices(devices: bleDeviceManager.discoveredDevices)
+    func deviceManager(didDiscover device: CBPeripheral){
+        masterVC.reloadHETDevices(devices: bleDeviceManager.discoveredDevices)
+    }
+    
+    func deviceManager(didConnect device: CBPeripheral) {
+        print("connected a device")
+    }
+}
+
+extension SplitViewController: DeviceListDelegate {
+    func deviceList(didSelect device: CBPeripheral) {
+        bleDeviceManager.connect(device: device)
     }
 }
