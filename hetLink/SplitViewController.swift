@@ -37,7 +37,7 @@ extension SplitViewController: HETDeviceManagerDelegate {
         masterVC.reloadHETDevices(devices: bleDeviceManager.discoveredDevices)
     }
     
-    func deviceManager(didConnect device: CBPeripheral) {
+    func deviceManager(didConnect device: HETDevice) {
         print("connected a device")
     }
 }

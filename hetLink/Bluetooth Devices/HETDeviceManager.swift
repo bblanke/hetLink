@@ -13,7 +13,10 @@ class HETDeviceManager : NSObject{
     
     // Bluetooth
     var bleManager : CBCentralManager!
+    
     var discoveredDevices : [CBPeripheral] = []
+    var connectedDevice : HETDevice!
+    
     let chestPatchServiceUUID = CBUUID(string: "FFF0")
     let watchServiceUUID = CBUUID(string: "FFF0")
     let hetServiceUUIDS : [CBUUID]
@@ -55,11 +58,18 @@ extension HETDeviceManager : CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        delegate.deviceManager(didConnect: peripheral)
+        connectedDevice = HETWatch(device: peripheral, delegate: self)
+        delegate.deviceManager(didConnect: connectedDevice)
+    }
+}
+
+extension HETDeviceManager : HETDeviceDelegate {
+    func hetDevice(didUpdateValueFor characteristic: CBCharacteristic) {
+        print("updated")
     }
 }
 
 protocol HETDeviceManagerDelegate: class {
     func deviceManager(didDiscover device: CBPeripheral)
-    func deviceManager(didConnect device: CBPeripheral)
+    func deviceManager(didConnect device: HETDevice)
 }
