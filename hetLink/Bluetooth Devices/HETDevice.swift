@@ -2,17 +2,44 @@
 //  HETDevice.swift
 //  hetLink
 //
-//  Created by Bailey Blankenship on 6/16/17.
+//  Created by Bailey Blankenship on 6/19/17.
 //  Copyright © 2017 Bailey Blankenship. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import CoreBluetooth
 
-protocol HETDevice : class {
-    var deviceDelegate : HETDeviceDelegate! { get set }
+class HETDevice: NSObject, CBPeripheralDelegate {
+    var peripheral: CBPeripheral
+    weak var delegate: HETDeviceDelegate!
+    var interpreter: HETDeviceInterpreter.Type
     
-    init(device: CBPeripheral, delegate: HETDeviceDelegate)
+    init(from device: CBPeripheral, delegate: HETDeviceDelegate){
+        self.peripheral = device
+        self.delegate = delegate
+        self.interpreter = HETWatchInterpreter.self
+        
+        super.init()
+        peripheral.delegate = self
+        device.discoverServices(interpreter.services)
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        if let services = peripheral.services {
+            for service in services {
+                peripheral.discoverCharacteristics(interpreter.characteristics[service.uuid], for: service)
+            }
+        }
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        interpreter.setupNotifications(on: service.characteristics!, device: self.peripheral)
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        interpreter.parseData(on: characteristic)
+        print("got data")
+    }
 }
 
 protocol HETDeviceDelegate : class {

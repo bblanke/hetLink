@@ -17,16 +17,14 @@ class HETDeviceManager : NSObject{
     var discoveredDevices : [CBPeripheral] = []
     var connectedDevice : HETDevice!
     
-    let chestPatchServiceUUID = CBUUID(string: "FFF0")
-    let watchServiceUUID = CBUUID(string: "FFF0")
-    let hetServiceUUIDS : [CBUUID]
+    var services: [CBUUID]!
     
     // Delegation
     weak var delegate : HETDeviceManagerDelegate!
     
-    init(delegate: HETDeviceManagerDelegate) {
-        self.hetServiceUUIDS = [chestPatchServiceUUID, watchServiceUUID]
+    init(delegate: HETDeviceManagerDelegate, services: [CBUUID]) {
         self.delegate = delegate
+        self.services = services
         
         super.init()
         
@@ -41,7 +39,7 @@ class HETDeviceManager : NSObject{
 extension HETDeviceManager : CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
-            bleManager.scanForPeripherals(withServices: hetServiceUUIDS, options: nil)
+            bleManager.scanForPeripherals(withServices: services, options: nil)
         }
     }
     
@@ -58,7 +56,7 @@ extension HETDeviceManager : CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        connectedDevice = HETWatch(device: peripheral, delegate: self)
+        connectedDevice = HETDevice(from: peripheral, delegate: self)
         delegate.deviceManager(didConnect: connectedDevice)
     }
 }

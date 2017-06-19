@@ -18,7 +18,7 @@ class SplitViewController: UISplitViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bleDeviceManager = HETDeviceManager(delegate: self)
+        bleDeviceManager = HETDeviceManager(delegate: self, services: HETWatchInterpreter.services)
         
         let masterNavigationController = viewControllers.first! as! UINavigationController
         masterVC = masterNavigationController.topViewController as! MasterViewController
@@ -38,7 +38,7 @@ extension SplitViewController: HETDeviceManagerDelegate {
     }
     
     func deviceManager(didConnect device: HETDevice) {
-        print("connected a device")
+        print("nice we connected")
     }
 }
 

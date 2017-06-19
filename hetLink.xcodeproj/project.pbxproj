@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		3D30A6221EF0641500DB7774 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D30A6211EF0640C00DB7774 /* CoreBluetooth.framework */; };
 		3D30A6241EF078B300DB7774 /* HETDeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D30A6231EF078B300DB7774 /* HETDeviceManager.swift */; };
-		3D4549BB1EF42DA1003A3650 /* HETDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4549BA1EF42DA1003A3650 /* HETDevice.swift */; };
-		3D4549BD1EF42ED4003A3650 /* HETWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4549BC1EF42ED4003A3650 /* HETWatch.swift */; };
+		3D391EE11EF811870071CF6A /* HETDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D391EE01EF811870071CF6A /* HETDevice.swift */; };
+		3D391EE31EF812FB0071CF6A /* HETDeviceInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D391EE21EF812FB0071CF6A /* HETDeviceInterpreter.swift */; };
+		3D391EE51EF813CE0071CF6A /* HETWatchInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D391EE41EF813CE0071CF6A /* HETWatchInterpreter.swift */; };
 		3DC284D31EF3184B008EC6A4 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC284D21EF3184B008EC6A4 /* ChartView.swift */; };
 		3DC284D51EF3188F008EC6A4 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC284D41EF3188F008EC6A4 /* Charts.framework */; };
 		3DC284D61EF3188F008EC6A4 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC284D41EF3188F008EC6A4 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -61,8 +62,9 @@
 /* Begin PBXFileReference section */
 		3D30A6211EF0640C00DB7774 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		3D30A6231EF078B300DB7774 /* HETDeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HETDeviceManager.swift; sourceTree = "<group>"; };
-		3D4549BA1EF42DA1003A3650 /* HETDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETDevice.swift; sourceTree = "<group>"; };
-		3D4549BC1EF42ED4003A3650 /* HETWatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETWatch.swift; sourceTree = "<group>"; };
+		3D391EE01EF811870071CF6A /* HETDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETDevice.swift; sourceTree = "<group>"; };
+		3D391EE21EF812FB0071CF6A /* HETDeviceInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETDeviceInterpreter.swift; sourceTree = "<group>"; };
+		3D391EE41EF813CE0071CF6A /* HETWatchInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETWatchInterpreter.swift; sourceTree = "<group>"; };
 		3DC284D21EF3184B008EC6A4 /* ChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		3DC284D41EF3188F008EC6A4 /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DC284D91EF318E8008EC6A4 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -123,8 +125,9 @@
 			isa = PBXGroup;
 			children = (
 				3D30A6231EF078B300DB7774 /* HETDeviceManager.swift */,
-				3D4549BA1EF42DA1003A3650 /* HETDevice.swift */,
-				3D4549BC1EF42ED4003A3650 /* HETWatch.swift */,
+				3D391EE01EF811870071CF6A /* HETDevice.swift */,
+				3D391EE21EF812FB0071CF6A /* HETDeviceInterpreter.swift */,
+				3D391EE41EF813CE0071CF6A /* HETWatchInterpreter.swift */,
 			);
 			name = Bluetooth;
 			path = "Bluetooth Devices";
@@ -348,11 +351,12 @@
 				3DF86FD51EF19A080006662D /* SplitViewController.swift in Sources */,
 				3DFD32341EF02C5D0028805B /* hetLink.xcdatamodeld in Sources */,
 				3DC284D31EF3184B008EC6A4 /* ChartView.swift in Sources */,
-				3D4549BD1EF42ED4003A3650 /* HETWatch.swift in Sources */,
+				3D391EE11EF811870071CF6A /* HETDevice.swift in Sources */,
+				3D391EE51EF813CE0071CF6A /* HETWatchInterpreter.swift in Sources */,
 				3D30A6241EF078B300DB7774 /* HETDeviceManager.swift in Sources */,
 				3DFD32361EF02C5D0028805B /* MasterViewController.swift in Sources */,
 				3DFD32381EF02C5D0028805B /* DetailViewController.swift in Sources */,
-				3D4549BB1EF42DA1003A3650 /* HETDevice.swift in Sources */,
+				3D391EE31EF812FB0071CF6A /* HETDeviceInterpreter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
