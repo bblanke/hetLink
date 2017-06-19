@@ -62,12 +62,13 @@ extension HETDeviceManager : CBCentralManagerDelegate {
 }
 
 extension HETDeviceManager : HETDeviceDelegate {
-    func hetDevice(didUpdateValueFor characteristic: CBCharacteristic) {
-        print("updated")
+    func hetDevice(didUpdateValueFor characteristic: CBCharacteristic, data: [Double]) {
+        delegate.deviceManager(didGet: data, device: connectedDevice)
     }
 }
 
 protocol HETDeviceManagerDelegate: class {
     func deviceManager(didDiscover device: CBPeripheral)
     func deviceManager(didConnect device: HETDevice)
+    func deviceManager(didGet data: [Double], device: HETDevice)
 }

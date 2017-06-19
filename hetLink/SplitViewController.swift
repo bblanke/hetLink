@@ -40,6 +40,10 @@ extension SplitViewController: HETDeviceManagerDelegate {
     func deviceManager(didConnect device: HETDevice) {
         print("nice we connected")
     }
+    
+    func deviceManager(didGet data: [Double], device: HETDevice) {
+        print("Got data: \(data)")
+    }
 }
 
 extension SplitViewController: DeviceListDelegate {

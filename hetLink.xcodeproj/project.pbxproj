@@ -12,6 +12,7 @@
 		3D391EE11EF811870071CF6A /* HETDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D391EE01EF811870071CF6A /* HETDevice.swift */; };
 		3D391EE31EF812FB0071CF6A /* HETDeviceInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D391EE21EF812FB0071CF6A /* HETDeviceInterpreter.swift */; };
 		3D391EE51EF813CE0071CF6A /* HETWatchInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D391EE41EF813CE0071CF6A /* HETWatchInterpreter.swift */; };
+		3D391EE71EF857510071CF6A /* HETChestInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D391EE61EF857510071CF6A /* HETChestInterpreter.swift */; };
 		3DC284D31EF3184B008EC6A4 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC284D21EF3184B008EC6A4 /* ChartView.swift */; };
 		3DC284D51EF3188F008EC6A4 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC284D41EF3188F008EC6A4 /* Charts.framework */; };
 		3DC284D61EF3188F008EC6A4 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC284D41EF3188F008EC6A4 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -65,6 +66,7 @@
 		3D391EE01EF811870071CF6A /* HETDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETDevice.swift; sourceTree = "<group>"; };
 		3D391EE21EF812FB0071CF6A /* HETDeviceInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETDeviceInterpreter.swift; sourceTree = "<group>"; };
 		3D391EE41EF813CE0071CF6A /* HETWatchInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETWatchInterpreter.swift; sourceTree = "<group>"; };
+		3D391EE61EF857510071CF6A /* HETChestInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = HETChestInterpreter.swift; sourceTree = "<group>"; };
 		3DC284D21EF3184B008EC6A4 /* ChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		3DC284D41EF3188F008EC6A4 /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DC284D91EF318E8008EC6A4 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				3D391EE01EF811870071CF6A /* HETDevice.swift */,
 				3D391EE21EF812FB0071CF6A /* HETDeviceInterpreter.swift */,
 				3D391EE41EF813CE0071CF6A /* HETWatchInterpreter.swift */,
+				3D391EE61EF857510071CF6A /* HETChestInterpreter.swift */,
 			);
 			name = Bluetooth;
 			path = "Bluetooth Devices";
@@ -346,6 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D391EE71EF857510071CF6A /* HETChestInterpreter.swift in Sources */,
 				3DFD32311EF02C5C0028805B /* AppDelegate.swift in Sources */,
 				3DC284DA1EF318E8008EC6A4 /* Colors.swift in Sources */,
 				3DF86FD51EF19A080006662D /* SplitViewController.swift in Sources */,

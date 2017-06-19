@@ -17,7 +17,7 @@ class HETDevice: NSObject, CBPeripheralDelegate {
     init(from device: CBPeripheral, delegate: HETDeviceDelegate){
         self.peripheral = device
         self.delegate = delegate
-        self.interpreter = HETWatchInterpreter.self
+        self.interpreter = HETChestInterpreter.self
         
         super.init()
         peripheral.delegate = self
@@ -37,11 +37,12 @@ class HETDevice: NSObject, CBPeripheralDelegate {
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        interpreter.parseData(on: characteristic)
-        print("got data")
+        print("updated")
+        let data = interpreter.parseData(on: characteristic)
+        delegate.hetDevice(didUpdateValueFor: characteristic, data: data)
     }
 }
 
 protocol HETDeviceDelegate : class {
-    func hetDevice(didUpdateValueFor characteristic: CBCharacteristic)
+    func hetDevice(didUpdateValueFor characteristic: CBCharacteristic, data: [Double])
 }
