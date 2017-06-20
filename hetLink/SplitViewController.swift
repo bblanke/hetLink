@@ -11,14 +11,14 @@ import CoreBluetooth
 
 class SplitViewController: UISplitViewController{
 
-    var bleDeviceManager : HETDeviceManager!
+    var hetDeviceManager : HETDeviceManager!
     
     var masterVC : MasterViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bleDeviceManager = HETDeviceManager(delegate: self, services: HETWatchInterpreter.services)
+        hetDeviceManager = HETDeviceManager(delegate: self, services: HETWatchInterpreter.services)
         
         let masterNavigationController = viewControllers.first! as! UINavigationController
         masterVC = masterNavigationController.topViewController as! MasterViewController
@@ -34,20 +34,21 @@ class SplitViewController: UISplitViewController{
 
 extension SplitViewController: HETDeviceManagerDelegate {
     func deviceManager(didDiscover device: CBPeripheral){
-        masterVC.reloadHETDevices(devices: bleDeviceManager.discoveredDevices)
+        masterVC.reloadHETDevices(devices: hetDeviceManager.discoveredDevices)
     }
     
     func deviceManager(didConnect device: HETDevice) {
         print("nice we connected")
     }
     
-    func deviceManager(didGet data: [Double], device: HETDevice) {
-        print("Got data: \(data)")
+    func deviceManager(didGet packet: HETPacket, device: HETDevice) {
+        let packet = packet as! HETChestBodyPacket
+        print("[DEBUG]: \(packet.ecg) | \(packet.wave1)")
     }
 }
 
 extension SplitViewController: DeviceListDelegate {
     func deviceList(didSelect device: CBPeripheral) {
-        bleDeviceManager.connect(device: device)
+        hetDeviceManager.connect(device: device)
     }
 }

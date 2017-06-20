@@ -37,12 +37,11 @@ class HETDevice: NSObject, CBPeripheralDelegate {
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        print("updated")
-        let data = interpreter.parseData(on: characteristic)
-        delegate.hetDevice(didUpdateValueFor: characteristic, data: data)
+        let packet = interpreter.parseData(on: characteristic)
+        delegate.hetDevice(didUpdateValueFor: characteristic, packet: packet)
     }
 }
 
 protocol HETDeviceDelegate : class {
-    func hetDevice(didUpdateValueFor characteristic: CBCharacteristic, data: [Double])
+    func hetDevice(didUpdateValueFor characteristic: CBCharacteristic, packet: HETPacket)
 }

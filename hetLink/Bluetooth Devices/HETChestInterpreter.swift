@@ -31,12 +31,8 @@ class HETChestInterpreter: HETDeviceInterpreter {
         ]
     }
     
-    static func parseData(on characteristic: CBCharacteristic) -> [Double] {
-        if characteristic.uuid == ecgCharacteristicUUID {
-            return [parseEcg(data: characteristic.value!)]
-        } else {
-            return parseAccel(data: characteristic.value!)
-        }
+    static func parseData(on characteristic: CBCharacteristic) -> HETPacket {
+        return HETChestBodyPacket(packet: characteristic.value!)
     }
     
     static func setupNotifications(on characteristics: [CBCharacteristic], device: CBPeripheral) {
@@ -50,13 +46,5 @@ class HETChestInterpreter: HETDeviceInterpreter {
                 device.setNotifyValue(true, for: char)
             }
         }
-    }
-    
-    static private func parseEcg(data: Data) -> Double {
-        return Double((Int(data[0]) << 16) + (Int(data[1]) << 8) + Int(data[2]))
-    }
-    
-    static private func parseAccel(data: Data) -> [Double] {
-        return [Double(data[0]), Double(data[1]), Double(data[2])]
     }
 }

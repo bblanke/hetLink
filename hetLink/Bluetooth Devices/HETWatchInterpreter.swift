@@ -29,9 +29,8 @@ class HETWatchInterpreter: HETDeviceInterpreter {
         ]
     }
     
-    static func parseData(on characteristic: CBCharacteristic) -> [Double] {
-        print(characteristic.value!)
-        return [0.0, 0.0]
+    static func parseData(on characteristic: CBCharacteristic) -> HETPacket {
+        return HETChestBodyPacket(packet: characteristic.value!)
     }
     
     static func setupNotifications(on characteristics: [CBCharacteristic], device: CBPeripheral) {
@@ -43,9 +42,5 @@ class HETWatchInterpreter: HETDeviceInterpreter {
                 device.setNotifyValue(true, for: char)
             }
         }
-    }
-    
-    static private func parseEcg(data: Data) -> Double{
-        return 0.0
     }
 }
