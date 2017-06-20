@@ -11,17 +11,21 @@ import CoreBluetooth
 
 class SplitViewController: UISplitViewController{
 
-    var hetDeviceManager : HETDeviceManager!
+    var hetDeviceManager: HETDeviceManager!
     
-    var masterVC : MasterViewController!
+    var masterVC: MasterViewController!
+    var detailVC: DetailViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         hetDeviceManager = HETDeviceManager(delegate: self, services: HETWatchInterpreter.services)
         
-        let masterNavigationController = viewControllers.first! as! UINavigationController
+        let masterNavigationController = viewControllers[0] as! UINavigationController
         masterVC = masterNavigationController.topViewController as! MasterViewController
+        
+        let detailNavigationController = viewControllers[1] as! UINavigationController
+        detailVC = detailNavigationController.topViewController as! DetailViewController
         
         masterVC.delegate = self
     }
@@ -43,7 +47,7 @@ extension SplitViewController: HETDeviceManagerDelegate {
     
     func deviceManager(didGet packet: HETPacket, device: HETDevice) {
         let packet = packet as! HETChestBodyPacket
-        print("[DEBUG]: \(packet.ecg) | \(packet.wave1)")
+        detailVC.testChartView.graph(packet: packet)
     }
 }
 

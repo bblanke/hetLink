@@ -9,5 +9,5 @@
 import Foundation
 
 protocol HETChartView: class {
-    func graph(data: HETPacket)
+    func graph(packet: HETPacket)
 }
