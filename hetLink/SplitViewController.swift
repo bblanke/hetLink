@@ -48,7 +48,6 @@ extension SplitViewController: HETDeviceManagerDelegate {
     
     func deviceManager(didGet packet: HETPacket, device: HETDevice) {
         let packet = packet as! HETChestBodyPacket
-        print("got a packet")
         detailVC.chartView.graph(packet: packet)
     }
 }

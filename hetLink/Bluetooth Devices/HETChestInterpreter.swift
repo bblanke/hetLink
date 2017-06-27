@@ -31,8 +31,12 @@ class HETChestInterpreter: HETDeviceInterpreter {
         ]
     }
     
-    static func parseData(on characteristic: CBCharacteristic) -> HETPacket {
-        return HETChestBodyPacket(packet: characteristic.value!, date: Date())
+    static func parseData(on characteristic: CBCharacteristic) -> HETPacket? {
+        guard let packet = HETChestBodyPacket(packet: characteristic.value!, date: Date()) else {
+            return nil
+        }
+        
+        return packet
     }
     
     static func setupNotifications(on characteristics: [CBCharacteristic], device: CBPeripheral) {

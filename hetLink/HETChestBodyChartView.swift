@@ -12,12 +12,6 @@ import Charts
 class HETChestBodyChartView: ChartView, HETChartView {
     
     // Entries
-    /*var ecgEntries: [ChartDataEntry] = [ChartDataEntry(x: 0.0, y: 1.0),ChartDataEntry(x: 1.0, y: 2.0),ChartDataEntry(x: 2.0, y: 3.0)]
-    var waveOneEntries: [ChartDataEntry] = [ChartDataEntry(x: 0.0, y: 2.0),ChartDataEntry(x: 1.0, y: 3.0),ChartDataEntry(x: 2.0, y: 4.0)]
-    var waveTwoEntries: [ChartDataEntry] = [ChartDataEntry(x: 0.0, y: 3.0),ChartDataEntry(x: 1.0, y: 4.0),ChartDataEntry(x: 2.0, y: 5.0)]
-    var waveThreeEntries: [ChartDataEntry] = [ChartDataEntry(x: 0.0, y: 4.0),ChartDataEntry(x: 1.0, y: 5.0),ChartDataEntry(x: 2.0, y: 6.0)]
-    var waveFourEntries: [ChartDataEntry] = [ChartDataEntry(x: 0.0, y: 5.0),ChartDataEntry(x: 1.0, y: 6.0),ChartDataEntry(x: 2.0, y: 7.0)]*/
-    
     var ecgEntries: [ChartDataEntry] = []
     var waveOneEntries: [ChartDataEntry] = []
     var waveTwoEntries: [ChartDataEntry] = []

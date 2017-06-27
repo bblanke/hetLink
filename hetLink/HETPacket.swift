@@ -12,5 +12,5 @@ protocol HETPacket: class {
     var rawData: Data { get }
     var timestamp: Double { get set }
     
-    init(packet: Data, date: Date)
+    init?(packet: Data, date: Date)
 }

@@ -38,7 +38,10 @@ class HETDevice: NSObject, CBPeripheralDelegate {
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        let packet = interpreter.parseData(on: characteristic)
+        guard let packet = interpreter.parseData(on: characteristic) else {
+            return
+        }
+        
         delegate.hetDevice(didUpdateValueFor: characteristic, packet: packet)
     }
 }

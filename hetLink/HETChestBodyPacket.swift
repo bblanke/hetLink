@@ -18,7 +18,11 @@ class HETChestBodyPacket: HETPacket {
     var waveThree: Int
     var waveFour: Int
     
-    required init(packet: Data, date: Date){
+    required init?(packet: Data, date: Date){
+        guard packet.count == 20 else {
+            return nil
+        }
+        
         self.rawData = packet
         self.timestamp = date.timeIntervalSince1970
         
@@ -27,5 +31,7 @@ class HETChestBodyPacket: HETPacket {
         self.waveTwo = (Int(packet[15]) << 8) + Int(packet[14])
         self.waveThree = (Int(packet[17]) << 8) + Int(packet[16])
         self.waveFour = (Int(packet[19]) << 8) + Int(packet[18])
+        
+        print([UInt8](rawData))
     }
 }
