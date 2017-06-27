@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -36,10 +37,35 @@
                     <view key="view" contentMode="scaleToFill" id="svH-Pt-448">
                         <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwY-F4-Ybh">
+                                <rect key="frame" x="0.0" y="724" width="703" height="44"/>
+                                <items>
+                                    <barButtonItem title="Item" id="T7z-Mx-gPh"/>
+                                </items>
+                            </toolbar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4SX-oI-Qt5" userLabel="chartsFrame">
+                                <rect key="frame" x="20" y="72" width="663" height="644"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="4SX-oI-Qt5" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="8" id="3ld-v5-8eR"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="wwY-F4-Ybh" secondAttribute="bottom" id="7gI-Zo-f0Q"/>
+                            <constraint firstAttribute="trailing" secondItem="wwY-F4-Ybh" secondAttribute="trailing" id="Foc-kl-Fym"/>
+                            <constraint firstItem="wwY-F4-Ybh" firstAttribute="top" secondItem="4SX-oI-Qt5" secondAttribute="bottom" constant="8" id="GMT-f0-KAV"/>
+                            <constraint firstItem="4SX-oI-Qt5" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="K4U-bv-26J"/>
+                            <constraint firstItem="wwY-F4-Ybh" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="Upw-Tc-Xrq"/>
+                            <constraint firstItem="4SX-oI-Qt5" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="bS5-DG-qaI"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <connections>
+                        <outlet property="chartButtonbar" destination="wwY-F4-Ybh" id="6DU-mL-2XT"/>
+                        <outlet property="chartsFrame" destination="4SX-oI-Qt5" id="Dmh-Mm-4HA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>

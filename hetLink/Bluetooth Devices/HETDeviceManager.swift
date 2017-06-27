@@ -9,18 +9,18 @@
 import Foundation
 import CoreBluetooth
 
-class HETDeviceManager : NSObject{
+class HETDeviceManager: NSObject{
     
     // Bluetooth
-    var bleManager : CBCentralManager!
+    var bleManager: CBCentralManager!
     
-    var discoveredDevices : [CBPeripheral] = []
-    var connectedDevice : HETDevice!
+    var discoveredDevices: [CBPeripheral] = []
+    var connectedDevice: HETDevice!
     
     var services: [CBUUID]!
     
     // Delegation
-    weak var delegate : HETDeviceManagerDelegate!
+    weak var delegate: HETDeviceManagerDelegate!
     
     init(delegate: HETDeviceManagerDelegate, services: [CBUUID]) {
         self.delegate = delegate
@@ -36,7 +36,7 @@ class HETDeviceManager : NSObject{
     }
 }
 
-extension HETDeviceManager : CBCentralManagerDelegate {
+extension HETDeviceManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
             bleManager.scanForPeripherals(withServices: services, options: nil)
@@ -61,7 +61,7 @@ extension HETDeviceManager : CBCentralManagerDelegate {
     }
 }
 
-extension HETDeviceManager : HETDeviceDelegate {
+extension HETDeviceManager: HETDeviceDelegate {
     func hetDevice(didUpdateValueFor characteristic: CBCharacteristic, packet: HETPacket) {
         delegate.deviceManager(didGet: packet, device: connectedDevice)
     }

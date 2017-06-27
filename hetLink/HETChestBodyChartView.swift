@@ -36,14 +36,10 @@ class HETChestBodyChartView: ChartView, HETChartView {
         super.init(frame: frame)
         
         initChart()
-        
-        print("Chest view frame init: \(self.hashValue)")
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        print("Chest view coder init: \(self.hashValue)")
     }
     
     func initChart(){

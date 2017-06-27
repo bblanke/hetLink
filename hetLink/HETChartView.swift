@@ -7,7 +7,10 @@
 //
 
 import Foundation
+import Charts
 
 protocol HETChartView: class {
+    var chartDataSets: [LineChartDataSet]! { get }
+    
     func graph(packet: HETPacket)
 }

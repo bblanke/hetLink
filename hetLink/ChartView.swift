@@ -13,7 +13,9 @@ class ChartView: LineChartView {
     
     weak var axisFormatDelegate : IAxisValueFormatter?
     
-    override func awakeFromNib() {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
         axisFormatDelegate = self
         
         xAxis.valueFormatter = axisFormatDelegate
@@ -34,6 +36,10 @@ class ChartView: LineChartView {
         drawBordersEnabled = false
         
         noDataText = "No device or recording selected"
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 }
 
