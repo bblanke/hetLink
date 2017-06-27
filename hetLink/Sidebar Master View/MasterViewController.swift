@@ -12,7 +12,7 @@ import CoreBluetooth
 class MasterViewController: UITableViewController {
 
     var hetDevices : [CBPeripheral] = []
-    var delegate : DeviceListDelegate!
+    var deviceListDelegate : DeviceListDelegate!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate.deviceList(didSelect: hetDevices[indexPath.row])
+        deviceListDelegate.deviceList(didSelect: hetDevices[indexPath.row])
     }
     
     

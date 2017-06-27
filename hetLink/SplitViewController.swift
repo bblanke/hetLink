@@ -27,7 +27,7 @@ class SplitViewController: UISplitViewController{
         let detailNavigationController = viewControllers[1] as! UINavigationController
         detailVC = detailNavigationController.topViewController as! DetailViewController
         
-        masterVC.delegate = self
+        masterVC.deviceListDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,6 +38,7 @@ class SplitViewController: UISplitViewController{
 
 extension SplitViewController: HETDeviceManagerDelegate {
     func deviceManager(didDiscover device: CBPeripheral){
+        
         masterVC.reloadHETDevices(devices: hetDeviceManager.discoveredDevices)
     }
     
@@ -47,7 +48,8 @@ extension SplitViewController: HETDeviceManagerDelegate {
     
     func deviceManager(didGet packet: HETPacket, device: HETDevice) {
         let packet = packet as! HETChestBodyPacket
-        detailVC.testChartView.graph(packet: packet)
+        print("got a packet")
+        detailVC.chartView.graph(packet: packet)
     }
 }
 

@@ -10,20 +10,22 @@ import Foundation
 
 class HETChestBodyPacket: HETPacket {
     var rawData: Data
+    var timestamp: Double
     
     var ecg: Int
-    var wave1: Int
-    var wave2: Int
-    var wave3: Int
-    var wave4: Int
+    var waveOne: Int
+    var waveTwo: Int
+    var waveThree: Int
+    var waveFour: Int
     
-    required init(packet: Data){
+    required init(packet: Data, date: Date){
         self.rawData = packet
+        self.timestamp = date.timeIntervalSince1970
         
         self.ecg = (Int(packet[0]) << 16) + (Int(packet[1]) << 8) + Int(packet[2])
-        self.wave1 = (Int(packet[13]) << 8) + Int(packet[12])
-        self.wave2 = (Int(packet[15]) << 8) + Int(packet[14])
-        self.wave3 = (Int(packet[17]) << 8) + Int(packet[16])
-        self.wave4 = (Int(packet[19]) << 8) + Int(packet[18])
+        self.waveOne = (Int(packet[13]) << 8) + Int(packet[12])
+        self.waveTwo = (Int(packet[15]) << 8) + Int(packet[14])
+        self.waveThree = (Int(packet[17]) << 8) + Int(packet[16])
+        self.waveFour = (Int(packet[19]) << 8) + Int(packet[18])
     }
 }

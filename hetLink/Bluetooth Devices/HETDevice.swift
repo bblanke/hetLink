@@ -22,6 +22,7 @@ class HETDevice: NSObject, CBPeripheralDelegate {
         super.init()
         peripheral.delegate = self
         device.discoverServices(interpreter.services)
+        
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {

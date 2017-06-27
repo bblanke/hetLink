@@ -10,6 +10,7 @@ import Foundation
 
 protocol HETPacket: class {
     var rawData: Data { get }
+    var timestamp: Double { get set }
     
-    init(packet: Data)
+    init(packet: Data, date: Date)
 }

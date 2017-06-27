@@ -30,7 +30,7 @@ class HETWatchInterpreter: HETDeviceInterpreter {
     }
     
     static func parseData(on characteristic: CBCharacteristic) -> HETPacket {
-        return HETChestBodyPacket(packet: characteristic.value!)
+        return HETChestBodyPacket(packet: characteristic.value!, date: Date())
     }
     
     static func setupNotifications(on characteristics: [CBCharacteristic], device: CBPeripheral) {
