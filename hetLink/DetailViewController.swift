@@ -17,6 +17,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.light
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,6 +38,7 @@ class DetailViewController: UIViewController {
     
     func setupButtons(chart: HETChartView){
         var buttonArray: [UIBarButtonItem] = []
+        buttonArray.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
         
         for set in chart.chartDataSets {
             let button = DatasetToggleButton(title: set.label!, color: set.colors.first!, dataset: set)

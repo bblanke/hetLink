@@ -40,6 +40,7 @@ class DatasetToggleButton: UIButton {
     
     func toggleDataset(){
         self.dataset.visible = !self.dataset.isVisible
+        self.dataset.notifyDataSetChanged()
         self.isSelected = self.dataset.isVisible
     }
 }

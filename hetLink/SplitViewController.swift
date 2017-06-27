@@ -43,7 +43,7 @@ extension SplitViewController: HETDeviceManagerDelegate {
     }
     
     func deviceManager(didConnect device: HETDevice) {
-        print("nice we connected")
+        detailVC.chartView.prepareForGraphing()
     }
     
     func deviceManager(didGet packet: HETPacket, device: HETDevice) {

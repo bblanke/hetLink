@@ -13,4 +13,5 @@ protocol HETChartView: class {
     var chartDataSets: [LineChartDataSet]! { get }
     
     func graph(packet: HETPacket)
+    func prepareForGraphing()
 }

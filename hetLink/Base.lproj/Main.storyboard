@@ -38,11 +38,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwY-F4-Ybh">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwY-F4-Ybh" customClass="CleanToolbar" customModule="hetLink" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="724" width="703" height="44"/>
-                                <items>
-                                    <barButtonItem title="Item" id="T7z-Mx-gPh"/>
-                                </items>
+                                <items/>
+                                <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4SX-oI-Qt5" userLabel="chartsFrame">
                                 <rect key="frame" x="20" y="72" width="663" height="644"/>

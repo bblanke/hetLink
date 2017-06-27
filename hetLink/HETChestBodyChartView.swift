@@ -12,11 +12,11 @@ import Charts
 class HETChestBodyChartView: ChartView, HETChartView {
     
     // Entries
-    var ecgEntries: [ChartDataEntry] = []
-    var waveOneEntries: [ChartDataEntry] = []
-    var waveTwoEntries: [ChartDataEntry] = []
-    var waveThreeEntries: [ChartDataEntry] = []
-    var waveFourEntries: [ChartDataEntry] = []
+    var ecgEntries: [ChartDataEntry] = [ChartDataEntry(x: 0, y: 0)]
+    var waveOneEntries: [ChartDataEntry] = [ChartDataEntry(x: 0, y: 0)]
+    var waveTwoEntries: [ChartDataEntry] = [ChartDataEntry(x: 0, y: 0)]
+    var waveThreeEntries: [ChartDataEntry] = [ChartDataEntry(x: 0, y: 0)]
+    var waveFourEntries: [ChartDataEntry] = [ChartDataEntry(x: 0, y: 0)]
     
     // Datasets
     var ecgDataSet: LineChartDataSet!
@@ -65,6 +65,15 @@ class HETChestBodyChartView: ChartView, HETChartView {
         xAxis.resetCustomAxisMin()
     }
     
+    func prepareForGraphing() {
+        for set in chartDataSets {
+            _ = set.removeFirst()
+        }
+        
+        xAxis.resetCustomAxisMin()
+        xAxis.resetCustomAxisMax()
+    }
+    
     func graph(packet: HETPacket) {
         let packet = packet as! HETChestBodyPacket
         
@@ -79,16 +88,17 @@ class HETChestBodyChartView: ChartView, HETChartView {
         data?.addEntry(waveTwoEntry, dataSetIndex: 2)
         data?.addEntry(waveThreeEntry, dataSetIndex: 3)
         data?.addEntry(waveFourEntry, dataSetIndex: 4)
+        
+        let first = data?.dataSets[0].entryForIndex(0)
+        
+        xAxis.axisMinimum = (first?.x)!
 
         if (data?.dataSets[0].entryCount)! > range {
-            let first = data?.dataSets[0].entryForIndex(0)
-            
-            xAxis.axisMinimum = (first?.x)!
-            
             _ = data?.dataSets[0].removeFirst()
             _ = data?.dataSets[1].removeFirst()
             _ = data?.dataSets[2].removeFirst()
             _ = data?.dataSets[3].removeFirst()
+            _ = data?.dataSets[4].removeFirst()
         }
         
         notifyDataSetChanged()

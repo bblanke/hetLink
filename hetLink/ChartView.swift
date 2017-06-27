@@ -35,6 +35,8 @@ class ChartView: LineChartView {
         chartDescription?.enabled = false
         drawBordersEnabled = false
         
+        legend.enabled = false
+        
         noDataText = "No device or recording selected"
     }
     
