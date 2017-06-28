@@ -13,6 +13,6 @@ protocol HETDeviceInterpreter: class {
     static var services: [CBUUID] { get }
     static var characteristics: [CBUUID: [CBUUID]] { get }
     
-    static func parseData(on characteristic: CBCharacteristic) -> HETPacket?
+    static func parseData(from characteristic: CBCharacteristic) -> HETPacket?
     static func setupNotifications(on characteristics: [CBCharacteristic], device: CBPeripheral)
 }

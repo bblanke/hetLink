@@ -12,11 +12,11 @@ import Charts
 class HETChestBodyChartView: ChartView, HETChartView {
     
     // Entries
-    var ecgEntries: [ChartDataEntry] = [ChartDataEntry(x: 0, y: 0)]
-    var waveOneEntries: [ChartDataEntry] = [ChartDataEntry(x: 0, y: 0)]
-    var waveTwoEntries: [ChartDataEntry] = [ChartDataEntry(x: 0, y: 0)]
-    var waveThreeEntries: [ChartDataEntry] = [ChartDataEntry(x: 0, y: 0)]
-    var waveFourEntries: [ChartDataEntry] = [ChartDataEntry(x: 0, y: 0)]
+    var ecgEntries: [ChartDataEntry] = []
+    var waveOneEntries: [ChartDataEntry] = []
+    var waveTwoEntries: [ChartDataEntry] = []
+    var waveThreeEntries: [ChartDataEntry] = []
+    var waveFourEntries: [ChartDataEntry] = []
     
     // Datasets
     var ecgDataSet: LineChartDataSet!
@@ -65,17 +65,10 @@ class HETChestBodyChartView: ChartView, HETChartView {
         xAxis.resetCustomAxisMin()
     }
     
-    func prepareForGraphing() {
-        for set in chartDataSets {
-            _ = set.removeFirst()
-        }
-        
-        xAxis.resetCustomAxisMin()
-        xAxis.resetCustomAxisMax()
-    }
-    
     func graph(packet: HETPacket) {
-        let packet = packet as! HETChestBodyPacket
+        guard let packet = packet as? HETEcgPulseOxPacket else {
+            return
+        }
         
         let ecgEntry = ChartDataEntry(x: packet.timestamp, y: Double(packet.ecg))
         let waveOneEntry = ChartDataEntry(x: packet.timestamp, y: Double(packet.waveOne))
@@ -101,6 +94,11 @@ class HETChestBodyChartView: ChartView, HETChartView {
             _ = data?.dataSets[4].removeFirst()
         }
         
+        notifyDataSetChanged()
+    }
+    
+    func toggleDataset(dataset: LineChartDataSet) {
+        dataset.visible = !dataset.isVisible
         notifyDataSetChanged()
     }
 }

@@ -10,7 +10,17 @@ import Foundation
 
 protocol HETPacket: class {
     var rawData: Data { get }
-    var timestamp: Double { get set }
+    var timestamp: Double { get }
+    var device: HETDeviceType { get }
+    var parser: HETParserType { get }
     
-    init?(packet: Data, date: Date)
+    init?(data: Data, date: Date, device: HETDeviceType)
+}
+
+enum HETDeviceType {
+    case chest, watch
+}
+
+enum HETParserType {
+    case ecgPulseOx, battAccel
 }

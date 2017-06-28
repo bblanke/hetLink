@@ -31,12 +31,20 @@ class HETChestInterpreter: HETDeviceInterpreter {
         ]
     }
     
-    static func parseData(on characteristic: CBCharacteristic) -> HETPacket? {
-        guard let packet = HETChestBodyPacket(packet: characteristic.value!, date: Date()) else {
+    static func parseData(from characteristic: CBCharacteristic) -> HETPacket? {
+        if characteristic.uuid == accelCharacteristicUUID {
+            guard let packet = HETBattAccelPacket(data: characteristic.value!, date: Date(), device: .chest) else {
+                return nil
+            }
+            return packet
+        } else if characteristic.uuid == ecgCharacteristicUUID {
+            guard let packet = HETEcgPulseOxPacket(data: characteristic.value!, date: Date(), device: .chest) else {
+                return nil
+            }
+            return packet
+        } else {
             return nil
         }
-        
-        return packet
     }
     
     static func setupNotifications(on characteristics: [CBCharacteristic], device: CBPeripheral) {

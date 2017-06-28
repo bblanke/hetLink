@@ -13,11 +13,13 @@ class DatasetToggleButton: UIButton {
     
     var color: UIColor!
     var dataset: LineChartDataSet!
+    var chart: HETChartView!
     
-    convenience init(title: String, color: UIColor, dataset: LineChartDataSet){
+    convenience init(title: String, color: UIColor, dataset: LineChartDataSet, chart: HETChartView){
         self.init()
         self.color = color
         self.dataset = dataset
+        self.chart = chart
         self.isSelected = true
         self.addTarget(self, action: #selector(toggleDataset), for: .touchUpInside)
         
@@ -39,8 +41,7 @@ class DatasetToggleButton: UIButton {
     }
     
     func toggleDataset(){
-        self.dataset.visible = !self.dataset.isVisible
-        self.dataset.notifyDataSetChanged()
+        chart.toggleDataset(dataset: dataset)
         self.isSelected = self.dataset.isVisible
     }
 }

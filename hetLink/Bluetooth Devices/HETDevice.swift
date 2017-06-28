@@ -13,11 +13,13 @@ class HETDevice: NSObject, CBPeripheralDelegate {
     var peripheral: CBPeripheral
     weak var delegate: HETDeviceDelegate!
     var interpreter: HETDeviceInterpreter.Type
+    var type: HETDeviceType!
     
     init(from device: CBPeripheral, delegate: HETDeviceDelegate){
         self.peripheral = device
         self.delegate = delegate
-        self.interpreter = HETChestInterpreter.self
+        self.interpreter = HETChestInterpreter.self // TODO: Find a way to differentiate between devices to apply the correct interpreter
+        self.type = .chest
         
         super.init()
         peripheral.delegate = self
@@ -38,7 +40,7 @@ class HETDevice: NSObject, CBPeripheralDelegate {
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        guard let packet = interpreter.parseData(on: characteristic) else {
+        guard let packet = interpreter.parseData(from: characteristic) else {
             return
         }
         

@@ -32,23 +32,20 @@ class SplitViewController: UISplitViewController{
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
 extension SplitViewController: HETDeviceManagerDelegate {
     func deviceManager(didDiscover device: CBPeripheral){
-        
         masterVC.reloadHETDevices(devices: hetDeviceManager.discoveredDevices)
     }
     
     func deviceManager(didConnect device: HETDevice) {
-        detailVC.chartView.prepareForGraphing()
+        detailVC.setupGraphs(for: device)
     }
     
     func deviceManager(didGet packet: HETPacket, device: HETDevice) {
-        let packet = packet as! HETChestBodyPacket
-        detailVC.chartView.graph(packet: packet)
+        detailVC.graph(packet: packet)
     }
 }
 
