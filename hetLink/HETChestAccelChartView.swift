@@ -47,7 +47,8 @@ class HETChestAccelChartView: ChartView, HETChartView {
         
         for (index, set) in chartDataSets.enumerated() {
             set.drawCirclesEnabled = false
-            set.cubicIntensity = 1.0
+            set.cubicIntensity = 0.2
+            set.mode = .horizontalBezier
             set.drawValuesEnabled = false
             set.lineWidth = 2
             set.setColor(chartColors[index])

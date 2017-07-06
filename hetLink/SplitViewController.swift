@@ -21,11 +21,11 @@ class SplitViewController: UISplitViewController{
         
         hetDeviceManager = HETDeviceManager(delegate: self, services: HETWatchInterpreter.services)
         
-        let masterNavigationController = viewControllers[0] as! UINavigationController
-        masterVC = masterNavigationController.topViewController as! MasterViewController
+        let masterNC = viewControllers[0] as! UINavigationController
+        masterVC = masterNC.topViewController as! MasterViewController
         
-        let detailNavigationController = viewControllers[1] as! UINavigationController
-        detailVC = detailNavigationController.topViewController as! DetailViewController
+        let detailNC = viewControllers[1] as! UINavigationController
+        detailVC = detailNC.topViewController as! DetailViewController
         
         masterVC.deviceListDelegate = self
     }

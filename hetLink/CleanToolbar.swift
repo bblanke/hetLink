@@ -9,17 +9,11 @@
 import UIKit
 
 class CleanToolbar: UIToolbar {
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        print("this is called")
-        layer.backgroundColor = UIColor.primary.cgColor
-        layer.borderWidth = 0
-    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        clipsToBounds = true
+        layer.borderWidth = 0
     }
 
 }
