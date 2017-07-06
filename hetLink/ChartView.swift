@@ -52,3 +52,14 @@ extension ChartView : IAxisValueFormatter{
         return dateFormatter.string(from: Date(timeIntervalSince1970: value))
     }
 }
+
+protocol HETChartView: class {
+    var chartDataSets: [LineChartDataSet]! { get }
+    
+    func graph(packet: HETPacket)
+    func setVisibility(_ visibility: Bool, dataset: LineChartDataSet)
+}
+
+protocol ChartViewDelegate: class {
+    func chartView(didToggleRecording status: Bool)
+}

@@ -10,7 +10,7 @@ import Foundation
 
 class HETBattAccelPacket: HETPacket {
     let rawData: Data
-    let timestamp: Double
+    let timestamp: Date
     let device: HETDeviceType
     let parser: HETParserType
     
@@ -24,7 +24,7 @@ class HETBattAccelPacket: HETPacket {
         }
         
         self.rawData = data
-        self.timestamp = date.timeIntervalSince1970
+        self.timestamp = date
         self.device = device
         self.parser = .battAccel
         

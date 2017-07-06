@@ -10,7 +10,7 @@ import Foundation
 
 class HETEcgPulseOxPacket: HETPacket {
     let rawData: Data
-    let timestamp: Double
+    let timestamp: Date
     let device: HETDeviceType
     let parser: HETParserType
     
@@ -26,7 +26,7 @@ class HETEcgPulseOxPacket: HETPacket {
         }
         
         self.rawData = data
-        self.timestamp = date.timeIntervalSince1970
+        self.timestamp = date
         self.device = device
         self.parser = .ecgPulseOx
         

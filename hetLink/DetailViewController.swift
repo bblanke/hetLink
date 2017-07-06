@@ -17,6 +17,8 @@ class DetailViewController: UIViewController {
     
     var currentDeviceType: HETDeviceType!
     
+    var chartDelegate: ChartViewDelegate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -80,8 +82,18 @@ class DetailViewController: UIViewController {
     
     private func setupButtons(charts: [HETChartView]){
         var buttonArray: [UIBarButtonItem] = []
+        
+        // Set up Record button
+        let recordButton = ToggleButton(title: "Record", color: UIColor.red)
+        recordButton.isSelected = false
+        recordButton.addTarget(self, action: #selector(toggleRecording), for: .touchUpInside)
+        let recordBarItem = UIBarButtonItem(customView: recordButton)
+        buttonArray.append(recordBarItem)
+        
+        // Add flexible space
         buttonArray.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
         
+        // Add the buttons to toggle all of the datasets
         for chart in charts {
             for set in chart.chartDataSets {
                 let button = DatasetToggleButton(title: set.label!, color: set.colors.first!, dataset: set, chart: chart)
@@ -92,6 +104,10 @@ class DetailViewController: UIViewController {
         }
         
         chartButtonbar.setItems(buttonArray, animated: true)
+    }
+    
+    func toggleRecording(sender: UIButton){
+        chartDelegate.chartView(didToggleRecording: sender.isSelected)
     }
 }
 

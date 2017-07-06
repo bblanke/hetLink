@@ -65,9 +65,11 @@ class HETChestAccelChartView: ChartView, HETChartView {
             return
         }
         
-        let xEntry = ChartDataEntry(x: packet.timestamp, y: Double(packet.x))
-        let yEntry = ChartDataEntry(x: packet.timestamp, y: Double(packet.y))
-        let zEntry = ChartDataEntry(x: packet.timestamp, y: Double(packet.z))
+        let ts = packet.timestamp.timeIntervalSince1970
+        
+        let xEntry = ChartDataEntry(x: ts, y: Double(packet.x))
+        let yEntry = ChartDataEntry(x: ts, y: Double(packet.y))
+        let zEntry = ChartDataEntry(x: ts, y: Double(packet.z))
         
         data?.addEntry(xEntry, dataSetIndex: 0)
         data?.addEntry(yEntry, dataSetIndex: 1)
@@ -86,8 +88,8 @@ class HETChestAccelChartView: ChartView, HETChartView {
         notifyDataSetChanged()
     }
     
-    func toggleDataset(dataset: LineChartDataSet) {
-        dataset.visible = !dataset.isVisible
+    func setVisibility(_ visibility: Bool, dataset: LineChartDataSet){
+        dataset.visible = visibility
         notifyDataSetChanged()
     }
 }

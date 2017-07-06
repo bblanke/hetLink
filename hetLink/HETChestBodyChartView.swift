@@ -69,11 +69,13 @@ class HETChestBodyChartView: ChartView, HETChartView {
             return
         }
         
-        let ecgEntry = ChartDataEntry(x: packet.timestamp, y: Double(packet.ecg))
-        let waveOneEntry = ChartDataEntry(x: packet.timestamp, y: Double(packet.waveOne))
-        let waveTwoEntry = ChartDataEntry(x: packet.timestamp, y: Double(packet.waveTwo))
-        let waveThreeEntry = ChartDataEntry(x: packet.timestamp, y: Double(packet.waveThree))
-        let waveFourEntry = ChartDataEntry(x: packet.timestamp, y: Double(packet.waveFour))
+        let ts = packet.timestamp.timeIntervalSince1970
+        
+        let ecgEntry = ChartDataEntry(x: ts, y: Double(packet.ecg))
+        let waveOneEntry = ChartDataEntry(x: ts, y: Double(packet.waveOne))
+        let waveTwoEntry = ChartDataEntry(x: ts, y: Double(packet.waveTwo))
+        let waveThreeEntry = ChartDataEntry(x: ts, y: Double(packet.waveThree))
+        let waveFourEntry = ChartDataEntry(x: ts, y: Double(packet.waveFour))
         
         data?.addEntry(ecgEntry, dataSetIndex: 0)
         data?.addEntry(waveOneEntry, dataSetIndex: 1)
@@ -96,8 +98,8 @@ class HETChestBodyChartView: ChartView, HETChartView {
         notifyDataSetChanged()
     }
     
-    func toggleDataset(dataset: LineChartDataSet) {
-        dataset.visible = !dataset.isVisible
+    func setVisibility(_ visibility: Bool, dataset: LineChartDataSet) {
+        dataset.visible = visibility
         notifyDataSetChanged()
     }
 }

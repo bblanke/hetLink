@@ -8,11 +8,14 @@
 
 import UIKit
 import CoreBluetooth
+import CoreData
 
 class MasterViewController: UITableViewController {
 
     var hetDevices : [CBPeripheral] = []
     var deviceListDelegate : DeviceListDelegate!
+    
+    var recordingsController: NSFetchedResultsController<NSFetchRequestResult>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +35,7 @@ class MasterViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,10 +45,21 @@ class MasterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceCell", for: indexPath)
         
-        if hetDevices.count > 0 {
-            cell.textLabel?.text = hetDevices[indexPath.row].name
-        } else {
-            cell.textLabel?.text = "No devices found"
+        if indexPath.section == 0 {
+            if hetDevices.count > 0 {
+                cell.textLabel?.text = hetDevices[indexPath.row].name
+                cell.detailTextLabel?.text = hetDevices[indexPath.row].identifier.uuidString
+            } else {
+                cell.textLabel?.text = "No devices found"
+                cell.detailTextLabel?.text = "Please switch on an HET device"
+            }
+        } else if indexPath.section == 1 {
+            let record = recordingsController.object(at: IndexPath(row: indexPath.row, section: 0)) as! Recording
+            cell.textLabel?.text = record.title
+            let timestampParser = DateFormatter()
+            timestampParser.timeStyle = .long
+            timestampParser.dateStyle = .short
+            cell.detailTextLabel?.text = timestampParser.string(from: record.timestamp! as Date)
         }
         
         return cell
@@ -73,6 +87,7 @@ class MasterViewController: UITableViewController {
         hetDevices = devices
         tableView.reloadData()
     }
+    
 }
 
 protocol DeviceListDelegate: class {
