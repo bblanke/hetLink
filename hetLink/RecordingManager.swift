@@ -30,7 +30,7 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
     
     func initializeFetchedRecordingsController() {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Recording")
-        let timestampSort = NSSortDescriptor(key: "timestamp", ascending: true)
+        let timestampSort = NSSortDescriptor(key: "timestamp", ascending: false)
         request.sortDescriptors = [timestampSort]
         
         let moc = managedObjectContext
@@ -45,7 +45,7 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        print("updated the recordings")
+        //print("updated the recordings")
     }
     
     func startRecording(){
@@ -90,6 +90,7 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
         
         if context.hasChanges {
             do {
+                print("Saved context")
                 try context.save()
             } catch {
                 // FIXME: – Replace this implementation with code to handle the error appropriately.

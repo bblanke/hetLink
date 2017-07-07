@@ -39,7 +39,14 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return hetDevices.count > 0 ? hetDevices.count : 1
+        switch section {
+        case 0:
+            return hetDevices.count > 0 ? hetDevices.count : 1
+        case 1:
+            return (recordingsController.sections?.first?.numberOfObjects)!
+        default:
+            fatalError("There is a section in the table view that should not be present.")
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
