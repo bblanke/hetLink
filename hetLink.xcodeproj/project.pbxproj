@@ -84,6 +84,7 @@
 		3D391EE61EF857510071CF6A /* HETChestInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = HETChestInterpreter.swift; sourceTree = "<group>"; };
 		3D9FA5A01F0E6C8D0078F2F7 /* RecordingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingManager.swift; sourceTree = "<group>"; };
 		3D9FA5A21F0E942C0078F2F7 /* ToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
+		3DA638BF1F13DC4F007081F4 /* hetLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hetLink.entitlements; sourceTree = "<group>"; };
 		3DA9DCAA1F02CB2E00AB7466 /* DatasetToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatasetToggleButton.swift; sourceTree = "<group>"; };
 		3DA9DCAC1F02EF6100AB7466 /* CleanToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CleanToolbar.swift; sourceTree = "<group>"; };
 		3DC284D21EF3184B008EC6A4 /* ChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
@@ -230,6 +231,7 @@
 		3DFD322F1EF02C5C0028805B /* hetLink */ = {
 			isa = PBXGroup;
 			children = (
+				3DA638BF1F13DC4F007081F4 /* hetLink.entitlements */,
 				3DE70DA51EF98F7100E7D77E /* Persistence */,
 				3DC284D81EF318D3008EC6A4 /* Visuals */,
 				3DC284D11EF31794008EC6A4 /* Charts */,
@@ -358,6 +360,11 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = BDN6EHM4RZ;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					3DFD32451EF02C5D0028805B = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -740,6 +747,7 @@
 			baseConfigurationReference = BA08B22F5148118B3EFFE46E /* Pods-hetLink.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = hetLink/hetLink.entitlements;
 				DEVELOPMENT_TEAM = BDN6EHM4RZ;
 				INFOPLIST_FILE = hetLink/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -755,6 +763,7 @@
 			baseConfigurationReference = C564B9C5311E891ECAC18A7C /* Pods-hetLink.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = hetLink/hetLink.entitlements;
 				DEVELOPMENT_TEAM = BDN6EHM4RZ;
 				INFOPLIST_FILE = hetLink/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
