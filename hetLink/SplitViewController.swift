@@ -29,8 +29,8 @@ class SplitViewController: UISplitViewController{
         let detailNC = viewControllers[1] as! UINavigationController
         detailVC = detailNC.topViewController as! DetailViewController
         
-        masterVC.deviceListDelegate = self
-        masterVC.recordingsController = recordingManager.fetchedRecordingsController
+        masterVC.masterListDelegate = self
+        masterVC.recordingManager = recordingManager
         detailVC.chartDelegate = self
     }
 
@@ -45,7 +45,7 @@ extension SplitViewController: HETDeviceManagerDelegate {
     }
     
     func deviceManager(didConnect device: HETDevice) {
-        detailVC.setupGraphs(for: device)
+        detailVC.setupGraphs(for: device.type, mode: .device)
     }
     
     func deviceManager(didGet packet: HETPacket) {
@@ -56,16 +56,43 @@ extension SplitViewController: HETDeviceManagerDelegate {
     }
 }
 
-extension SplitViewController: DeviceListDelegate {
-    func deviceList(didSelect device: CBPeripheral) {
+extension SplitViewController: MasterListDelegate {
+    func masterList(didSelectDevice device:CBPeripheral) {
         hetDeviceManager.connect(device: device)
+    }
+    
+    func masterList(didSelectRecording recording: Recording) {
+        hetDeviceManager.disconnectCurrentDevice()
+        masterVC.isDisabled = true
+        let deviceType = HETDeviceType(rawValue: recording.deviceType)!
+        detailVC.setupGraphs(for: deviceType, mode: .file)
+        detailVC.progressView.isHidden = false
+        detailVC.progressView.progress = 0.0
+        
+        let packets = recording.packets!.array as! [Packet]
+        let totalCount = packets.count
+        for (index, packet) in packets.enumerated() {
+            detailVC.progressView.progress = Float(index)/Float(totalCount)
+            switch HETParserType(rawValue: packet.parseType)!{
+            case .ecgPulseOx:
+                detailVC.graph(packet: HETEcgPulseOxPacket(data: packet.data! as Data, date: packet.timestamp! as Date)!)
+                break
+            case .battAccel:
+                detailVC.graph(packet: HETBattAccelPacket(data: packet.data! as Data, date: packet.timestamp! as Date)!)
+                break
+            }
+        }
+        
+        detailVC.progressView.isHidden = true
+        masterVC.isDisabled = false
     }
 }
 
 extension SplitViewController: ChartViewDelegate {
-    func chartView(didToggleRecording status: Bool) {
-        if status {
-            recordingManager.startRecording()
+    func chartView(didToggle recording: Bool) {
+        masterVC.isDisabled = recording
+        if recording {
+            recordingManager.startRecording(type: hetDeviceManager.connectedDevice.type)
         } else {
             let alertController = UIAlertController(title: "Save Recording", message: "Please choose a name for the recording", preferredStyle: .alert)
             let saveAction = UIAlertAction(title: "Save", style: .default, handler: { (action) in

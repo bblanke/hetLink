@@ -13,9 +13,14 @@ import CoreData
 class MasterViewController: UITableViewController {
 
     var hetDevices : [CBPeripheral] = []
-    var deviceListDelegate : DeviceListDelegate!
+    var masterListDelegate : MasterListDelegate!
     
-    var recordingsController: NSFetchedResultsController<NSFetchRequestResult>!
+    var recordingManager: RecordingManager!
+    var isDisabled: Bool = false {
+        didSet {
+            tableView.alpha = isDisabled ? 0.5 : 1
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +48,9 @@ class MasterViewController: UITableViewController {
         case 0:
             return hetDevices.count > 0 ? hetDevices.count : 1
         case 1:
-            return (recordingsController.sections?.first?.numberOfObjects)!
+            return recordingManager.recordingCount
         default:
-            fatalError("There is a section in the table view that should not be present.")
+            fatalError("There is a section in the table view.")
         }
     }
     
@@ -61,7 +66,7 @@ class MasterViewController: UITableViewController {
                 cell.detailTextLabel?.text = "Please switch on an HET device"
             }
         } else if indexPath.section == 1 {
-            let record = recordingsController.object(at: IndexPath(row: indexPath.row, section: 0)) as! Recording
+            let record = recordingManager.recording(at: indexPath.row)
             cell.textLabel?.text = record.title
             let timestampParser = DateFormatter()
             timestampParser.timeStyle = .long
@@ -72,8 +77,30 @@ class MasterViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        guard indexPath.section == 1 else { return false }
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        recordingManager.delete(recording: recordingManager.recording(at: indexPath.row))
+        tableView.reloadData()
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        deviceListDelegate.deviceList(didSelect: hetDevices[indexPath.row])
+        guard isDisabled == false else { return }
+        switch indexPath.section {
+        case 0:
+            guard hetDevices.count > 0 else { return }
+            masterListDelegate.masterList(didSelectDevice: hetDevices[indexPath.row])
+            break
+        case 1:
+            masterListDelegate.masterList(didSelectRecording: recordingManager.recording(at: indexPath.row))
+            break
+        default:
+            fatalError("There is an extra section in the table view.")
+        }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -83,7 +110,7 @@ class MasterViewController: UITableViewController {
         case 1:
             return "Recordings"
         default:
-            return "Shouldn't be here"
+            fatalError("There is an extra section in the table view.")
         }
     }
     
@@ -97,7 +124,8 @@ class MasterViewController: UITableViewController {
     
 }
 
-protocol DeviceListDelegate: class {
-    func deviceList(didSelect device: CBPeripheral)
+protocol MasterListDelegate: class {
+    func masterList(didSelectDevice device: CBPeripheral)
+    func masterList(didSelectRecording recording: Recording)
 }
 

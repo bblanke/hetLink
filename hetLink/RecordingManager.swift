@@ -16,6 +16,10 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
     var openRecording: Recording?
     var fetchedRecordingsController: NSFetchedResultsController<NSFetchRequestResult>!
     
+    var recordingCount: Int {
+        return (fetchedRecordingsController.sections?.first?.numberOfObjects)!
+    }
+    
     override init(){
         super.init()
         let persistentContainer = NSPersistentContainer(name: "hetLink")
@@ -28,7 +32,7 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
         }
     }
     
-    func initializeFetchedRecordingsController() {
+    private func initializeFetchedRecordingsController() {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Recording")
         let timestampSort = NSSortDescriptor(key: "timestamp", ascending: false)
         request.sortDescriptors = [timestampSort]
@@ -48,12 +52,22 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
         //print("updated the recordings")
     }
     
-    func startRecording(){
+    func recording(at row: Int) -> Recording {
+        return fetchedRecordingsController.object(at: IndexPath(row: row, section: 0)) as! Recording
+    }
+    
+    func delete(recording: Recording) {
+        managedObjectContext.delete(recording)
+        saveContext()
+    }
+    
+    func startRecording(type: HETDeviceType){
         print("creating a parent object")
         isRecording = true
         
         openRecording = Recording(context: managedObjectContext)
         openRecording?.timestamp = Date() as NSDate
+        openRecording?.deviceType = type.rawValue
     }
     
     func persist(packet: HETPacket){
@@ -63,7 +77,6 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
         
         let recPacket = Packet(context: managedObjectContext)
         recPacket.timestamp = packet.timestamp as NSDate
-        recPacket.deviceType = packet.device.rawValue
         recPacket.parseType = packet.parser.rawValue
         recPacket.data = packet.rawData as NSData
         

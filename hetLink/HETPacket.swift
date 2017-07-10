@@ -11,14 +11,9 @@ import Foundation
 protocol HETPacket: class {
     var rawData: Data { get }
     var timestamp: Date { get }
-    var device: HETDeviceType { get }
     var parser: HETParserType { get }
     
-    init?(data: Data, date: Date, device: HETDeviceType)
-}
-
-enum HETDeviceType: Int16 {
-    case chest, watch
+    init?(data: Data, date: Date)
 }
 
 enum HETParserType: Int16 {

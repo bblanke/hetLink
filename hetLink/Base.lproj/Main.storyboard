@@ -23,11 +23,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwY-F4-Ybh">
-                                <rect key="frame" x="0.0" y="980" width="1045" height="44"/>
+                                <rect key="frame" x="0.0" y="980" width="1044.5" height="44"/>
                                 <items/>
                             </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4SX-oI-Qt5" userLabel="chartsFrame">
-                                <rect key="frame" x="20" y="72" width="1005" height="900"/>
+                                <rect key="frame" x="20" y="72" width="1004.5" height="900"/>
+                                <subviews>
+                                    <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RhO-ah-wFc">
+                                        <rect key="frame" x="427.5" y="449" width="150" height="2"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="thR-IG-zh7"/>
+                                        </constraints>
+                                    </progressView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="RhO-ah-wFc" firstAttribute="centerX" secondItem="4SX-oI-Qt5" secondAttribute="centerX" id="e6n-uf-QaQ"/>
+                                    <constraint firstItem="RhO-ah-wFc" firstAttribute="centerY" secondItem="4SX-oI-Qt5" secondAttribute="centerY" id="kF6-8q-v86"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -46,6 +58,7 @@
                     <connections>
                         <outlet property="chartButtonbar" destination="wwY-F4-Ybh" id="6DU-mL-2XT"/>
                         <outlet property="chartsFrame" destination="4SX-oI-Qt5" id="Dmh-Mm-4HA"/>
+                        <outlet property="progressView" destination="RhO-ah-wFc" id="Ipq-oV-man"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>

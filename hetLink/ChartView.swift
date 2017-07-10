@@ -61,5 +61,5 @@ protocol HETChartView: class {
 }
 
 protocol ChartViewDelegate: class {
-    func chartView(didToggleRecording status: Bool)
+    func chartView(didToggle recording: Bool)
 }

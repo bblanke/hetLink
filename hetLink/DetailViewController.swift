@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Foundation
 
 class DetailViewController: UIViewController {
     
     @IBOutlet weak var chartsFrame: UIView!
     @IBOutlet weak var chartButtonbar: UIToolbar!
+    
+    @IBOutlet weak var progressView: UIProgressView!
     
     var chartViews: [HETChartView] = []
     
@@ -27,24 +30,31 @@ class DetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func setupGraphs(for device: HETDevice){
+    func setupGraphs(for deviceType: HETDeviceType, mode: GraphMode){
+        if chartViews.count > 0 {
+            for chartView in chartViews{
+                let view = chartView as! UIView
+                view.removeFromSuperview()
+            }
+        }
         chartViews = []
-        switch device.type! {
+        switch deviceType {
         case .chest:
             let frames = createFrames(in: chartsFrame.frame, number: 2)
             chartViews.append(HETChestBodyChartView(frame: frames[0]))
             chartViews.append(HETChestAccelChartView(frame: frames[1]))
             
-            setupButtons(charts: chartViews)
+            setupButtons(charts: chartViews, mode: mode)
             break
         case .watch: break
         }
+        
         
         for chartView in chartViews {
             self.view.addSubview(chartView as! UIView)
         }
         
-        currentDeviceType = device.type
+        currentDeviceType = deviceType
     }
     
     func graph(packet: HETPacket){
@@ -80,16 +90,18 @@ class DetailViewController: UIViewController {
         return frames
     }
     
-    private func setupButtons(charts: [HETChartView]){
+    private func setupButtons(charts: [HETChartView], mode: GraphMode){
         var buttonArray: [UIBarButtonItem] = []
         
-        // Set up Record button
-        let recordButton = ToggleButton(title: "Record", color: UIColor.red)
-        recordButton.isSelected = false
-        recordButton.addTarget(self, action: #selector(toggleRecording), for: .touchUpInside)
-        let recordBarItem = UIBarButtonItem(customView: recordButton)
-        buttonArray.append(recordBarItem)
-        
+        if mode == .device {
+            // Set up Record button
+            let recordButton = ToggleButton(title: "Record", color: UIColor.red)
+            recordButton.isSelected = false
+            recordButton.addTarget(self, action: #selector(toggleRecording), for: .touchUpInside)
+            let recordBarItem = UIBarButtonItem(customView: recordButton)
+            buttonArray.append(recordBarItem)
+        }
+            
         // Add flexible space
         buttonArray.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
         
@@ -107,7 +119,11 @@ class DetailViewController: UIViewController {
     }
     
     func toggleRecording(sender: UIButton){
-        chartDelegate.chartView(didToggleRecording: sender.isSelected)
+        chartDelegate.chartView(didToggle: sender.isSelected)
     }
+}
+
+enum GraphMode {
+    case device, file
 }
 

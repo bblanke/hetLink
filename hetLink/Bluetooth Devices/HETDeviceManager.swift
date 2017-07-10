@@ -34,6 +34,14 @@ class HETDeviceManager: NSObject{
     func connect(device: CBPeripheral){
         bleManager.connect(device, options: nil)
     }
+    
+    func disconnectCurrentDevice(){
+        guard let device = connectedDevice else {
+            return
+        }
+        
+        bleManager.cancelPeripheralConnection(device.peripheral)
+    }
 }
 
 extension HETDeviceManager: CBCentralManagerDelegate {

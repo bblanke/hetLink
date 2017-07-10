@@ -33,12 +33,12 @@ class HETChestInterpreter: HETDeviceInterpreter {
     
     static func parseData(from characteristic: CBCharacteristic) -> HETPacket? {
         if characteristic.uuid == accelCharacteristicUUID {
-            guard let packet = HETBattAccelPacket(data: characteristic.value!, date: Date(), device: .chest) else {
+            guard let packet = HETBattAccelPacket(data: characteristic.value!, date: Date()) else {
                 return nil
             }
             return packet
         } else if characteristic.uuid == ecgCharacteristicUUID {
-            guard let packet = HETEcgPulseOxPacket(data: characteristic.value!, date: Date(), device: .chest) else {
+            guard let packet = HETEcgPulseOxPacket(data: characteristic.value!, date: Date()) else {
                 return nil
             }
             return packet

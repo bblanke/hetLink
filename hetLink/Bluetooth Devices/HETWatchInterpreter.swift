@@ -31,7 +31,7 @@ class HETWatchInterpreter: HETDeviceInterpreter {
     
     static func parseData(from characteristic: CBCharacteristic) -> HETPacket? {
         // FIXME: - This should have whatever watch interpreter- not the chest body interpreter
-        guard let packet = HETEcgPulseOxPacket(data: characteristic.value!, date: Date(), device: .watch) else {
+        guard let packet = HETEcgPulseOxPacket(data: characteristic.value!, date: Date()) else {
             return nil
         }
         

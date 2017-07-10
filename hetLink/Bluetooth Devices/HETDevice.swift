@@ -51,3 +51,7 @@ class HETDevice: NSObject, CBPeripheralDelegate {
 protocol HETDeviceDelegate : class {
     func hetDevice(didUpdateValueFor characteristic: CBCharacteristic, packet: HETPacket)
 }
+
+enum HETDeviceType: Int16 {
+    case chest, watch
+}
