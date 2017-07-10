@@ -95,6 +95,22 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
         print("closing everything out")
     }
     
+    func make(packetArrayFrom recording: Recording) -> [HETPacket] {
+        var returnPackets: [HETPacket] = []
+        let packets = recording.packets!.array as! [Packet]
+        for packet in packets {
+            switch HETParserType(rawValue: packet.parseType)!{
+            case .ecgPulseOx:
+                returnPackets.append(HETEcgPulseOxPacket(data: packet.data! as Data, date: packet.timestamp! as Date)!)
+                break
+            case .battAccel:
+                returnPackets.append(HETBattAccelPacket(data: packet.data! as Data, date: packet.timestamp! as Date)!)
+                break
+            }
+        }
+        return returnPackets
+    }
+    
     private func saveContext () {
         guard let context = managedObjectContext else {
             // FIXME: - Should have a way for this to fail with a message

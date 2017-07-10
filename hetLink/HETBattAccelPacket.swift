@@ -13,6 +13,9 @@ class HETBattAccelPacket: HETPacket {
     let timestamp: Date
     let parser: HETParserType
     
+    static var attributeCount: Int = 3
+    static var attributeCSVExportHeader: String = "X, Y, Z"
+    
     let x: Int8
     let y: Int8
     let z: Int8
@@ -29,5 +32,9 @@ class HETBattAccelPacket: HETPacket {
         self.x = Int8(bitPattern: data[0])
         self.y = Int8(bitPattern: data[1])
         self.z = Int8(bitPattern: data[2])
+    }
+    
+    func toCSV() -> String {
+        return "\(x), \(y), \(z)"
     }
 }

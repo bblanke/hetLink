@@ -101,6 +101,16 @@ class DetailViewController: UIViewController {
             let recordBarItem = UIBarButtonItem(customView: recordButton)
             buttonArray.append(recordBarItem)
         }
+        
+        if mode == .file {
+            // Set up Export button
+            let exportButton = UIButton(type: .system)
+            exportButton.setTitle("Export", for: .normal)
+            exportButton.sizeToFit()
+            exportButton.addTarget(self, action: #selector(beginExport), for: .touchUpInside)
+            let exportBarItem = UIBarButtonItem(customView: exportButton)
+            buttonArray.append(exportBarItem)
+        }
             
         // Add flexible space
         buttonArray.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
@@ -120,6 +130,10 @@ class DetailViewController: UIViewController {
     
     func toggleRecording(sender: UIButton){
         chartDelegate.chartView(didToggle: sender.isSelected)
+    }
+    
+    func beginExport(sender: UIButton){
+        chartDelegate.chartViewDidRequestExport()
     }
 }
 

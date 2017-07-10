@@ -62,4 +62,5 @@ protocol HETChartView: class {
 
 protocol ChartViewDelegate: class {
     func chartView(didToggle recording: Bool)
+    func chartViewDidRequestExport()
 }

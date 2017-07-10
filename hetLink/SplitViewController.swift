@@ -18,10 +18,17 @@ class SplitViewController: UISplitViewController{
     
     var recordingManager: RecordingManager!
     
+    var exportManager: ExportManager!
+    
+    var presentedRecording: Recording!
+    var presentedRecordingPackets: [HETPacket]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         hetDeviceManager = HETDeviceManager(delegate: self, services: HETWatchInterpreter.services)
+        
+        exportManager = ExportManager()
         
         let masterNC = viewControllers[0] as! UINavigationController
         masterVC = masterNC.topViewController as! MasterViewController
@@ -62,25 +69,19 @@ extension SplitViewController: MasterListDelegate {
     }
     
     func masterList(didSelectRecording recording: Recording) {
+        self.presentedRecording = recording
+
         hetDeviceManager.disconnectCurrentDevice()
         masterVC.isDisabled = true
-        let deviceType = HETDeviceType(rawValue: recording.deviceType)!
-        detailVC.setupGraphs(for: deviceType, mode: .file)
-        detailVC.progressView.isHidden = false
-        detailVC.progressView.progress = 0.0
         
-        let packets = recording.packets!.array as! [Packet]
-        let totalCount = packets.count
-        for (index, packet) in packets.enumerated() {
-            detailVC.progressView.progress = Float(index)/Float(totalCount)
-            switch HETParserType(rawValue: packet.parseType)!{
-            case .ecgPulseOx:
-                detailVC.graph(packet: HETEcgPulseOxPacket(data: packet.data! as Data, date: packet.timestamp! as Date)!)
-                break
-            case .battAccel:
-                detailVC.graph(packet: HETBattAccelPacket(data: packet.data! as Data, date: packet.timestamp! as Date)!)
-                break
-            }
+        let deviceType = HETDeviceType(rawValue: recording.deviceType)!
+        
+        detailVC.setupGraphs(for: deviceType, mode: .file)
+        
+        presentedRecordingPackets = recordingManager.make(packetArrayFrom: recording)
+
+        for packet in presentedRecordingPackets {
+            detailVC.graph(packet: packet)
         }
         
         detailVC.progressView.isHidden = true
@@ -89,6 +90,13 @@ extension SplitViewController: MasterListDelegate {
 }
 
 extension SplitViewController: ChartViewDelegate {
+    func chartViewDidRequestExport() {
+        exportManager.beginExporting(packetArray: presentedRecordingPackets, associatedRecording: presentedRecording, completion: { (url) in
+            let documentPicker = UIDocumentPickerViewController(url: url, in: UIDocumentPickerMode.exportToService)
+            self.present(documentPicker, animated: true, completion: nil)
+        })
+    }
+    
     func chartView(didToggle recording: Bool) {
         masterVC.isDisabled = recording
         if recording {

@@ -13,6 +13,9 @@ class HETEcgPulseOxPacket: HETPacket {
     let timestamp: Date
     let parser: HETParserType
     
+    static let attributeCount: Int = 5
+    static var attributeCSVExportHeader: String = "ECG, Wave One, Wave Two, Wave Three, Wave Four"
+    
     let ecg: Int
     let waveOne: Int
     let waveTwo: Int
@@ -33,5 +36,9 @@ class HETEcgPulseOxPacket: HETPacket {
         self.waveTwo = (Int(data[15]) << 8) + Int(data[14])
         self.waveThree = (Int(data[17]) << 8) + Int(data[16])
         self.waveFour = (Int(data[19]) << 8) + Int(data[18])
+    }
+    
+    func toCSV() -> String {
+        return "\(ecg), \(waveOne), \(waveTwo), \(waveThree), \(waveFour)"
     }
 }

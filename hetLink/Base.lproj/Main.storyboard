@@ -30,7 +30,7 @@
                                 <rect key="frame" x="20" y="72" width="1004.5" height="900"/>
                                 <subviews>
                                     <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RhO-ah-wFc">
-                                        <rect key="frame" x="427.5" y="449" width="150" height="2"/>
+                                        <rect key="frame" x="428" y="449" width="150" height="2"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="thR-IG-zh7"/>
                                         </constraints>
