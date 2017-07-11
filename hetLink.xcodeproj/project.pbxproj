@@ -17,6 +17,8 @@
 		3D391EE71EF857510071CF6A /* HETChestInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D391EE61EF857510071CF6A /* HETChestInterpreter.swift */; };
 		3D4DA52C1F152A1300BAD1E8 /* DatasetVisibilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DA52B1F152A1300BAD1E8 /* DatasetVisibilityViewController.swift */; };
 		3D4DA52E1F152EC500BAD1E8 /* DatasetToggleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DA52D1F152EC500BAD1E8 /* DatasetToggleViewCell.swift */; };
+		3D8ABCF21F155955003A2B55 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8ABCF11F155955003A2B55 /* Theme.swift */; };
+		3D8ABCF91F156A57003A2B55 /* SourceBrowserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8ABCF81F156A57003A2B55 /* SourceBrowserCell.swift */; };
 		3D9FA5A11F0E6C8D0078F2F7 /* RecordingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9FA5A01F0E6C8D0078F2F7 /* RecordingManager.swift */; };
 		3DA638C11F13EEA4007081F4 /* ExportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA638C01F13EEA4007081F4 /* ExportManager.swift */; };
 		3DC284D31EF3184B008EC6A4 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC284D21EF3184B008EC6A4 /* ChartView.swift */; };
@@ -80,6 +82,8 @@
 		3D391EE61EF857510071CF6A /* HETChestInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = HETChestInterpreter.swift; sourceTree = "<group>"; };
 		3D4DA52B1F152A1300BAD1E8 /* DatasetVisibilityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatasetVisibilityViewController.swift; sourceTree = "<group>"; };
 		3D4DA52D1F152EC500BAD1E8 /* DatasetToggleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatasetToggleViewCell.swift; sourceTree = "<group>"; };
+		3D8ABCF11F155955003A2B55 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		3D8ABCF81F156A57003A2B55 /* SourceBrowserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceBrowserCell.swift; sourceTree = "<group>"; };
 		3D9FA5A01F0E6C8D0078F2F7 /* RecordingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingManager.swift; sourceTree = "<group>"; };
 		3DA638BF1F13DC4F007081F4 /* hetLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hetLink.entitlements; sourceTree = "<group>"; };
 		3DA638C01F13EEA4007081F4 /* ExportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportManager.swift; sourceTree = "<group>"; };
@@ -168,6 +172,15 @@
 			path = "Bluetooth Devices";
 			sourceTree = "<group>";
 		};
+		3D8ABCF71F156A3C003A2B55 /* Master */ = {
+			isa = PBXGroup;
+			children = (
+				3DFD32351EF02C5D0028805B /* MasterViewController.swift */,
+				3D8ABCF81F156A57003A2B55 /* SourceBrowserCell.swift */,
+			);
+			name = Master;
+			sourceTree = "<group>";
+		};
 		3DC284D11EF31794008EC6A4 /* Charts */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				3DC284D91EF318E8008EC6A4 /* Colors.swift */,
+				3D8ABCF11F155955003A2B55 /* Theme.swift */,
 			);
 			name = Visuals;
 			sourceTree = "<group>";
@@ -226,13 +240,13 @@
 			isa = PBXGroup;
 			children = (
 				3DA638BF1F13DC4F007081F4 /* hetLink.entitlements */,
+				3D8ABCF71F156A3C003A2B55 /* Master */,
 				3DE70DA51EF98F7100E7D77E /* Persistence */,
 				3DC284D81EF318D3008EC6A4 /* Visuals */,
 				3DC284D11EF31794008EC6A4 /* Charts */,
 				3D30A6251EF080FF00DB7774 /* Bluetooth */,
 				3DFD32301EF02C5C0028805B /* AppDelegate.swift */,
 				3DF86FD41EF19A080006662D /* SplitViewController.swift */,
-				3DFD32351EF02C5D0028805B /* MasterViewController.swift */,
 				3DFD32371EF02C5D0028805B /* DetailViewController.swift */,
 				3DFD32391EF02C5D0028805B /* Main.storyboard */,
 				3DFD323C1EF02C5D0028805B /* Assets.xcassets */,
@@ -567,11 +581,13 @@
 				3D38B5DA1F03F62F00C4CF05 /* HETChestAccelChartView.swift in Sources */,
 				3D4DA52C1F152A1300BAD1E8 /* DatasetVisibilityViewController.swift in Sources */,
 				3DE70DA91EF9909300E7D77E /* HETEcgPulseOxPacket.swift in Sources */,
+				3D8ABCF91F156A57003A2B55 /* SourceBrowserCell.swift in Sources */,
 				3D391EE71EF857510071CF6A /* HETChestInterpreter.swift in Sources */,
 				3D9FA5A11F0E6C8D0078F2F7 /* RecordingManager.swift in Sources */,
 				3DFD32311EF02C5C0028805B /* AppDelegate.swift in Sources */,
 				3DC284DA1EF318E8008EC6A4 /* Colors.swift in Sources */,
 				3DF86FD51EF19A080006662D /* SplitViewController.swift in Sources */,
+				3D8ABCF21F155955003A2B55 /* Theme.swift in Sources */,
 				3DA638C11F13EEA4007081F4 /* ExportManager.swift in Sources */,
 				3DFD32341EF02C5D0028805B /* hetLink.xcdatamodeld in Sources */,
 				3DC284D31EF3184B008EC6A4 /* ChartView.swift in Sources */,

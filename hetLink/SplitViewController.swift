@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreBluetooth
+import ChameleonFramework
 
 class SplitViewController: UISplitViewController{
 
@@ -25,6 +26,9 @@ class SplitViewController: UISplitViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setStatusBarStyle(UIStatusBarStyleContrast)
+        self.view.backgroundColor = UIColor.flatBlackDark
         
         hetDeviceManager = HETDeviceManager(delegate: self, services: HETWatchInterpreter.services)
         

@@ -24,7 +24,7 @@ class HETChestAccelChartView: ChartView, HETChartView {
     var chartData: ChartData!
     var chartDataSets: [LineChartDataSet]!
     
-    let chartColors: [UIColor] = [.chartOne, .chartTwo, .chartThree]
+    let chartColors: [UIColor] = Array(Theme.graphColors[5...7])
     
     let range: Int = 44
     

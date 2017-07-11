@@ -9,6 +9,7 @@
 import UIKit
 import CoreBluetooth
 import CoreData
+import ChameleonFramework
 
 class MasterViewController: UITableViewController {
 
@@ -24,6 +25,10 @@ class MasterViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.barTintColor = Theme.masterNavigationBarBackground
+        self.navigationController?.navigationBar.tintColor = Theme.navigationBarTint
+        self.view.backgroundColor = Theme.sourceBrowserBackground
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -55,15 +60,15 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceCell", for: indexPath) as! SourceBrowserCell
         
         if indexPath.section == 0 {
             if hetDevices.count > 0 {
-                cell.textLabel?.text = hetDevices[indexPath.row].name
-                cell.detailTextLabel?.text = hetDevices[indexPath.row].identifier.uuidString
+                cell.titleLabel.text = hetDevices[indexPath.row].name
+                cell.detailLabel.text = hetDevices[indexPath.row].identifier.uuidString
             } else {
-                cell.textLabel?.text = "No devices found"
-                cell.detailTextLabel?.text = "Please switch on an HET device"
+                cell.titleLabel.text = "No devices found"
+                cell.detailLabel.text = "Please switch on an HET device"
             }
         } else if indexPath.section == 1 {
             let record = recordingManager.recording(at: indexPath.row)
@@ -112,6 +117,11 @@ class MasterViewController: UITableViewController {
         default:
             fatalError("There is an extra section in the table view.")
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let view = view as? UITableViewHeaderFooterView else { return }
+        view.textLabel?.textColor = ContrastColorOf(Theme.sourceBrowserBackground, returnFlat: true)
     }
     
     

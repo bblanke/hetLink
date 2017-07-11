@@ -28,7 +28,7 @@ class HETChestBodyChartView: ChartView, HETChartView {
     var chartData: ChartData!
     var chartDataSets: [LineChartDataSet]!
     
-    let chartColors: [UIColor] = [.chartOne, .chartTwo, .chartThree, .chartFour, .chartFive]
+    let chartColors: [UIColor] = Array(Theme.graphColors[0...4])
     
     let range: Int = 400
     

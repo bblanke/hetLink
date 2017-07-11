@@ -19,32 +19,24 @@
                         <viewControllerLayoutGuide type="bottom" id="GAO-Cl-Wes"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="svH-Pt-448">
-                        <rect key="frame" x="0.0" y="0.0" width="1045" height="1024"/>
+                        <rect key="frame" x="0.0" y="64" width="1045" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwY-F4-Ybh">
-                                <rect key="frame" x="0.0" y="980" width="1045" height="44"/>
-                                <items/>
-                            </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4SX-oI-Qt5" userLabel="chartsFrame">
-                                <rect key="frame" x="20" y="72" width="1005" height="900"/>
+                                <rect key="frame" x="20" y="8" width="1004.5" height="944"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="4SX-oI-Qt5" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="8" id="3ld-v5-8eR"/>
-                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="wwY-F4-Ybh" secondAttribute="bottom" id="7gI-Zo-f0Q"/>
-                            <constraint firstAttribute="trailing" secondItem="wwY-F4-Ybh" secondAttribute="trailing" id="Foc-kl-Fym"/>
-                            <constraint firstItem="wwY-F4-Ybh" firstAttribute="top" secondItem="4SX-oI-Qt5" secondAttribute="bottom" constant="8" id="GMT-f0-KAV"/>
                             <constraint firstItem="4SX-oI-Qt5" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="K4U-bv-26J"/>
-                            <constraint firstItem="wwY-F4-Ybh" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="Upw-Tc-Xrq"/>
                             <constraint firstItem="4SX-oI-Qt5" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="bS5-DG-qaI"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="4SX-oI-Qt5" secondAttribute="bottom" constant="8" id="yZT-1u-iHx"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mOI-FS-AaM"/>
                     <connections>
-                        <outlet property="chartButtonbar" destination="wwY-F4-Ybh" id="6DU-mL-2XT"/>
                         <outlet property="chartsFrame" destination="4SX-oI-Qt5" id="Dmh-Mm-4HA"/>
                     </connections>
                 </viewController>
@@ -71,13 +63,24 @@
         <scene sceneID="smW-Zh-WAh">
             <objects>
                 <tableViewController title="Master" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="MasterViewController" customModule="hetLink" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="r7i-6Z-zg0">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="r7i-6Z-zg0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="tintColor" red="0.98624199629999998" green="0.77968657019999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" red="0.24313725489999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexColor" red="0.24313725489999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.24313725489999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexTrackingBackgroundColor" red="0.24313725489999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <progressView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" id="qig-fU-F54">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="2"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="progressTintColor" red="0.85043728351593018" green="0.21816034615039825" blue="0.15920260548591614" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="trackTintColor" red="0.98624199629999998" green="0.77968657019999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </progressView>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeviceCell" textLabel="Arm-wq-HPj" detailTextLabel="6tH-kp-xSM" style="IBUITableViewCellStyleSubtitle" id="WCw-Qf-5nD">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DeviceCell" textLabel="Arm-wq-HPj" detailTextLabel="6tH-kp-xSM" style="IBUITableViewCellStyleSubtitle" id="WCw-Qf-5nD" customClass="SourceBrowserCell" customModule="hetLink" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="57.5" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -99,6 +102,10 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="detailLabel" destination="6tH-kp-xSM" id="kHd-mb-aDk"/>
+                                    <outlet property="titleLabel" destination="Arm-wq-HPj" id="RMs-Em-jJt"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -203,7 +210,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mSm-bf-Jc7" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4JZ-qB-enx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="4JZ-qB-enx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

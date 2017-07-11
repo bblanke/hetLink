@@ -12,7 +12,6 @@ import Foundation
 class DetailViewController: UIViewController{
     
     @IBOutlet weak var chartsFrame: UIView!
-    @IBOutlet weak var chartButtonbar: UIToolbar!
         
     var chartViews: [HETChartView] = []
     
@@ -25,6 +24,11 @@ class DetailViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.barTintColor = Theme.detailNavigationBarBackground
+        self.navigationController?.navigationBar.tintColor = Theme.navigationBarTint
+        
+        self.view.backgroundColor = Theme.graphViewBackground
     }
 
     override func didReceiveMemoryWarning() {

@@ -22,14 +22,14 @@ class ChartView: LineChartView {
         xAxis.labelPosition = .bottom
         xAxis.drawAxisLineEnabled = false
         xAxis.drawGridLinesEnabled = false
-        xAxis.labelTextColor = .primary
+        //xAxis.labelTextColor = .primary
         
         rightAxis.enabled = false
         rightAxis.drawGridLinesEnabled = false
         
         leftAxis.drawGridLinesEnabled = false
         leftAxis.drawAxisLineEnabled = false
-        leftAxis.labelTextColor = .primary
+        //leftAxis.labelTextColor = .primary
         leftAxis.drawGridLinesEnabled = false
         
         chartDescription?.enabled = false
