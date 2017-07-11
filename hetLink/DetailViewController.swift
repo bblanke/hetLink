@@ -9,18 +9,19 @@
 import UIKit
 import Foundation
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController{
     
     @IBOutlet weak var chartsFrame: UIView!
     @IBOutlet weak var chartButtonbar: UIToolbar!
-    
-    @IBOutlet weak var progressView: UIProgressView!
-    
+        
     var chartViews: [HETChartView] = []
     
     var currentDeviceType: HETDeviceType!
     
     var chartDelegate: ChartViewDelegate!
+    
+    var visibilityMenuController: DatasetVisibilityViewController!
+    var visibilityBarItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,9 +92,9 @@ class DetailViewController: UIViewController {
     }
     
     private func setupButtons(charts: [HETChartView], mode: GraphMode){
-        var buttonArray: [UIBarButtonItem] = []
+        /*var buttonArray: [UIBarButtonItem] = []
         
-        if mode == .device {
+        /*if mode == .device {
             // Set up Record button
             let recordButton = ToggleButton(title: "Record", color: UIColor.red)
             recordButton.isSelected = false
@@ -119,13 +120,44 @@ class DetailViewController: UIViewController {
         for chart in charts {
             for set in chart.chartDataSets {
                 let button = DatasetToggleButton(title: set.label!, color: set.colors.first!, dataset: set, chart: chart)
-                
                 let barButtonItem = UIBarButtonItem(customView: button)
                 buttonArray.append(barButtonItem)
             }
-        }
+        }*/
+        
+        let visibilityButton = UIButton(type: .system)
+        visibilityButton.setTitle("Toggle", for: .normal)
+        visibilityButton.sizeToFit()
+        visibilityButton.addTarget(self, action: #selector(showGraphToggleMenu), for: .touchUpInside)
+        
+        let visibilityBarItem = UIBarButtonItem(customView: visibilityButton)
+        buttonArray.append(visibilityBarItem)
         
         chartButtonbar.setItems(buttonArray, animated: true)
+        
+        toggleAlertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
+        toggleAlertController.popoverPresentationController?.barButtonItem = visibilityBarItem
+        
+        for chart in charts {
+            for set in chart.chartDataSets {
+                let toggleAction = UIAlertAction(title: set.label!, style: .default, handler: nil)
+                toggleAlertController.addAction(toggleAction)
+            }
+        }*/
+        
+        //self.navigationItem.rightBarButtonItem
+        
+        visibilityBarItem = UIBarButtonItem(image: #imageLiteral(resourceName: "visible"), style: .plain, target: self, action: #selector(showGraphToggleMenu))
+        self.navigationItem.rightBarButtonItem = visibilityBarItem
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        visibilityMenuController = storyboard.instantiateViewController(withIdentifier: "DatasetToggleViewController") as! DatasetVisibilityViewController
+        visibilityMenuController.modalPresentationStyle = UIModalPresentationStyle.formSheet
+        visibilityMenuController.charts = chartViews
+    }
+    
+    func showGraphToggleMenu(sender: UIButton){
+        self.present(visibilityMenuController, animated: true, completion: nil)
     }
     
     func toggleRecording(sender: UIButton){

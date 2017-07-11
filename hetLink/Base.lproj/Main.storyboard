@@ -23,23 +23,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwY-F4-Ybh">
-                                <rect key="frame" x="0.0" y="980" width="1044.5" height="44"/>
+                                <rect key="frame" x="0.0" y="980" width="1045" height="44"/>
                                 <items/>
                             </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4SX-oI-Qt5" userLabel="chartsFrame">
-                                <rect key="frame" x="20" y="72" width="1004.5" height="900"/>
-                                <subviews>
-                                    <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RhO-ah-wFc">
-                                        <rect key="frame" x="428" y="449" width="150" height="2"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="thR-IG-zh7"/>
-                                        </constraints>
-                                    </progressView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="RhO-ah-wFc" firstAttribute="centerX" secondItem="4SX-oI-Qt5" secondAttribute="centerX" id="e6n-uf-QaQ"/>
-                                    <constraint firstItem="RhO-ah-wFc" firstAttribute="centerY" secondItem="4SX-oI-Qt5" secondAttribute="centerY" id="kF6-8q-v86"/>
-                                </constraints>
+                                <rect key="frame" x="20" y="72" width="1005" height="900"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -58,12 +46,11 @@
                     <connections>
                         <outlet property="chartButtonbar" destination="wwY-F4-Ybh" id="6DU-mL-2XT"/>
                         <outlet property="chartsFrame" destination="4SX-oI-Qt5" id="Dmh-Mm-4HA"/>
-                        <outlet property="progressView" destination="RhO-ah-wFc" id="Ipq-oV-man"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="686.1328125" y="118.75"/>
+            <point key="canvasLocation" x="670" y="62"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
@@ -78,7 +65,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZU-Oi-B1e" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-856" y="-330"/>
+            <point key="canvasLocation" x="-787" y="-243"/>
         </scene>
         <!--Master-->
         <scene sceneID="smW-Zh-WAh">
@@ -124,7 +111,74 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="686.1328125" y="-660.15625"/>
+            <point key="canvasLocation" x="670" y="-662"/>
+        </scene>
+        <!--Toggle Datasets-->
+        <scene sceneID="Spd-xb-G6y">
+            <objects>
+                <tableViewController storyboardIdentifier="DatasetToggleViewController" modalPresentationStyle="formSheet" id="FXv-YK-hQY" customClass="DatasetVisibilityViewController" customModule="hetLink" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="6Dc-cw-D0y">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="gG4-Ex-31q">
+                            <rect key="frame" x="0.0" y="72" width="300" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem title="Close" id="SBn-C2-qaT">
+                                    <connections>
+                                        <action selector="didClickClose:" destination="FXv-YK-hQY" id="wVM-VK-fbk"/>
+                                    </connections>
+                                </barButtonItem>
+                            </items>
+                        </toolbar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="datasetToggleCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="datasetToggleCell" rowHeight="44" id="YTM-4a-9z5" customClass="DatasetToggleViewCell" customModule="hetLink" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="300" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YTM-4a-9z5" id="S2D-Hr-clR">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LWI-K8-1qC">
+                                            <rect key="frame" x="243" y="6.5" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="didToggleSwitch:" destination="YTM-4a-9z5" eventType="valueChanged" id="koS-2l-CTW"/>
+                                            </connections>
+                                        </switch>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="co5-Kg-0kM">
+                                            <rect key="frame" x="8" y="11.5" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="LWI-K8-1qC" firstAttribute="centerY" secondItem="S2D-Hr-clR" secondAttribute="centerY" id="PnO-y8-WeC"/>
+                                        <constraint firstItem="co5-Kg-0kM" firstAttribute="leading" secondItem="S2D-Hr-clR" secondAttribute="leadingMargin" id="aEK-b1-tIm"/>
+                                        <constraint firstItem="co5-Kg-0kM" firstAttribute="centerY" secondItem="S2D-Hr-clR" secondAttribute="centerY" id="b96-gP-5jM"/>
+                                        <constraint firstAttribute="trailing" secondItem="LWI-K8-1qC" secondAttribute="trailing" constant="8" id="o7P-ai-3fm"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="co5-Kg-0kM" id="YXu-Hz-Rlr"/>
+                                    <outlet property="toggleSwitch" destination="LWI-K8-1qC" id="bFd-gv-NGO"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="FXv-YK-hQY" id="WpH-nY-scN"/>
+                            <outlet property="delegate" destination="FXv-YK-hQY" id="I1C-kh-avX"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Toggle Datasets" id="MCW-fY-gZ8"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="300" height="500"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="500"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2qD-6U-fd0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1113" y="-92"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HAv-Cj-2PB">
@@ -142,7 +196,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ya1-o7-vg8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-38.0859375" y="-660.15625"/>
+            <point key="canvasLocation" x="-70" y="-661"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="82E-IT-8uk">
@@ -160,7 +214,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N2M-hl-0NR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-38.0859375" y="118.75"/>
+            <point key="canvasLocation" x="-70" y="62"/>
         </scene>
     </scenes>
 </document>

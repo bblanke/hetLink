@@ -11,17 +11,14 @@
 		3D30A6241EF078B300DB7774 /* HETDeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D30A6231EF078B300DB7774 /* HETDeviceManager.swift */; };
 		3D38B5D81F03F0FD00C4CF05 /* HETBattAccelPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D38B5D71F03F0FD00C4CF05 /* HETBattAccelPacket.swift */; };
 		3D38B5DA1F03F62F00C4CF05 /* HETChestAccelChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D38B5D91F03F62F00C4CF05 /* HETChestAccelChartView.swift */; };
-		3D38B5DC1F0414E500C4CF05 /* CleanTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D38B5DB1F0414E500C4CF05 /* CleanTableView.swift */; };
-		3D38B5DE1F04287500C4CF05 /* CleanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D38B5DD1F04287500C4CF05 /* CleanTableViewCell.swift */; };
 		3D391EE11EF811870071CF6A /* HETDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D391EE01EF811870071CF6A /* HETDevice.swift */; };
 		3D391EE31EF812FB0071CF6A /* HETDeviceInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D391EE21EF812FB0071CF6A /* HETDeviceInterpreter.swift */; };
 		3D391EE51EF813CE0071CF6A /* HETWatchInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D391EE41EF813CE0071CF6A /* HETWatchInterpreter.swift */; };
 		3D391EE71EF857510071CF6A /* HETChestInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D391EE61EF857510071CF6A /* HETChestInterpreter.swift */; };
+		3D4DA52C1F152A1300BAD1E8 /* DatasetVisibilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DA52B1F152A1300BAD1E8 /* DatasetVisibilityViewController.swift */; };
+		3D4DA52E1F152EC500BAD1E8 /* DatasetToggleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DA52D1F152EC500BAD1E8 /* DatasetToggleViewCell.swift */; };
 		3D9FA5A11F0E6C8D0078F2F7 /* RecordingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9FA5A01F0E6C8D0078F2F7 /* RecordingManager.swift */; };
-		3D9FA5A31F0E942C0078F2F7 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9FA5A21F0E942C0078F2F7 /* ToggleButton.swift */; };
 		3DA638C11F13EEA4007081F4 /* ExportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA638C01F13EEA4007081F4 /* ExportManager.swift */; };
-		3DA9DCAB1F02CB2E00AB7466 /* DatasetToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA9DCAA1F02CB2E00AB7466 /* DatasetToggleButton.swift */; };
-		3DA9DCAD1F02EF6100AB7466 /* CleanToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA9DCAC1F02EF6100AB7466 /* CleanToolbar.swift */; };
 		3DC284D31EF3184B008EC6A4 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC284D21EF3184B008EC6A4 /* ChartView.swift */; };
 		3DC284DA1EF318E8008EC6A4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC284D91EF318E8008EC6A4 /* Colors.swift */; };
 		3DE70DA71EF98F7E00E7D77E /* HETPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE70DA61EF98F7E00E7D77E /* HETPacket.swift */; };
@@ -77,18 +74,15 @@
 		3D30A6231EF078B300DB7774 /* HETDeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HETDeviceManager.swift; sourceTree = "<group>"; };
 		3D38B5D71F03F0FD00C4CF05 /* HETBattAccelPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETBattAccelPacket.swift; sourceTree = "<group>"; };
 		3D38B5D91F03F62F00C4CF05 /* HETChestAccelChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETChestAccelChartView.swift; sourceTree = "<group>"; };
-		3D38B5DB1F0414E500C4CF05 /* CleanTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CleanTableView.swift; sourceTree = "<group>"; };
-		3D38B5DD1F04287500C4CF05 /* CleanTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CleanTableViewCell.swift; sourceTree = "<group>"; };
 		3D391EE01EF811870071CF6A /* HETDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETDevice.swift; sourceTree = "<group>"; };
 		3D391EE21EF812FB0071CF6A /* HETDeviceInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETDeviceInterpreter.swift; sourceTree = "<group>"; };
 		3D391EE41EF813CE0071CF6A /* HETWatchInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETWatchInterpreter.swift; sourceTree = "<group>"; };
 		3D391EE61EF857510071CF6A /* HETChestInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = HETChestInterpreter.swift; sourceTree = "<group>"; };
+		3D4DA52B1F152A1300BAD1E8 /* DatasetVisibilityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatasetVisibilityViewController.swift; sourceTree = "<group>"; };
+		3D4DA52D1F152EC500BAD1E8 /* DatasetToggleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatasetToggleViewCell.swift; sourceTree = "<group>"; };
 		3D9FA5A01F0E6C8D0078F2F7 /* RecordingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingManager.swift; sourceTree = "<group>"; };
-		3D9FA5A21F0E942C0078F2F7 /* ToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
 		3DA638BF1F13DC4F007081F4 /* hetLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hetLink.entitlements; sourceTree = "<group>"; };
 		3DA638C01F13EEA4007081F4 /* ExportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportManager.swift; sourceTree = "<group>"; };
-		3DA9DCAA1F02CB2E00AB7466 /* DatasetToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatasetToggleButton.swift; sourceTree = "<group>"; };
-		3DA9DCAC1F02EF6100AB7466 /* CleanToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CleanToolbar.swift; sourceTree = "<group>"; };
 		3DC284D21EF3184B008EC6A4 /* ChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		3DC284D91EF318E8008EC6A4 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3DE70DA61EF98F7E00E7D77E /* HETPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETPacket.swift; sourceTree = "<group>"; };
@@ -180,6 +174,8 @@
 				3DC284D21EF3184B008EC6A4 /* ChartView.swift */,
 				3DE70DAA1EF9962300E7D77E /* HETChestBodyChartView.swift */,
 				3D38B5D91F03F62F00C4CF05 /* HETChestAccelChartView.swift */,
+				3D4DA52B1F152A1300BAD1E8 /* DatasetVisibilityViewController.swift */,
+				3D4DA52D1F152EC500BAD1E8 /* DatasetToggleViewCell.swift */,
 			);
 			name = Charts;
 			sourceTree = "<group>";
@@ -188,11 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				3DC284D91EF318E8008EC6A4 /* Colors.swift */,
-				3DA9DCAA1F02CB2E00AB7466 /* DatasetToggleButton.swift */,
-				3D9FA5A21F0E942C0078F2F7 /* ToggleButton.swift */,
-				3DA9DCAC1F02EF6100AB7466 /* CleanToolbar.swift */,
-				3D38B5DB1F0414E500C4CF05 /* CleanTableView.swift */,
-				3D38B5DD1F04287500C4CF05 /* CleanTableViewCell.swift */,
 			);
 			name = Visuals;
 			sourceTree = "<group>";
@@ -574,26 +565,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D38B5DA1F03F62F00C4CF05 /* HETChestAccelChartView.swift in Sources */,
+				3D4DA52C1F152A1300BAD1E8 /* DatasetVisibilityViewController.swift in Sources */,
 				3DE70DA91EF9909300E7D77E /* HETEcgPulseOxPacket.swift in Sources */,
 				3D391EE71EF857510071CF6A /* HETChestInterpreter.swift in Sources */,
-				3D9FA5A31F0E942C0078F2F7 /* ToggleButton.swift in Sources */,
 				3D9FA5A11F0E6C8D0078F2F7 /* RecordingManager.swift in Sources */,
 				3DFD32311EF02C5C0028805B /* AppDelegate.swift in Sources */,
-				3DA9DCAB1F02CB2E00AB7466 /* DatasetToggleButton.swift in Sources */,
 				3DC284DA1EF318E8008EC6A4 /* Colors.swift in Sources */,
-				3D38B5DE1F04287500C4CF05 /* CleanTableViewCell.swift in Sources */,
 				3DF86FD51EF19A080006662D /* SplitViewController.swift in Sources */,
-				3DA9DCAD1F02EF6100AB7466 /* CleanToolbar.swift in Sources */,
 				3DA638C11F13EEA4007081F4 /* ExportManager.swift in Sources */,
 				3DFD32341EF02C5D0028805B /* hetLink.xcdatamodeld in Sources */,
 				3DC284D31EF3184B008EC6A4 /* ChartView.swift in Sources */,
 				3D391EE11EF811870071CF6A /* HETDevice.swift in Sources */,
 				3DE70DAB1EF9962300E7D77E /* HETChestBodyChartView.swift in Sources */,
-				3D38B5DC1F0414E500C4CF05 /* CleanTableView.swift in Sources */,
 				3D391EE51EF813CE0071CF6A /* HETWatchInterpreter.swift in Sources */,
 				3D30A6241EF078B300DB7774 /* HETDeviceManager.swift in Sources */,
 				3D38B5D81F03F0FD00C4CF05 /* HETBattAccelPacket.swift in Sources */,
 				3DFD32361EF02C5D0028805B /* MasterViewController.swift in Sources */,
+				3D4DA52E1F152EC500BAD1E8 /* DatasetToggleViewCell.swift in Sources */,
 				3DE70DA71EF98F7E00E7D77E /* HETPacket.swift in Sources */,
 				3DFD32381EF02C5D0028805B /* DetailViewController.swift in Sources */,
 				3D391EE31EF812FB0071CF6A /* HETDeviceInterpreter.swift in Sources */,

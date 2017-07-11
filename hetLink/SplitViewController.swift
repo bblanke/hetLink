@@ -84,7 +84,6 @@ extension SplitViewController: MasterListDelegate {
             detailVC.graph(packet: packet)
         }
         
-        detailVC.progressView.isHidden = true
         masterVC.isDisabled = false
     }
 }
