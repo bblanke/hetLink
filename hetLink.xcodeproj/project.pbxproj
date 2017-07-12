@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D2A1A3A1F16741A007A4119 /* ToggleBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A1A391F16741A007A4119 /* ToggleBarButtonItem.swift */; };
+		3D2A1A3D1F16946F007A4119 /* AnalysisManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A1A3C1F16946F007A4119 /* AnalysisManager.swift */; };
+		3D2A1A3F1F169A71007A4119 /* ChartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A1A3E1F169A71007A4119 /* ChartManager.swift */; };
 		3D30A6221EF0641500DB7774 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D30A6211EF0640C00DB7774 /* CoreBluetooth.framework */; };
 		3D30A6241EF078B300DB7774 /* HETDeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D30A6231EF078B300DB7774 /* HETDeviceManager.swift */; };
 		3D38B5D81F03F0FD00C4CF05 /* HETBattAccelPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D38B5D71F03F0FD00C4CF05 /* HETBattAccelPacket.swift */; };
@@ -72,6 +75,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3D2A1A391F16741A007A4119 /* ToggleBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleBarButtonItem.swift; sourceTree = "<group>"; };
+		3D2A1A3C1F16946F007A4119 /* AnalysisManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisManager.swift; sourceTree = "<group>"; };
+		3D2A1A3E1F169A71007A4119 /* ChartManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartManager.swift; sourceTree = "<group>"; };
 		3D30A6211EF0640C00DB7774 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		3D30A6231EF078B300DB7774 /* HETDeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HETDeviceManager.swift; sourceTree = "<group>"; };
 		3D38B5D71F03F0FD00C4CF05 /* HETBattAccelPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETBattAccelPacket.swift; sourceTree = "<group>"; };
@@ -148,6 +154,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D2A1A381F1671BF007A4119 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				3DFD32371EF02C5D0028805B /* DetailViewController.swift */,
+				3D2A1A391F16741A007A4119 /* ToggleBarButtonItem.swift */,
+			);
+			name = Detail;
+			sourceTree = "<group>";
+		};
+		3D2A1A3B1F16945B007A4119 /* Analysis */ = {
+			isa = PBXGroup;
+			children = (
+				3D2A1A3C1F16946F007A4119 /* AnalysisManager.swift */,
+			);
+			name = Analysis;
+			sourceTree = "<group>";
+		};
 		3D30A6201EF0640C00DB7774 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				3DC284D21EF3184B008EC6A4 /* ChartView.swift */,
+				3D2A1A3E1F169A71007A4119 /* ChartManager.swift */,
 				3DE70DAA1EF9962300E7D77E /* HETChestBodyChartView.swift */,
 				3D38B5D91F03F62F00C4CF05 /* HETChestAccelChartView.swift */,
 				3D4DA52B1F152A1300BAD1E8 /* DatasetVisibilityViewController.swift */,
@@ -240,14 +264,15 @@
 			isa = PBXGroup;
 			children = (
 				3DA638BF1F13DC4F007081F4 /* hetLink.entitlements */,
+				3D2A1A3B1F16945B007A4119 /* Analysis */,
 				3D8ABCF71F156A3C003A2B55 /* Master */,
+				3D2A1A381F1671BF007A4119 /* Detail */,
 				3DE70DA51EF98F7100E7D77E /* Persistence */,
 				3DC284D81EF318D3008EC6A4 /* Visuals */,
 				3DC284D11EF31794008EC6A4 /* Charts */,
 				3D30A6251EF080FF00DB7774 /* Bluetooth */,
 				3DFD32301EF02C5C0028805B /* AppDelegate.swift */,
 				3DF86FD41EF19A080006662D /* SplitViewController.swift */,
-				3DFD32371EF02C5D0028805B /* DetailViewController.swift */,
 				3DFD32391EF02C5D0028805B /* Main.storyboard */,
 				3DFD323C1EF02C5D0028805B /* Assets.xcassets */,
 				3DFD323E1EF02C5D0028805B /* LaunchScreen.storyboard */,
@@ -580,6 +605,7 @@
 			files = (
 				3D38B5DA1F03F62F00C4CF05 /* HETChestAccelChartView.swift in Sources */,
 				3D4DA52C1F152A1300BAD1E8 /* DatasetVisibilityViewController.swift in Sources */,
+				3D2A1A3D1F16946F007A4119 /* AnalysisManager.swift in Sources */,
 				3DE70DA91EF9909300E7D77E /* HETEcgPulseOxPacket.swift in Sources */,
 				3D8ABCF91F156A57003A2B55 /* SourceBrowserCell.swift in Sources */,
 				3D391EE71EF857510071CF6A /* HETChestInterpreter.swift in Sources */,
@@ -600,6 +626,8 @@
 				3D4DA52E1F152EC500BAD1E8 /* DatasetToggleViewCell.swift in Sources */,
 				3DE70DA71EF98F7E00E7D77E /* HETPacket.swift in Sources */,
 				3DFD32381EF02C5D0028805B /* DetailViewController.swift in Sources */,
+				3D2A1A3F1F169A71007A4119 /* ChartManager.swift in Sources */,
+				3D2A1A3A1F16741A007A4119 /* ToggleBarButtonItem.swift in Sources */,
 				3D391EE31EF812FB0071CF6A /* HETDeviceInterpreter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import ChameleonFramework
 
 class ChartView: LineChartView {
     
@@ -16,26 +17,31 @@ class ChartView: LineChartView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        let textColor = ContrastColorOf(Theme.graphViewBackground, returnFlat: true)
+        
         axisFormatDelegate = self
         
         xAxis.valueFormatter = axisFormatDelegate
         xAxis.labelPosition = .bottom
         xAxis.drawAxisLineEnabled = false
         xAxis.drawGridLinesEnabled = false
-        //xAxis.labelTextColor = .primary
+        xAxis.labelTextColor = textColor
         
         rightAxis.enabled = false
         rightAxis.drawGridLinesEnabled = false
         
         leftAxis.drawGridLinesEnabled = false
         leftAxis.drawAxisLineEnabled = false
-        //leftAxis.labelTextColor = .primary
+        leftAxis.labelTextColor = textColor
         leftAxis.drawGridLinesEnabled = false
         
         chartDescription?.enabled = false
         drawBordersEnabled = false
         
         legend.enabled = false
+        
+        highlightPerDragEnabled = false
+        highlightPerTapEnabled = false
         
         noDataText = "No device or recording selected"
     }

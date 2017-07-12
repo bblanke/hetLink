@@ -20,6 +20,8 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
         return (fetchedRecordingsController.sections?.first?.numberOfObjects)!
     }
     
+    var delegate: RecordingManagerDelegate?
+    
     override init(){
         super.init()
         let persistentContainer = NSPersistentContainer(name: "hetLink")
@@ -61,8 +63,7 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
         saveContext()
     }
     
-    func startRecording(type: HETDeviceType){
-        print("creating a parent object")
+    func startRecording(type: HETDeviceType){ 
         isRecording = true
         
         openRecording = Recording(context: managedObjectContext)
@@ -91,8 +92,6 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
         saveContext()
         
         openRecording = nil
-        
-        print("closing everything out")
     }
     
     func make(packetArrayFrom recording: Recording) -> [HETPacket] {
@@ -121,6 +120,7 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
             do {
                 print("Saved context")
                 try context.save()
+                delegate?.recordingManagerDidSaveRecording()
             } catch {
                 // FIXME: – Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -130,4 +130,8 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
         }
     }
     
+}
+
+protocol RecordingManagerDelegate: class {
+    func recordingManagerDidSaveRecording()
 }

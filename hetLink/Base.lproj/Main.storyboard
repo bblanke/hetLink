@@ -23,14 +23,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4SX-oI-Qt5" userLabel="chartsFrame">
-                                <rect key="frame" x="20" y="8" width="1004.5" height="944"/>
+                                <rect key="frame" x="20" y="52" width="1004.5" height="900"/>
                             </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JXG-vV-b21">
+                                <rect key="frame" x="0.0" y="0.0" width="1045" height="44"/>
+                                <items>
+                                    <barButtonItem title="BPM: 180" id="9DD-UI-mNd">
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </barButtonItem>
+                                </items>
+                                <color key="barTintColor" red="0.17077735066413879" green="0.30895513296127319" blue="0.37797331809997559" alpha="1" colorSpace="calibratedRGB"/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="4SX-oI-Qt5" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="8" id="3ld-v5-8eR"/>
                             <constraint firstItem="4SX-oI-Qt5" firstAttribute="trailing" secondItem="svH-Pt-448" secondAttribute="trailingMargin" id="K4U-bv-26J"/>
+                            <constraint firstItem="4SX-oI-Qt5" firstAttribute="top" secondItem="JXG-vV-b21" secondAttribute="bottom" constant="8" id="NLd-GQ-Upx"/>
+                            <constraint firstAttribute="trailing" secondItem="JXG-vV-b21" secondAttribute="trailing" id="X1q-JB-OXM"/>
                             <constraint firstItem="4SX-oI-Qt5" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="bS5-DG-qaI"/>
+                            <constraint firstItem="JXG-vV-b21" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="nWy-ii-4ln"/>
+                            <constraint firstItem="JXG-vV-b21" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="pdE-be-Id3"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="4SX-oI-Qt5" secondAttribute="bottom" constant="8" id="qeh-rM-P0V"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="4SX-oI-Qt5" secondAttribute="bottom" constant="8" id="yZT-1u-iHx"/>
                         </constraints>
                     </view>
@@ -42,7 +55,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="670" y="62"/>
+            <point key="canvasLocation" x="669.39970717423125" y="61.523437499999993"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">

@@ -21,6 +21,8 @@ class SplitViewController: UISplitViewController{
     
     var exportManager: ExportManager!
     
+    var chartManager: ChartManager!
+    
     var presentedRecording: Recording!
     var presentedRecordingPackets: [HETPacket]!
     
@@ -28,21 +30,26 @@ class SplitViewController: UISplitViewController{
         super.viewDidLoad()
         
         self.setStatusBarStyle(UIStatusBarStyleContrast)
-        self.view.backgroundColor = UIColor.flatBlackDark
+        self.view.backgroundColor = ContrastColorOf(Theme.graphViewBackground, returnFlat: true)
         
         hetDeviceManager = HETDeviceManager(delegate: self, services: HETWatchInterpreter.services)
         
         exportManager = ExportManager()
+        
+        chartManager = ChartManager()
         
         let masterNC = viewControllers[0] as! UINavigationController
         masterVC = masterNC.topViewController as! MasterViewController
         
         let detailNC = viewControllers[1] as! UINavigationController
         detailVC = detailNC.topViewController as! DetailViewController
+        detailVC.chartManager = chartManager
         
         masterVC.masterListDelegate = self
         masterVC.recordingManager = recordingManager
         detailVC.chartDelegate = self
+        
+        recordingManager.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,11 +63,12 @@ extension SplitViewController: HETDeviceManagerDelegate {
     }
     
     func deviceManager(didConnect device: HETDevice) {
-        detailVC.setupGraphs(for: device.type, mode: .device)
+        chartManager.setupGraphView(for: device.type, frameView: detailVC.chartsFrame)
+        detailVC.setMode(mode: .device)
     }
     
     func deviceManager(didGet packet: HETPacket) {
-        detailVC.graph(packet: packet)
+        chartManager.graph(packet: packet)
         if recordingManager.isRecording {
             recordingManager.persist(packet: packet)
         }
@@ -73,6 +81,7 @@ extension SplitViewController: MasterListDelegate {
     }
     
     func masterList(didSelectRecording recording: Recording) {
+        print("Selected recording")
         self.presentedRecording = recording
 
         hetDeviceManager.disconnectCurrentDevice()
@@ -80,12 +89,13 @@ extension SplitViewController: MasterListDelegate {
         
         let deviceType = HETDeviceType(rawValue: recording.deviceType)!
         
-        detailVC.setupGraphs(for: deviceType, mode: .file)
+        chartManager.setupGraphView(for: deviceType, frameView: detailVC.chartsFrame)
+        detailVC.setMode(mode: .file)
         
         presentedRecordingPackets = recordingManager.make(packetArrayFrom: recording)
-
+        
         for packet in presentedRecordingPackets {
-            detailVC.graph(packet: packet)
+            chartManager.graph(packet: packet)
         }
         
         masterVC.isDisabled = false
@@ -118,5 +128,11 @@ extension SplitViewController: ChartViewDelegate {
             })
             self.present(alertController, animated: true, completion: nil)
         }
+    }
+}
+
+extension SplitViewController: RecordingManagerDelegate {
+    func recordingManagerDidSaveRecording() {
+        masterVC.tableView.reloadData()
     }
 }
