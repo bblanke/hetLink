@@ -23,6 +23,8 @@ class SplitViewController: UISplitViewController{
     
     var chartManager: ChartManager!
     
+    var analysisManager: AnalysisManager!
+    
     var presentedRecording: Recording!
     var presentedRecordingPackets: [HETPacket]!
     
@@ -38,12 +40,16 @@ class SplitViewController: UISplitViewController{
         
         chartManager = ChartManager()
         
+        analysisManager = AnalysisManager()
+        
         let masterNC = viewControllers[0] as! UINavigationController
         masterVC = masterNC.topViewController as! MasterViewController
         
         let detailNC = viewControllers[1] as! UINavigationController
         detailVC = detailNC.topViewController as! DetailViewController
         detailVC.chartManager = chartManager
+        
+        analysisManager.delegate = detailVC
         
         masterVC.masterListDelegate = self
         masterVC.recordingManager = recordingManager
@@ -69,6 +75,7 @@ extension SplitViewController: HETDeviceManagerDelegate {
     
     func deviceManager(didGet packet: HETPacket) {
         chartManager.graph(packet: packet)
+        analysisManager.analyze(packet: packet)
         if recordingManager.isRecording {
             recordingManager.persist(packet: packet)
         }

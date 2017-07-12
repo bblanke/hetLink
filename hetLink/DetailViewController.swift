@@ -12,6 +12,7 @@ import Foundation
 class DetailViewController: UIViewController{
     
     @IBOutlet weak var chartsFrame: UIView!
+    @IBOutlet weak var bpmLabel: UIBarButtonItem!
     
     var chartDelegate: ChartViewDelegate!
     
@@ -82,5 +83,11 @@ class DetailViewController: UIViewController{
 
 enum GraphMode {
     case device, file
+}
+
+extension DetailViewController: AnalysisManagerDelegate {
+    func analysisManager(didUpdateBPM value: Int) {
+        bpmLabel.title = "BPM: \(value)"
+    }
 }
 

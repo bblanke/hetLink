@@ -50,6 +50,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mOI-FS-AaM"/>
                     <connections>
+                        <outlet property="bpmLabel" destination="9DD-UI-mNd" id="kH3-HQ-OHe"/>
                         <outlet property="chartsFrame" destination="4SX-oI-Qt5" id="Dmh-Mm-4HA"/>
                     </connections>
                 </viewController>
