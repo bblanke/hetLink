@@ -87,6 +87,10 @@ enum GraphMode {
 
 extension DetailViewController: AnalysisManagerDelegate {
     func analysisManager(didUpdateBPM value: Int) {
+        guard value != 0 else {
+            bpmLabel.title = "BPM: --"
+            return
+        }
         bpmLabel.title = "BPM: \(value)"
     }
 }

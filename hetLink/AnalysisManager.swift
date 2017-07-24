@@ -9,25 +9,18 @@
 import Foundation
 
 class AnalysisManager: NSObject {
-    var ecgSamples: Int = 0
-    var ecgAverage: Int = 0
+    weak var delegate: AnalysisManagerDelegate!
+    let bpmChunkSize: Int = 400
     
-    var delegate: AnalysisManagerDelegate!
+    var ecgPulseOxPacketBuffer: [HETEcgPulseOxPacket] = []
     
-    func analyze(packet: HETPacket){
-        
+    func queueForAnalysis(packet: HETPacket){
         switch packet.parser {
         case .ecgPulseOx:
             let packet = packet as! HETEcgPulseOxPacket
-            
-            ecgSamples += 1
-            ecgAverage = calculateRunningAverage(average: ecgAverage, oldSamples: ecgSamples, newValue: packet.ecg)
-            checkForPeak(difference: (packet.ecg - ecgAverage), time: packet.timestamp)
-            
-            // If the signal gets wonky, reset the average
-            if abs(packet.ecg - ecgAverage) > 50000 {
-                ecgAverage = packet.ecg
-                ecgSamples = 0
+            ecgPulseOxPacketBuffer.append(packet)
+            if ecgPulseOxPacketBuffer.count >= bpmChunkSize {
+                calculateBPM()
             }
             break
         case .battAccel:
@@ -35,31 +28,16 @@ class AnalysisManager: NSObject {
         }
     }
     
-    private func calculateRunningAverage(average: Int, oldSamples: Int, newValue: Int) -> Int {
-        return ((oldSamples * average) + newValue) / (oldSamples + 1)
-    }
-    
-    var lastPeakTime: Date = Date()
-    private var bpm: Int = 0
-    var atPeak: Bool = false {
-        didSet {
-            if atPeak {
-                let now = Date()
-                bpm = Int((1 / now.timeIntervalSince(lastPeakTime))*60)
-                lastPeakTime = now
-                print("bpm is \(bpm)")
-                delegate.analysisManager(didUpdateBPM: bpm)
-            }
-        }
-    }
-    let peakThreshold = 20000
-    let timeThreshold = 0.5
-    private func checkForPeak(difference: Int, time: Date){
-        if difference > peakThreshold && time.timeIntervalSince(lastPeakTime) > timeThreshold {
-            atPeak = true
+    func calculateBPM(){
+        let times = ecgPulseOxPacketBuffer.map { $0.timestamp.timeIntervalSince1970 }
+        let ecg = ecgPulseOxPacketBuffer.map { Double($0.ecg) }
+        let bpm: Double = analyzeECG(times, ecg)
+        if bpm.isNaN {
+            delegate.analysisManager(didUpdateBPM: 0)
         } else {
-            atPeak = false
+            delegate.analysisManager(didUpdateBPM: Int(bpm))
         }
+        ecgPulseOxPacketBuffer.removeFirst(bpmChunkSize)
     }
 }
 

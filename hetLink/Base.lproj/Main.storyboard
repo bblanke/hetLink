@@ -28,7 +28,7 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JXG-vV-b21">
                                 <rect key="frame" x="0.0" y="0.0" width="1045" height="44"/>
                                 <items>
-                                    <barButtonItem title="BPM: 180" id="9DD-UI-mNd">
+                                    <barButtonItem title="BPM: --" id="9DD-UI-mNd">
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </barButtonItem>
                                 </items>
@@ -129,6 +129,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Zdf-7t-Un8"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="TCJ-9F-8Wn">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>

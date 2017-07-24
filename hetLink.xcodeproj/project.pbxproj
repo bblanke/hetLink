@@ -20,6 +20,34 @@
 		3D391EE71EF857510071CF6A /* HETChestInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D391EE61EF857510071CF6A /* HETChestInterpreter.swift */; };
 		3D4DA52C1F152A1300BAD1E8 /* DatasetVisibilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DA52B1F152A1300BAD1E8 /* DatasetVisibilityViewController.swift */; };
 		3D4DA52E1F152EC500BAD1E8 /* DatasetToggleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DA52D1F152EC500BAD1E8 /* DatasetToggleViewCell.swift */; };
+		3D5A11EF1F266C020048B69E /* analyzeECG_initialize.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11B51F266C020048B69E /* analyzeECG_initialize.c */; };
+		3D5A11F01F266C020048B69E /* analyzeECG_terminate.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11B71F266C020048B69E /* analyzeECG_terminate.c */; };
+		3D5A11F11F266C020048B69E /* analyzeECG.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11BA1F266C020048B69E /* analyzeECG.c */; };
+		3D5A11F21F266C020048B69E /* diff.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11BC1F266C020048B69E /* diff.c */; };
+		3D5A11F31F266C020048B69E /* eml_setop.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11BE1F266C020048B69E /* eml_setop.c */; };
+		3D5A11F41F266C020048B69E /* findpeaks.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11C01F266C020048B69E /* findpeaks.c */; };
+		3D5A11F51F266C020048B69E /* ixamax.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11C21F266C020048B69E /* ixamax.c */; };
+		3D5A11F61F266C020048B69E /* mean.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11C41F266C020048B69E /* mean.c */; };
+		3D5A11F71F266C020048B69E /* nonSingletonDim.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11C61F266C020048B69E /* nonSingletonDim.c */; };
+		3D5A11F81F266C020048B69E /* norm.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11C81F266C020048B69E /* norm.c */; };
+		3D5A11F91F266C020048B69E /* polyfit.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11CA1F266C020048B69E /* polyfit.c */; };
+		3D5A11FA1F266C020048B69E /* polyval.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11CC1F266C020048B69E /* polyval.c */; };
+		3D5A11FB1F266C020048B69E /* qrsolve.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11CE1F266C020048B69E /* qrsolve.c */; };
+		3D5A11FC1F266C020048B69E /* rt_nonfinite.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11D01F266C020048B69E /* rt_nonfinite.c */; };
+		3D5A11FD1F266C020048B69E /* rtGetInf.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11D21F266C020048B69E /* rtGetInf.c */; };
+		3D5A11FE1F266C020048B69E /* rtGetNaN.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11D41F266C020048B69E /* rtGetNaN.c */; };
+		3D5A11FF1F266C020048B69E /* sign.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11D71F266C020048B69E /* sign.c */; };
+		3D5A12001F266C020048B69E /* sort1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11D91F266C020048B69E /* sort1.c */; };
+		3D5A12011F266C020048B69E /* sortIdx.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11DB1F266C020048B69E /* sortIdx.c */; };
+		3D5A12021F266C020048B69E /* std.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11DD1F266C020048B69E /* std.c */; };
+		3D5A12031F266C020048B69E /* vander.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11DF1F266C020048B69E /* vander.c */; };
+		3D5A12041F266C020048B69E /* xgemv.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11E11F266C020048B69E /* xgemv.c */; };
+		3D5A12051F266C020048B69E /* xgeqp3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11E31F266C020048B69E /* xgeqp3.c */; };
+		3D5A12061F266C020048B69E /* xgerc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11E51F266C020048B69E /* xgerc.c */; };
+		3D5A12071F266C020048B69E /* xnrm2.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11E71F266C020048B69E /* xnrm2.c */; };
+		3D5A12081F266C020048B69E /* xswap.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11E91F266C020048B69E /* xswap.c */; };
+		3D5A12091F266C020048B69E /* xzlarf.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11EB1F266C020048B69E /* xzlarf.c */; };
+		3D5A120A1F266C020048B69E /* xzlarfg.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D5A11ED1F266C020048B69E /* xzlarfg.c */; };
 		3D8ABCF21F155955003A2B55 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8ABCF11F155955003A2B55 /* Theme.swift */; };
 		3D8ABCF91F156A57003A2B55 /* SourceBrowserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8ABCF81F156A57003A2B55 /* SourceBrowserCell.swift */; };
 		3D9FA5A11F0E6C8D0078F2F7 /* RecordingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9FA5A01F0E6C8D0078F2F7 /* RecordingManager.swift */; };
@@ -88,6 +116,65 @@
 		3D391EE61EF857510071CF6A /* HETChestInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = HETChestInterpreter.swift; sourceTree = "<group>"; };
 		3D4DA52B1F152A1300BAD1E8 /* DatasetVisibilityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatasetVisibilityViewController.swift; sourceTree = "<group>"; };
 		3D4DA52D1F152EC500BAD1E8 /* DatasetToggleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatasetToggleViewCell.swift; sourceTree = "<group>"; };
+		3D5A11B51F266C020048B69E /* analyzeECG_initialize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = analyzeECG_initialize.c; sourceTree = "<group>"; };
+		3D5A11B61F266C020048B69E /* analyzeECG_initialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = analyzeECG_initialize.h; sourceTree = "<group>"; };
+		3D5A11B71F266C020048B69E /* analyzeECG_terminate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = analyzeECG_terminate.c; sourceTree = "<group>"; };
+		3D5A11B81F266C020048B69E /* analyzeECG_terminate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = analyzeECG_terminate.h; sourceTree = "<group>"; };
+		3D5A11B91F266C020048B69E /* analyzeECG_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = analyzeECG_types.h; sourceTree = "<group>"; };
+		3D5A11BA1F266C020048B69E /* analyzeECG.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = analyzeECG.c; sourceTree = "<group>"; };
+		3D5A11BB1F266C020048B69E /* analyzeECG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = analyzeECG.h; sourceTree = "<group>"; };
+		3D5A11BC1F266C020048B69E /* diff.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = diff.c; sourceTree = "<group>"; };
+		3D5A11BD1F266C020048B69E /* diff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = diff.h; sourceTree = "<group>"; };
+		3D5A11BE1F266C020048B69E /* eml_setop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = eml_setop.c; sourceTree = "<group>"; };
+		3D5A11BF1F266C020048B69E /* eml_setop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eml_setop.h; sourceTree = "<group>"; };
+		3D5A11C01F266C020048B69E /* findpeaks.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = findpeaks.c; sourceTree = "<group>"; };
+		3D5A11C11F266C020048B69E /* findpeaks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = findpeaks.h; sourceTree = "<group>"; };
+		3D5A11C21F266C020048B69E /* ixamax.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ixamax.c; sourceTree = "<group>"; };
+		3D5A11C31F266C020048B69E /* ixamax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ixamax.h; sourceTree = "<group>"; };
+		3D5A11C41F266C020048B69E /* mean.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mean.c; sourceTree = "<group>"; };
+		3D5A11C51F266C020048B69E /* mean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mean.h; sourceTree = "<group>"; };
+		3D5A11C61F266C020048B69E /* nonSingletonDim.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nonSingletonDim.c; sourceTree = "<group>"; };
+		3D5A11C71F266C020048B69E /* nonSingletonDim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nonSingletonDim.h; sourceTree = "<group>"; };
+		3D5A11C81F266C020048B69E /* norm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = norm.c; sourceTree = "<group>"; };
+		3D5A11C91F266C020048B69E /* norm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = norm.h; sourceTree = "<group>"; };
+		3D5A11CA1F266C020048B69E /* polyfit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = polyfit.c; sourceTree = "<group>"; };
+		3D5A11CB1F266C020048B69E /* polyfit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = polyfit.h; sourceTree = "<group>"; };
+		3D5A11CC1F266C020048B69E /* polyval.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = polyval.c; sourceTree = "<group>"; };
+		3D5A11CD1F266C020048B69E /* polyval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = polyval.h; sourceTree = "<group>"; };
+		3D5A11CE1F266C020048B69E /* qrsolve.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrsolve.c; sourceTree = "<group>"; };
+		3D5A11CF1F266C020048B69E /* qrsolve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrsolve.h; sourceTree = "<group>"; };
+		3D5A11D01F266C020048B69E /* rt_nonfinite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rt_nonfinite.c; sourceTree = "<group>"; };
+		3D5A11D11F266C020048B69E /* rt_nonfinite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rt_nonfinite.h; sourceTree = "<group>"; };
+		3D5A11D21F266C020048B69E /* rtGetInf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rtGetInf.c; sourceTree = "<group>"; };
+		3D5A11D31F266C020048B69E /* rtGetInf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rtGetInf.h; sourceTree = "<group>"; };
+		3D5A11D41F266C020048B69E /* rtGetNaN.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rtGetNaN.c; sourceTree = "<group>"; };
+		3D5A11D51F266C020048B69E /* rtGetNaN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rtGetNaN.h; sourceTree = "<group>"; };
+		3D5A11D61F266C020048B69E /* rtwtypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rtwtypes.h; sourceTree = "<group>"; };
+		3D5A11D71F266C020048B69E /* sign.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sign.c; sourceTree = "<group>"; };
+		3D5A11D81F266C020048B69E /* sign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sign.h; sourceTree = "<group>"; };
+		3D5A11D91F266C020048B69E /* sort1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sort1.c; sourceTree = "<group>"; };
+		3D5A11DA1F266C020048B69E /* sort1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sort1.h; sourceTree = "<group>"; };
+		3D5A11DB1F266C020048B69E /* sortIdx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sortIdx.c; sourceTree = "<group>"; };
+		3D5A11DC1F266C020048B69E /* sortIdx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sortIdx.h; sourceTree = "<group>"; };
+		3D5A11DD1F266C020048B69E /* std.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = std.c; sourceTree = "<group>"; };
+		3D5A11DE1F266C020048B69E /* std.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = std.h; sourceTree = "<group>"; };
+		3D5A11DF1F266C020048B69E /* vander.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vander.c; sourceTree = "<group>"; };
+		3D5A11E01F266C020048B69E /* vander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vander.h; sourceTree = "<group>"; };
+		3D5A11E11F266C020048B69E /* xgemv.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xgemv.c; sourceTree = "<group>"; };
+		3D5A11E21F266C020048B69E /* xgemv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xgemv.h; sourceTree = "<group>"; };
+		3D5A11E31F266C020048B69E /* xgeqp3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xgeqp3.c; sourceTree = "<group>"; };
+		3D5A11E41F266C020048B69E /* xgeqp3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xgeqp3.h; sourceTree = "<group>"; };
+		3D5A11E51F266C020048B69E /* xgerc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xgerc.c; sourceTree = "<group>"; };
+		3D5A11E61F266C020048B69E /* xgerc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xgerc.h; sourceTree = "<group>"; };
+		3D5A11E71F266C020048B69E /* xnrm2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xnrm2.c; sourceTree = "<group>"; };
+		3D5A11E81F266C020048B69E /* xnrm2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xnrm2.h; sourceTree = "<group>"; };
+		3D5A11E91F266C020048B69E /* xswap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xswap.c; sourceTree = "<group>"; };
+		3D5A11EA1F266C020048B69E /* xswap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xswap.h; sourceTree = "<group>"; };
+		3D5A11EB1F266C020048B69E /* xzlarf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xzlarf.c; sourceTree = "<group>"; };
+		3D5A11EC1F266C020048B69E /* xzlarf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xzlarf.h; sourceTree = "<group>"; };
+		3D5A11ED1F266C020048B69E /* xzlarfg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xzlarfg.c; sourceTree = "<group>"; };
+		3D5A11EE1F266C020048B69E /* xzlarfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xzlarfg.h; sourceTree = "<group>"; };
+		3D5A120B1F266ECA0048B69E /* hetLink-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hetLink-Bridging-Header.h"; sourceTree = "<group>"; };
 		3D8ABCF11F155955003A2B55 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		3D8ABCF81F156A57003A2B55 /* SourceBrowserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceBrowserCell.swift; sourceTree = "<group>"; };
 		3D9FA5A01F0E6C8D0078F2F7 /* RecordingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingManager.swift; sourceTree = "<group>"; };
@@ -195,6 +282,72 @@
 			path = "Bluetooth Devices";
 			sourceTree = "<group>";
 		};
+		3D5A11781F265EBB0048B69E /* MATLAB */ = {
+			isa = PBXGroup;
+			children = (
+				3D5A11B51F266C020048B69E /* analyzeECG_initialize.c */,
+				3D5A11B61F266C020048B69E /* analyzeECG_initialize.h */,
+				3D5A11B71F266C020048B69E /* analyzeECG_terminate.c */,
+				3D5A11B81F266C020048B69E /* analyzeECG_terminate.h */,
+				3D5A11B91F266C020048B69E /* analyzeECG_types.h */,
+				3D5A11BA1F266C020048B69E /* analyzeECG.c */,
+				3D5A11BB1F266C020048B69E /* analyzeECG.h */,
+				3D5A11BC1F266C020048B69E /* diff.c */,
+				3D5A11BD1F266C020048B69E /* diff.h */,
+				3D5A11BE1F266C020048B69E /* eml_setop.c */,
+				3D5A11BF1F266C020048B69E /* eml_setop.h */,
+				3D5A11C01F266C020048B69E /* findpeaks.c */,
+				3D5A11C11F266C020048B69E /* findpeaks.h */,
+				3D5A11C21F266C020048B69E /* ixamax.c */,
+				3D5A11C31F266C020048B69E /* ixamax.h */,
+				3D5A11C41F266C020048B69E /* mean.c */,
+				3D5A11C51F266C020048B69E /* mean.h */,
+				3D5A11C61F266C020048B69E /* nonSingletonDim.c */,
+				3D5A11C71F266C020048B69E /* nonSingletonDim.h */,
+				3D5A11C81F266C020048B69E /* norm.c */,
+				3D5A11C91F266C020048B69E /* norm.h */,
+				3D5A11CA1F266C020048B69E /* polyfit.c */,
+				3D5A11CB1F266C020048B69E /* polyfit.h */,
+				3D5A11CC1F266C020048B69E /* polyval.c */,
+				3D5A11CD1F266C020048B69E /* polyval.h */,
+				3D5A11CE1F266C020048B69E /* qrsolve.c */,
+				3D5A11CF1F266C020048B69E /* qrsolve.h */,
+				3D5A11D01F266C020048B69E /* rt_nonfinite.c */,
+				3D5A11D11F266C020048B69E /* rt_nonfinite.h */,
+				3D5A11D21F266C020048B69E /* rtGetInf.c */,
+				3D5A11D31F266C020048B69E /* rtGetInf.h */,
+				3D5A11D41F266C020048B69E /* rtGetNaN.c */,
+				3D5A11D51F266C020048B69E /* rtGetNaN.h */,
+				3D5A11D61F266C020048B69E /* rtwtypes.h */,
+				3D5A11D71F266C020048B69E /* sign.c */,
+				3D5A11D81F266C020048B69E /* sign.h */,
+				3D5A11D91F266C020048B69E /* sort1.c */,
+				3D5A11DA1F266C020048B69E /* sort1.h */,
+				3D5A11DB1F266C020048B69E /* sortIdx.c */,
+				3D5A11DC1F266C020048B69E /* sortIdx.h */,
+				3D5A11DD1F266C020048B69E /* std.c */,
+				3D5A11DE1F266C020048B69E /* std.h */,
+				3D5A11DF1F266C020048B69E /* vander.c */,
+				3D5A11E01F266C020048B69E /* vander.h */,
+				3D5A11E11F266C020048B69E /* xgemv.c */,
+				3D5A11E21F266C020048B69E /* xgemv.h */,
+				3D5A11E31F266C020048B69E /* xgeqp3.c */,
+				3D5A11E41F266C020048B69E /* xgeqp3.h */,
+				3D5A11E51F266C020048B69E /* xgerc.c */,
+				3D5A11E61F266C020048B69E /* xgerc.h */,
+				3D5A11E71F266C020048B69E /* xnrm2.c */,
+				3D5A11E81F266C020048B69E /* xnrm2.h */,
+				3D5A11E91F266C020048B69E /* xswap.c */,
+				3D5A11EA1F266C020048B69E /* xswap.h */,
+				3D5A11EB1F266C020048B69E /* xzlarf.c */,
+				3D5A11EC1F266C020048B69E /* xzlarf.h */,
+				3D5A11ED1F266C020048B69E /* xzlarfg.c */,
+				3D5A11EE1F266C020048B69E /* xzlarfg.h */,
+				3D5A120B1F266ECA0048B69E /* hetLink-Bridging-Header.h */,
+			);
+			name = MATLAB;
+			sourceTree = "<group>";
+		};
 		3D8ABCF71F156A3C003A2B55 /* Master */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +416,7 @@
 		3DFD322F1EF02C5C0028805B /* hetLink */ = {
 			isa = PBXGroup;
 			children = (
+				3D5A11781F265EBB0048B69E /* MATLAB */,
 				3DA638BF1F13DC4F007081F4 /* hetLink.entitlements */,
 				3D2A1A3B1F16945B007A4119 /* Analysis */,
 				3D8ABCF71F156A3C003A2B55 /* Master */,
@@ -392,6 +546,7 @@
 					3DFD322C1EF02C5C0028805B = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = BDN6EHM4RZ;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.iCloud = {
@@ -603,32 +758,60 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D5A12051F266C020048B69E /* xgeqp3.c in Sources */,
+				3D5A11F51F266C020048B69E /* ixamax.c in Sources */,
 				3D38B5DA1F03F62F00C4CF05 /* HETChestAccelChartView.swift in Sources */,
+				3D5A12091F266C020048B69E /* xzlarf.c in Sources */,
 				3D4DA52C1F152A1300BAD1E8 /* DatasetVisibilityViewController.swift in Sources */,
+				3D5A11F01F266C020048B69E /* analyzeECG_terminate.c in Sources */,
 				3D2A1A3D1F16946F007A4119 /* AnalysisManager.swift in Sources */,
+				3D5A12001F266C020048B69E /* sort1.c in Sources */,
 				3DE70DA91EF9909300E7D77E /* HETEcgPulseOxPacket.swift in Sources */,
+				3D5A11FC1F266C020048B69E /* rt_nonfinite.c in Sources */,
 				3D8ABCF91F156A57003A2B55 /* SourceBrowserCell.swift in Sources */,
 				3D391EE71EF857510071CF6A /* HETChestInterpreter.swift in Sources */,
+				3D5A11F61F266C020048B69E /* mean.c in Sources */,
+				3D5A12031F266C020048B69E /* vander.c in Sources */,
 				3D9FA5A11F0E6C8D0078F2F7 /* RecordingManager.swift in Sources */,
 				3DFD32311EF02C5C0028805B /* AppDelegate.swift in Sources */,
+				3D5A11F71F266C020048B69E /* nonSingletonDim.c in Sources */,
+				3D5A12041F266C020048B69E /* xgemv.c in Sources */,
 				3DC284DA1EF318E8008EC6A4 /* Colors.swift in Sources */,
+				3D5A11FA1F266C020048B69E /* polyval.c in Sources */,
+				3D5A120A1F266C020048B69E /* xzlarfg.c in Sources */,
 				3DF86FD51EF19A080006662D /* SplitViewController.swift in Sources */,
 				3D8ABCF21F155955003A2B55 /* Theme.swift in Sources */,
+				3D5A12071F266C020048B69E /* xnrm2.c in Sources */,
+				3D5A11F91F266C020048B69E /* polyfit.c in Sources */,
+				3D5A12011F266C020048B69E /* sortIdx.c in Sources */,
 				3DA638C11F13EEA4007081F4 /* ExportManager.swift in Sources */,
+				3D5A11F11F266C020048B69E /* analyzeECG.c in Sources */,
 				3DFD32341EF02C5D0028805B /* hetLink.xcdatamodeld in Sources */,
 				3DC284D31EF3184B008EC6A4 /* ChartView.swift in Sources */,
 				3D391EE11EF811870071CF6A /* HETDevice.swift in Sources */,
+				3D5A11FF1F266C020048B69E /* sign.c in Sources */,
+				3D5A11FD1F266C020048B69E /* rtGetInf.c in Sources */,
+				3D5A11F41F266C020048B69E /* findpeaks.c in Sources */,
 				3DE70DAB1EF9962300E7D77E /* HETChestBodyChartView.swift in Sources */,
+				3D5A12021F266C020048B69E /* std.c in Sources */,
 				3D391EE51EF813CE0071CF6A /* HETWatchInterpreter.swift in Sources */,
 				3D30A6241EF078B300DB7774 /* HETDeviceManager.swift in Sources */,
+				3D5A11F21F266C020048B69E /* diff.c in Sources */,
 				3D38B5D81F03F0FD00C4CF05 /* HETBattAccelPacket.swift in Sources */,
 				3DFD32361EF02C5D0028805B /* MasterViewController.swift in Sources */,
+				3D5A11F31F266C020048B69E /* eml_setop.c in Sources */,
 				3D4DA52E1F152EC500BAD1E8 /* DatasetToggleViewCell.swift in Sources */,
 				3DE70DA71EF98F7E00E7D77E /* HETPacket.swift in Sources */,
+				3D5A11FE1F266C020048B69E /* rtGetNaN.c in Sources */,
 				3DFD32381EF02C5D0028805B /* DetailViewController.swift in Sources */,
 				3D2A1A3F1F169A71007A4119 /* ChartManager.swift in Sources */,
+				3D5A11EF1F266C020048B69E /* analyzeECG_initialize.c in Sources */,
 				3D2A1A3A1F16741A007A4119 /* ToggleBarButtonItem.swift in Sources */,
+				3D5A12081F266C020048B69E /* xswap.c in Sources */,
 				3D391EE31EF812FB0071CF6A /* HETDeviceInterpreter.swift in Sources */,
+				3D5A11F81F266C020048B69E /* norm.c in Sources */,
+				3D5A11FB1F266C020048B69E /* qrsolve.c in Sources */,
+				3D5A12061F266C020048B69E /* xgerc.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,6 +966,7 @@
 			baseConfigurationReference = BA08B22F5148118B3EFFE46E /* Pods-hetLink.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = hetLink/hetLink.entitlements;
 				DEVELOPMENT_TEAM = BDN6EHM4RZ;
 				INFOPLIST_FILE = hetLink/Info.plist;
@@ -790,6 +974,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.baileyb.hetLink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "hetLink/hetLink-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -799,6 +985,7 @@
 			baseConfigurationReference = C564B9C5311E891ECAC18A7C /* Pods-hetLink.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = hetLink/hetLink.entitlements;
 				DEVELOPMENT_TEAM = BDN6EHM4RZ;
 				INFOPLIST_FILE = hetLink/Info.plist;
@@ -806,6 +993,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.baileyb.hetLink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "hetLink/hetLink-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

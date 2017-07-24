@@ -75,7 +75,7 @@ extension SplitViewController: HETDeviceManagerDelegate {
     
     func deviceManager(didGet packet: HETPacket) {
         chartManager.graph(packet: packet)
-        analysisManager.analyze(packet: packet)
+        analysisManager.queueForAnalysis(packet: packet)
         if recordingManager.isRecording {
             recordingManager.persist(packet: packet)
         }
