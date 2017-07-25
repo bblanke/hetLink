@@ -30,7 +30,7 @@ class HETChestBodyChartView: ChartView, HETChartView {
     
     let chartColors: [UIColor] = Array(Theme.graphColors[0...4])
     
-    let range: Int = 400
+    let range: Int = 200
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -94,8 +94,9 @@ class HETChestBodyChartView: ChartView, HETChartView {
             _ = data?.dataSets[3].removeFirst()
             _ = data?.dataSets[4].removeFirst()
         }
-        
-        notifyDataSetChanged()
+        DispatchQueue.main.async {
+            self.notifyDataSetChanged()
+        }
     }
     
     func setVisibility(_ visibility: Bool, dataset: LineChartDataSet) {

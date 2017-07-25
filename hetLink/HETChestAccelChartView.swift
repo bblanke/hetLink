@@ -26,7 +26,7 @@ class HETChestAccelChartView: ChartView, HETChartView {
     
     let chartColors: [UIColor] = Array(Theme.graphColors[5...7])
     
-    let range: Int = 44
+    let range: Int = 22
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -85,7 +85,9 @@ class HETChestAccelChartView: ChartView, HETChartView {
             _ = data?.dataSets[2].removeFirst()
         }
         
-        notifyDataSetChanged()
+        DispatchQueue.main.async {
+            self.notifyDataSetChanged()
+        }
     }
     
     func setVisibility(_ visibility: Bool, dataset: LineChartDataSet){

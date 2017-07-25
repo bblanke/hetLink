@@ -70,7 +70,7 @@ class ChartManager: NSObject {
         
         var frames: [CGRect] = []
         for i in 0..<number {
-            let y: Int = Int(frame.minY) + height * i + padding * i
+            let y: Int = height * i + padding * i
             frames.append(CGRect(x: x, y: y, width: width, height: height))
         }
         
