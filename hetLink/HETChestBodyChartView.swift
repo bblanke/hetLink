@@ -11,13 +11,8 @@ import Charts
 
 class HETChestBodyChartView: ChartView, HETChartView {
     
-    // Entries
-    var ecgEntries: [ChartDataEntry] = []
-    var waveOneEntries: [ChartDataEntry] = []
-    var waveTwoEntries: [ChartDataEntry] = []
-    var waveThreeEntries: [ChartDataEntry] = []
-    var waveFourEntries: [ChartDataEntry] = []
-    
+    fileprivate let packetQueue = DispatchQueue(label: "me.baileyb.HETLink.chestPacketQueue", attributes: DispatchQueue.Attributes.concurrent)
+
     // Datasets
     var ecgDataSet: LineChartDataSet!
     var waveOneDataSet: LineChartDataSet!
@@ -43,11 +38,11 @@ class HETChestBodyChartView: ChartView, HETChartView {
     }
     
     func initChart(){
-        ecgDataSet = LineChartDataSet(values: ecgEntries, label: "ECG")
-        waveOneDataSet = LineChartDataSet(values: waveOneEntries, label: "W1")
-        waveTwoDataSet = LineChartDataSet(values: waveTwoEntries, label: "W2")
-        waveThreeDataSet = LineChartDataSet(values: waveThreeEntries, label: "W3")
-        waveFourDataSet = LineChartDataSet(values: waveFourEntries, label: "W4")
+        ecgDataSet = LineChartDataSet(values: [], label: "ECG")
+        waveOneDataSet = LineChartDataSet(values: [], label: "W1")
+        waveTwoDataSet = LineChartDataSet(values: [], label: "W2")
+        waveThreeDataSet = LineChartDataSet(values: [], label: "W3")
+        waveFourDataSet = LineChartDataSet(values: [], label: "W4")
         
         chartDataSets = [ecgDataSet, waveOneDataSet, waveTwoDataSet, waveThreeDataSet, waveFourDataSet]
         
@@ -77,26 +72,24 @@ class HETChestBodyChartView: ChartView, HETChartView {
         let waveThreeEntry = ChartDataEntry(x: ts, y: Double(packet.waveThree))
         let waveFourEntry = ChartDataEntry(x: ts, y: Double(packet.waveFour))
         
-        data?.addEntry(ecgEntry, dataSetIndex: 0)
-        data?.addEntry(waveOneEntry, dataSetIndex: 1)
-        data?.addEntry(waveTwoEntry, dataSetIndex: 2)
-        data?.addEntry(waveThreeEntry, dataSetIndex: 3)
-        data?.addEntry(waveFourEntry, dataSetIndex: 4)
+        self.data?.addEntry(ecgEntry, dataSetIndex: 0)
+        self.data?.addEntry(waveOneEntry, dataSetIndex: 1)
+        self.data?.addEntry(waveTwoEntry, dataSetIndex: 2)
+        self.data?.addEntry(waveThreeEntry, dataSetIndex: 3)
+        self.data?.addEntry(waveFourEntry, dataSetIndex: 4)
         
-        let first = data?.dataSets[0].entryForIndex(0)
+        let first = self.data?.dataSets[0].entryForIndex(0)
         
-        xAxis.axisMinimum = (first?.x)!
-
-        if (data?.dataSets[0].entryCount)! > range {
-            _ = data?.dataSets[0].removeFirst()
-            _ = data?.dataSets[1].removeFirst()
-            _ = data?.dataSets[2].removeFirst()
-            _ = data?.dataSets[3].removeFirst()
-            _ = data?.dataSets[4].removeFirst()
+        self.xAxis.axisMinimum = (first?.x)!
+        
+        if (self.data?.dataSets[0].entryCount)! > self.range {
+            _ = self.data?.dataSets[0].removeFirst()
+            _ = self.data?.dataSets[1].removeFirst()
+            _ = self.data?.dataSets[2].removeFirst()
+            _ = self.data?.dataSets[3].removeFirst()
+            _ = self.data?.dataSets[4].removeFirst()
         }
-        DispatchQueue.main.async {
-            self.notifyDataSetChanged()
-        }
+        self.notifyDataSetChanged()
     }
     
     func setVisibility(_ visibility: Bool, dataset: LineChartDataSet) {

@@ -20,7 +20,9 @@ class AnalysisManager: NSObject {
             let packet = packet as! HETEcgPulseOxPacket
             ecgPulseOxPacketBuffer.append(packet)
             if ecgPulseOxPacketBuffer.count >= bpmChunkSize {
-                calculateBPM()
+                DispatchQueue.global(qos: .utility).async {
+                    self.calculateBPM()
+                }
             }
             break
         case .battAccel:
@@ -32,12 +34,14 @@ class AnalysisManager: NSObject {
         let times = ecgPulseOxPacketBuffer.map { $0.timestamp.timeIntervalSince1970 }
         let ecg = ecgPulseOxPacketBuffer.map { Double($0.ecg) }
         let bpm: Double = analyzeECG(times, ecg)
-        if bpm.isNaN {
-            delegate.analysisManager(didUpdateBPM: 0)
-        } else {
-            delegate.analysisManager(didUpdateBPM: Int(bpm))
-        }
         ecgPulseOxPacketBuffer.removeFirst(bpmChunkSize)
+        DispatchQueue.main.async {
+            if bpm.isNaN {
+                self.delegate.analysisManager(didUpdateBPM: 0)
+            } else {
+                self.delegate.analysisManager(didUpdateBPM: Int(bpm))
+            }
+        }
     }
 }
 
