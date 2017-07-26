@@ -11,36 +11,44 @@ import UIKit
 
 class ExportManager: NSObject{
     
-    override init(){
+    weak var delegate: ExportManagerDelegate!
+    
+    init(delegate: ExportManagerDelegate){
         super.init()
+        
+        self.delegate = delegate
     }
     
-    func beginExporting(packetArray: [HETPacket], associatedRecording: Recording, completion: (URL) -> Void){
-        let deviceType = HETDeviceType(rawValue: associatedRecording.deviceType)!
-        
-        guard var filename = associatedRecording.title else {
-            fatalError("Recordings must have unique titles")
-        }
-        filename.append(".csv")
-        
-        let path = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(filename)
-        
-        var csvText = ""
-        csvText.append(csvHeaderFor(device: deviceType))
-        csvText.append("\n")
-        
-        for packet in packetArray {
-            csvText.append(csvLineFor(packet: packet, device: deviceType))
+    func beginExporting(packetArray: [HETPacket], associatedRecording: Recording){
+        DispatchQueue.global(qos: .utility).async {
+            let deviceType = HETDeviceType(rawValue: associatedRecording.deviceType)!
+            
+            guard var filename = associatedRecording.title else {
+                fatalError("Recordings must have unique titles")
+            }
+            filename.append(".csv")
+            
+            let path = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(filename)
+            
+            var csvText = ""
+            csvText.append(self.csvHeaderFor(device: deviceType))
             csvText.append("\n")
+            
+            for packet in packetArray {
+                csvText.append(self.csvLineFor(packet: packet, device: deviceType))
+                csvText.append("\n")
+            }
+            
+            do {
+                try csvText.write(to: path, atomically: true, encoding: .utf8)
+            } catch {
+                print("File could not be written")
+            }
+            
+            DispatchQueue.main.async {
+                self.delegate.exportManager(didFinishExporting: path)
+            }
         }
-        
-        do {
-           try csvText.write(to: path, atomically: true, encoding: .utf8)
-        } catch {
-            print("File could not be written")
-        }
-        
-        completion(path)
     }
     
     private func csvLineFor(packet: HETPacket, device: HETDeviceType) -> String {
@@ -72,4 +80,8 @@ class ExportManager: NSObject{
             return "Timestamp"
         }
     }
+}
+
+protocol ExportManagerDelegate: class {
+    func exportManager(didFinishExporting file: URL)
 }

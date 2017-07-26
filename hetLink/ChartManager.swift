@@ -41,8 +41,7 @@ class ChartManager: NSObject {
     
     func graph(packet: HETPacket){
         guard currentDeviceType != nil else {
-            print("[WARNING]: Trying to graph without charts")
-            return
+            fatalError("Trying to graph without charts")
         }
         
         switch currentDeviceType! {
@@ -55,6 +54,23 @@ class ChartManager: NSObject {
                 chartViews[1].graph(packet: packet)
                 break
             }
+            break
+        case .watch:
+            break
+        }
+    }
+    
+    func graph(packets: [HETPacket]){
+        guard currentDeviceType != nil else {
+            fatalError("Trying to graph without charts")
+        }
+        
+        switch currentDeviceType! {
+        case .chest:
+            let pulseOxPackets = packets.filter { $0.parser == HETParserType.ecgPulseOx }
+            let accelPackets = packets.filter { $0.parser == HETParserType.battAccel }
+            chartViews[0].graph(packets: pulseOxPackets)
+            chartViews[1].graph(packets: accelPackets)
             break
         case .watch:
             break

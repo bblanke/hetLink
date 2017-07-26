@@ -63,6 +63,7 @@ protocol HETChartView: class {
     var chartDataSets: [LineChartDataSet]! { get }
     
     func graph(packet: HETPacket)
+    func graph(packets: [HETPacket])
     func setVisibility(_ visibility: Bool, dataset: LineChartDataSet)
 }
 

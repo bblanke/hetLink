@@ -85,8 +85,34 @@ class HETChestAccelChartView: ChartView, HETChartView {
             _ = data?.dataSets[2].removeFirst()
         }
         
-        DispatchQueue.main.async {
-            self.notifyDataSetChanged()
+        self.notifyDataSetChanged()
+    }
+    
+    func graph(packets: [HETPacket]) {
+        let start = Date()
+        DispatchQueue.global(qos: .utility).async {
+            for packet in packets {
+                guard let packet = packet as? HETBattAccelPacket else {
+                    return
+                }
+                
+                let ts = packet.timestamp.timeIntervalSince1970
+                
+                let xEntry = ChartDataEntry(x: ts, y: Double(packet.x))
+                let yEntry = ChartDataEntry(x: ts, y: Double(packet.y))
+                let zEntry = ChartDataEntry(x: ts, y: Double(packet.z))
+                
+                self.data?.addEntry(xEntry, dataSetIndex: 0)
+                self.data?.addEntry(yEntry, dataSetIndex: 1)
+                self.data?.addEntry(zEntry, dataSetIndex: 2)
+                
+            }
+            print("Adding accel datasets took: \(Date().timeIntervalSince(start))")
+            
+            DispatchQueue.main.async {
+                self.notifyDataSetChanged()
+                self.setVisibleXRangeMaximum(8)
+            }
         }
     }
     

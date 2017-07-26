@@ -92,6 +92,38 @@ class HETChestBodyChartView: ChartView, HETChartView {
         self.notifyDataSetChanged()
     }
     
+    func graph(packets: [HETPacket]) {
+        let start = Date()
+        DispatchQueue.global(qos: .utility).async {
+            for packet in packets {
+                guard let packet = packet as? HETEcgPulseOxPacket else {
+                    return
+                }
+                
+                let ts = packet.timestamp.timeIntervalSince1970
+                
+                let ecgEntry = ChartDataEntry(x: ts, y: Double(packet.ecg))
+                let waveOneEntry = ChartDataEntry(x: ts, y: Double(packet.waveOne))
+                let waveTwoEntry = ChartDataEntry(x: ts, y: Double(packet.waveTwo))
+                let waveThreeEntry = ChartDataEntry(x: ts, y: Double(packet.waveThree))
+                let waveFourEntry = ChartDataEntry(x: ts, y: Double(packet.waveFour))
+                
+                self.data?.addEntry(ecgEntry, dataSetIndex: 0)
+                self.data?.addEntry(waveOneEntry, dataSetIndex: 1)
+                self.data?.addEntry(waveTwoEntry, dataSetIndex: 2)
+                self.data?.addEntry(waveThreeEntry, dataSetIndex: 3)
+                self.data?.addEntry(waveFourEntry, dataSetIndex: 4)
+            }
+            
+            print("Adding packets to Pulse Ox Dataset Took: \(Date().timeIntervalSince(start))")
+            
+            DispatchQueue.main.async {
+                self.notifyDataSetChanged()
+                self.setVisibleXRangeMaximum(8)
+            }
+        }
+    }
+    
     func setVisibility(_ visibility: Bool, dataset: LineChartDataSet) {
         dataset.visible = visibility
         notifyDataSetChanged()

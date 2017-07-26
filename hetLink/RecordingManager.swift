@@ -11,16 +11,19 @@ import CoreData
 
 class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
     var managedObjectContext: NSManagedObjectContext!
-    var isRecording: Bool = false
+    var canRecord: Bool = false
     
-    var openRecording: Recording?
-    var fetchedRecordingsController: NSFetchedResultsController<NSFetchRequestResult>!
+    fileprivate var openRecording: Recording?
+    fileprivate var fetchedRecordingsController: NSFetchedResultsController<NSFetchRequestResult>!
+    
+    var presentedRecording: Recording?
+    var presentedRecordingPackets: [HETPacket]?
     
     var recordingCount: Int {
         return (fetchedRecordingsController.sections?.first?.numberOfObjects)!
     }
     
-    var delegate: RecordingManagerDelegate?
+    weak var delegate: RecordingManagerDelegate?
     
     override init(){
         super.init()
@@ -34,7 +37,72 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
         }
     }
     
-    private func initializeFetchedRecordingsController() {
+    func recording(at row: Int) -> Recording {
+        return fetchedRecordingsController.object(at: IndexPath(row: row, section: 0)) as! Recording
+    }
+    
+    func delete(recording: Recording) {
+        managedObjectContext.delete(recording)
+        saveContext()
+    }
+    
+    func startRecording(type: HETDeviceType){ 
+        canRecord = true
+        
+        openRecording = Recording(context: managedObjectContext)
+        openRecording?.timestamp = Date() as NSDate
+        openRecording?.deviceType = type.rawValue
+    }
+    
+    func persist(packet: HETPacket){
+        guard canRecord == true else {
+            return
+        }
+        
+        let recPacket = Packet(context: managedObjectContext)
+        recPacket.timestamp = packet.timestamp as NSDate
+        recPacket.parseType = packet.parser.rawValue
+        recPacket.data = packet.rawData as NSData
+        
+        openRecording?.addToPackets(recPacket)
+    }
+    
+    func endRecording(recordingTitle: String){
+        canRecord = false
+        openRecording?.title = recordingTitle
+        saveContext()
+        openRecording = nil
+    }
+    
+    func selectRecordingAndStartMakingPacketArray(from recording: Recording){
+        DispatchQueue.global(qos: .utility).async {
+            var returnPackets: [HETPacket] = []
+            let packets = recording.packets!.array as! [Packet]
+            for packet in packets {
+                switch HETParserType(rawValue: packet.parseType)!{
+                case .ecgPulseOx:
+                    returnPackets.append(HETEcgPulseOxPacket(data: packet.data! as Data, date: packet.timestamp! as Date)!)
+                    break
+                case .battAccel:
+                    returnPackets.append(HETBattAccelPacket(data: packet.data! as Data, date: packet.timestamp! as Date)!)
+                    break
+                }
+            }
+            
+            self.presentedRecording = recording
+            self.presentedRecordingPackets = returnPackets
+            
+            DispatchQueue.main.async {
+                self.delegate?.recordingManagerDidMakePacketArray(packetArray: self.presentedRecordingPackets!)
+            }
+        }
+    }
+    
+}
+
+private extension RecordingManager {
+    
+    func initializeFetchedRecordingsController() {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Recording")
         let timestampSort = NSSortDescriptor(key: "timestamp", ascending: false)
         request.sortDescriptors = [timestampSort]
@@ -50,67 +118,7 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
         }
     }
     
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        //print("updated the recordings")
-    }
-    
-    func recording(at row: Int) -> Recording {
-        return fetchedRecordingsController.object(at: IndexPath(row: row, section: 0)) as! Recording
-    }
-    
-    func delete(recording: Recording) {
-        managedObjectContext.delete(recording)
-        saveContext()
-    }
-    
-    func startRecording(type: HETDeviceType){ 
-        isRecording = true
-        
-        openRecording = Recording(context: managedObjectContext)
-        openRecording?.timestamp = Date() as NSDate
-        openRecording?.deviceType = type.rawValue
-    }
-    
-    func persist(packet: HETPacket){
-        guard isRecording == true else {
-            return
-        }
-        
-        let recPacket = Packet(context: managedObjectContext)
-        recPacket.timestamp = packet.timestamp as NSDate
-        recPacket.parseType = packet.parser.rawValue
-        recPacket.data = packet.rawData as NSData
-        
-        openRecording?.addToPackets(recPacket)
-    }
-    
-    func endRecording(recordingTitle: String){
-        isRecording = false
-        
-        openRecording?.title = recordingTitle
-        
-        saveContext()
-        
-        openRecording = nil
-    }
-    
-    func make(packetArrayFrom recording: Recording) -> [HETPacket] {
-        var returnPackets: [HETPacket] = []
-        let packets = recording.packets!.array as! [Packet]
-        for packet in packets {
-            switch HETParserType(rawValue: packet.parseType)!{
-            case .ecgPulseOx:
-                returnPackets.append(HETEcgPulseOxPacket(data: packet.data! as Data, date: packet.timestamp! as Date)!)
-                break
-            case .battAccel:
-                returnPackets.append(HETBattAccelPacket(data: packet.data! as Data, date: packet.timestamp! as Date)!)
-                break
-            }
-        }
-        return returnPackets
-    }
-    
-    private func saveContext () {
+    func saveContext () {
         guard let context = managedObjectContext else {
             // FIXME: - Should have a way for this to fail with a message
             return
@@ -118,7 +126,6 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
         
         if context.hasChanges {
             do {
-                print("Saved context")
                 try context.save()
                 delegate?.recordingManagerDidSaveRecording()
             } catch {
@@ -134,4 +141,5 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
 
 protocol RecordingManagerDelegate: class {
     func recordingManagerDidSaveRecording()
+    func recordingManagerDidMakePacketArray(packetArray: [HETPacket])
 }

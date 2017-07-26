@@ -13,42 +13,34 @@ import ChameleonFramework
 class SplitViewController: UISplitViewController{
 
     var hetDeviceManager: HETDeviceManager!
+    var recordingManager: RecordingManager!
+    var exportManager: ExportManager!
+    var chartManager: ChartManager!
+    var analysisManager: AnalysisManager!
     
     var masterVC: MasterViewController!
     var detailVC: DetailViewController!
     
-    var recordingManager: RecordingManager!
-    
-    var exportManager: ExportManager!
-    
-    var chartManager: ChartManager!
-    
-    var analysisManager: AnalysisManager!
-    
-    var presentedRecording: Recording!
-    var presentedRecordingPackets: [HETPacket]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.setStatusBarStyle(UIStatusBarStyleContrast)
         self.view.backgroundColor = ContrastColorOf(Theme.graphViewBackground, returnFlat: true)
-        
-        hetDeviceManager = HETDeviceManager(delegate: self, services: HETWatchInterpreter.services)
-        
-        exportManager = ExportManager()
-        
-        chartManager = ChartManager()
-        
-        analysisManager = AnalysisManager()
         
         let masterNC = viewControllers[0] as! UINavigationController
         masterVC = masterNC.topViewController as! MasterViewController
         
         let detailNC = viewControllers[1] as! UINavigationController
         detailVC = detailNC.topViewController as! DetailViewController
+        
+        hetDeviceManager = HETDeviceManager(delegate: self, services: HETWatchInterpreter.services)
+        
+        exportManager = ExportManager(delegate: self)
+        
+        chartManager = ChartManager()
         detailVC.chartManager = chartManager
         
+        analysisManager = AnalysisManager()
         analysisManager.delegate = detailVC
         
         masterVC.masterListDelegate = self
@@ -76,7 +68,7 @@ extension SplitViewController: HETDeviceManagerDelegate {
     func deviceManager(didGet packet: HETPacket) {
         chartManager.graph(packet: packet)
         analysisManager.queueForAnalysis(packet: packet)
-        if recordingManager.isRecording {
+        if recordingManager.canRecord {
             recordingManager.persist(packet: packet)
         }
     }
@@ -88,9 +80,6 @@ extension SplitViewController: MasterListDelegate {
     }
     
     func masterList(didSelectRecording recording: Recording) {
-        print("Selected recording")
-        self.presentedRecording = recording
-
         hetDeviceManager.disconnectCurrentDevice()
         masterVC.isDisabled = true
         
@@ -99,11 +88,7 @@ extension SplitViewController: MasterListDelegate {
         chartManager.setupGraphView(for: deviceType, frameView: detailVC.chartsFrame)
         detailVC.setMode(mode: .file)
         
-        presentedRecordingPackets = recordingManager.make(packetArrayFrom: recording)
-        
-        for packet in presentedRecordingPackets {
-            chartManager.graph(packet: packet)
-        }
+        recordingManager.selectRecordingAndStartMakingPacketArray(from: recording)
         
         masterVC.isDisabled = false
     }
@@ -111,10 +96,7 @@ extension SplitViewController: MasterListDelegate {
 
 extension SplitViewController: ChartViewDelegate {
     func chartViewDidRequestExport() {
-        exportManager.beginExporting(packetArray: presentedRecordingPackets, associatedRecording: presentedRecording, completion: { (url) in
-            let documentPicker = UIDocumentPickerViewController(url: url, in: UIDocumentPickerMode.exportToService)
-            self.present(documentPicker, animated: true, completion: nil)
-        })
+        exportManager.beginExporting(packetArray: recordingManager.presentedRecordingPackets!, associatedRecording: recordingManager.presentedRecording!)
     }
     
     func chartView(didToggle recording: Bool) {
@@ -141,5 +123,16 @@ extension SplitViewController: ChartViewDelegate {
 extension SplitViewController: RecordingManagerDelegate {
     func recordingManagerDidSaveRecording() {
         masterVC.tableView.reloadData()
+    }
+    
+    func recordingManagerDidMakePacketArray(packetArray: [HETPacket]) {
+        self.chartManager.graph(packets: packetArray)
+    }
+}
+
+extension SplitViewController: ExportManagerDelegate {
+    func exportManager(didFinishExporting file: URL) {
+        let documentPicker = UIDocumentPickerViewController(url: file, in: UIDocumentPickerMode.exportToService)
+        self.present(documentPicker, animated: true, completion: nil)
     }
 }
