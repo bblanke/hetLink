@@ -15,12 +15,18 @@ class HETDevice: NSObject, CBPeripheralDelegate {
     var interpreter: HETDeviceInterpreter.Type
     var type: HETDeviceType!
     
-    init(from device: CBPeripheral, delegate: HETDeviceDelegate){
+    init?(from device: CBPeripheral, delegate: HETDeviceDelegate){
         self.peripheral = device
         self.delegate = delegate
-        self.interpreter = HETChestInterpreter.self // TODO: Find a way to differentiate between devices to apply the correct interpreter
-        self.type = .chest
-        
+        if(device.name?.contains("Wrist"))!{
+            self.interpreter = HETWatchInterpreter.self // TODO: Find a way to differentiate between devices to apply the correct interpreter
+            self.type = .watch
+        }else if (device.name?.contains("Chest"))!{
+            self.interpreter = HETChestInterpreter.self // TODO: Find a way to differentiate between devices to apply the correct interpreter
+            self.type = .chest
+        } else {
+            return nil
+        }
         super.init()
         peripheral.delegate = self
         device.discoverServices(interpreter.services)

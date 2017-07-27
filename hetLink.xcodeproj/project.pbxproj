@@ -52,6 +52,8 @@
 		3D8ABCF91F156A57003A2B55 /* SourceBrowserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8ABCF81F156A57003A2B55 /* SourceBrowserCell.swift */; };
 		3D9FA5A11F0E6C8D0078F2F7 /* RecordingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9FA5A01F0E6C8D0078F2F7 /* RecordingManager.swift */; };
 		3DA638C11F13EEA4007081F4 /* ExportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA638C01F13EEA4007081F4 /* ExportManager.swift */; };
+		3DBD32591F2A246E00362CAC /* HETEnvironmentPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBD32581F2A246E00362CAC /* HETEnvironmentPacket.swift */; };
+		3DBD325B1F2A27D800362CAC /* HETEnvironmentChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBD325A1F2A27D800362CAC /* HETEnvironmentChartView.swift */; };
 		3DC284D31EF3184B008EC6A4 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC284D21EF3184B008EC6A4 /* ChartView.swift */; };
 		3DC284DA1EF318E8008EC6A4 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC284D91EF318E8008EC6A4 /* Colors.swift */; };
 		3DE70DA71EF98F7E00E7D77E /* HETPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE70DA61EF98F7E00E7D77E /* HETPacket.swift */; };
@@ -180,6 +182,8 @@
 		3D9FA5A01F0E6C8D0078F2F7 /* RecordingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingManager.swift; sourceTree = "<group>"; };
 		3DA638BF1F13DC4F007081F4 /* hetLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = hetLink.entitlements; sourceTree = "<group>"; };
 		3DA638C01F13EEA4007081F4 /* ExportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportManager.swift; sourceTree = "<group>"; };
+		3DBD32581F2A246E00362CAC /* HETEnvironmentPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETEnvironmentPacket.swift; sourceTree = "<group>"; };
+		3DBD325A1F2A27D800362CAC /* HETEnvironmentChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETEnvironmentChartView.swift; sourceTree = "<group>"; };
 		3DC284D21EF3184B008EC6A4 /* ChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		3DC284D91EF318E8008EC6A4 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3DE70DA61EF98F7E00E7D77E /* HETPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HETPacket.swift; sourceTree = "<group>"; };
@@ -363,6 +367,7 @@
 				3DC284D21EF3184B008EC6A4 /* ChartView.swift */,
 				3D2A1A3E1F169A71007A4119 /* ChartManager.swift */,
 				3DE70DAA1EF9962300E7D77E /* HETChestBodyChartView.swift */,
+				3DBD325A1F2A27D800362CAC /* HETEnvironmentChartView.swift */,
 				3D38B5D91F03F62F00C4CF05 /* HETChestAccelChartView.swift */,
 				3D4DA52B1F152A1300BAD1E8 /* DatasetVisibilityViewController.swift */,
 				3D4DA52D1F152EC500BAD1E8 /* DatasetToggleViewCell.swift */,
@@ -384,6 +389,7 @@
 			children = (
 				3DE70DA61EF98F7E00E7D77E /* HETPacket.swift */,
 				3DE70DA81EF9909300E7D77E /* HETEcgPulseOxPacket.swift */,
+				3DBD32581F2A246E00362CAC /* HETEnvironmentPacket.swift */,
 				3D38B5D71F03F0FD00C4CF05 /* HETBattAccelPacket.swift */,
 				3D9FA5A01F0E6C8D0078F2F7 /* RecordingManager.swift */,
 				3DA638C01F13EEA4007081F4 /* ExportManager.swift */,
@@ -809,7 +815,9 @@
 				3D2A1A3A1F16741A007A4119 /* ToggleBarButtonItem.swift in Sources */,
 				3D5A12081F266C020048B69E /* xswap.c in Sources */,
 				3D391EE31EF812FB0071CF6A /* HETDeviceInterpreter.swift in Sources */,
+				3DBD325B1F2A27D800362CAC /* HETEnvironmentChartView.swift in Sources */,
 				3D5A11F81F266C020048B69E /* norm.c in Sources */,
+				3DBD32591F2A246E00362CAC /* HETEnvironmentPacket.swift in Sources */,
 				3D5A11FB1F266C020048B69E /* qrsolve.c in Sources */,
 				3D5A12061F266C020048B69E /* xgerc.c in Sources */,
 			);

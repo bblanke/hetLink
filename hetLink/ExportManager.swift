@@ -65,9 +65,24 @@ class ExportManager: NSObject{
                 line.append(",,,,,")
                 line.append(packet.toCSV())
                 break
+            case .environment:
+                line.append(packet.toCSV())
+                line.append(",,,")
+                break
             }
         case .watch:
-            return packet.toCSV()
+            switch packet.parser {
+            case .environment:
+                line.append(packet.toCSV())
+                line.append(",,,")
+                break
+            case .battAccel:
+                line.append(",,,,")
+                line.append(packet.toCSV())
+                break
+            case .ecgPulseOx:
+                break
+            }
         }
         return line
     }
@@ -77,7 +92,7 @@ class ExportManager: NSObject{
         case .chest:
             return "Timestamp, ECG, Wave One, Wave Two, Wave Three, Wave Four, X, Y, Z"
         case .watch:
-            return "Timestamp"
+            return "Timestamp, COTS Ozone, ASSIST Ozone, Temperature, Humidity, X, Y, Z"
         }
     }
 }

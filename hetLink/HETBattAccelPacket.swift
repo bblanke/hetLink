@@ -21,17 +21,22 @@ class HETBattAccelPacket: HETPacket {
     let z: Int8
     
     required init?(data: Data, date: Date){
-        guard data.count == 7 else {
-            return nil
-        }
-        
         self.rawData = data
         self.timestamp = date
         self.parser = .battAccel
         
-        self.x = Int8(bitPattern: data[0])
-        self.y = Int8(bitPattern: data[1])
-        self.z = Int8(bitPattern: data[2])
+        if data.count == 7 {
+            self.x = Int8(bitPattern: data[0])
+            self.y = Int8(bitPattern: data[1])
+            self.z = Int8(bitPattern: data[2])
+        } else if data.count == 6 {
+            self.x = Int8(bitPattern: data[2])
+            self.y = Int8(bitPattern: data[3])
+            self.z = Int8(bitPattern: data[4])
+        } else {
+            return nil
+        }
+        print(self.toCSV())
     }
     
     func toCSV() -> String {

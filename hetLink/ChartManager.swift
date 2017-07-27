@@ -28,7 +28,10 @@ class ChartManager: NSObject {
             chartViews.append(HETChestBodyChartView(frame: frames[0]))
             chartViews.append(HETChestAccelChartView(frame: frames[1]))
             break
-        case .watch: break
+        case .watch:
+            let frames = createFrames(in: frameView.frame, number: 2)
+            chartViews.append(HETEnvironmentChartView(frame: frames[0]))
+            chartViews.append(HETChestAccelChartView(frame: frames[1]))
         }
         
         
@@ -53,10 +56,21 @@ class ChartManager: NSObject {
             case .battAccel:
                 chartViews[1].graph(packet: packet)
                 break
+            case .environment:
+                break
             }
             break
         case .watch:
-            break
+            switch packet.parser{
+            case .ecgPulseOx:
+                break
+            case .battAccel:
+                chartViews[1].graph(packet: packet)
+                break
+            case .environment:
+                chartViews[0].graph(packet: packet)
+                break
+            }
         }
     }
     
@@ -73,7 +87,10 @@ class ChartManager: NSObject {
             chartViews[1].graph(packets: accelPackets)
             break
         case .watch:
-            break
+            let environmentPackets = packets.filter { $0.parser == HETParserType.environment }
+            let accelPackets = packets.filter { $0.parser == HETParserType.battAccel }
+            chartViews[0].graph(packets: environmentPackets)
+            chartViews[1].graph(packets: accelPackets)
         }
     }
     

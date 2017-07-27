@@ -20,6 +20,6 @@ protocol HETPacket: class {
 }
 
 enum HETParserType: Int16 {
-    case ecgPulseOx, battAccel
+    case ecgPulseOx, battAccel, environment
 }
 

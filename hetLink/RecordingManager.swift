@@ -14,7 +14,7 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
     var canRecord: Bool = false
     
     fileprivate var openRecording: Recording?
-    fileprivate var fetchedRecordingsController: NSFetchedResultsController<NSFetchRequestResult>!
+    var fetchedRecordingsController: NSFetchedResultsController<NSFetchRequestResult>!
     
     var presentedRecording: Recording?
     var presentedRecordingPackets: [HETPacket]?
@@ -85,6 +85,9 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
                     break
                 case .battAccel:
                     returnPackets.append(HETBattAccelPacket(data: packet.data! as Data, date: packet.timestamp! as Date)!)
+                    break
+                case .environment:
+                    returnPackets.append(HETEnvironmentPacket(data: packet.data! as Data, date: packet.timestamp! as Date)!)
                     break
                 }
             }

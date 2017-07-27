@@ -28,8 +28,6 @@ class DetailViewController: UIViewController{
         self.navigationController?.navigationBar.tintColor = Theme.navigationBarTint
         
         self.view.backgroundColor = Theme.graphViewBackground
-        
-        print("charts frame: \(chartsFrame.hashValue)")
     }
 
     override func didReceiveMemoryWarning() {

@@ -11,8 +11,6 @@ import Charts
 
 class HETChestBodyChartView: ChartView, HETChartView {
     
-    fileprivate let packetQueue = DispatchQueue(label: "me.baileyb.HETLink.chestPacketQueue", attributes: DispatchQueue.Attributes.concurrent)
-
     // Datasets
     var ecgDataSet: LineChartDataSet!
     var waveOneDataSet: LineChartDataSet!

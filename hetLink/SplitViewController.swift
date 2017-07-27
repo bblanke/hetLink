@@ -126,6 +126,7 @@ extension SplitViewController: RecordingManagerDelegate {
     }
     
     func recordingManagerDidMakePacketArray(packetArray: [HETPacket]) {
+        print("made the packet array")
         self.chartManager.graph(packets: packetArray)
     }
 }
