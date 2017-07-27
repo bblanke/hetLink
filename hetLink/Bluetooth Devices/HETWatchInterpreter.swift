@@ -13,6 +13,7 @@ class HETWatchInterpreter: HETDeviceInterpreter {
     static private let dataServiceUUID = CBUUID(string: "FFF0")
     static private let enableCharacteristicUUID = CBUUID(string: "FFF1")
     static private let accelCharacteristicUUID = CBUUID(string: "FFF2")
+    static private let sensorsCharacteristicUUID = CBUUID(string: "FFF3")
     
     static private let enableBuffer = Data(bytes: [1])
     
@@ -24,13 +25,17 @@ class HETWatchInterpreter: HETDeviceInterpreter {
         return [
             services[0]: [
                 enableCharacteristicUUID,
-                accelCharacteristicUUID
+                accelCharacteristicUUID,
+                sensorsCharacteristicUUID
             ]
         ]
     }
     
     static func parseData(from characteristic: CBCharacteristic) -> HETPacket? {
         // FIXME: - This should have whatever watch interpreter- not the chest body interpreter
+        print("got data from \(characteristic.uuid.uuidString)")
+        print(characteristic.value!)
+        
         guard let packet = HETEcgPulseOxPacket(data: characteristic.value!, date: Date()) else {
             return nil
         }
@@ -40,10 +45,15 @@ class HETWatchInterpreter: HETDeviceInterpreter {
     
     static func setupNotifications(on characteristics: [CBCharacteristic], device: CBPeripheral) {
         for char in characteristics {
+            print(char.uuid.uuidString)
+
             if char.uuid == enableCharacteristicUUID {
                 device.writeValue(enableBuffer, for: char, type: .withResponse)
             }
             if char.uuid == accelCharacteristicUUID {
+                device.setNotifyValue(true, for: char)
+            }
+            if char.uuid == sensorsCharacteristicUUID {
                 device.setNotifyValue(true, for: char)
             }
         }

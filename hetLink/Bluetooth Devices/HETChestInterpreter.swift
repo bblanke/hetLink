@@ -49,7 +49,6 @@ class HETChestInterpreter: HETDeviceInterpreter {
     
     static func setupNotifications(on characteristics: [CBCharacteristic], device: CBPeripheral) {
         for char in characteristics {
-            print(char.uuid.uuidString)
             if char.uuid == enableCharacteristicUUID {
                 device.writeValue(enableBuffer, for: char, type: .withResponse)
             } else if char.uuid == ecgCharacteristicUUID {
