@@ -91,7 +91,6 @@ class HETChestBodyChartView: ChartView, HETChartView {
     }
     
     func graph(packets: [HETPacket]) {
-        let start = Date()
         DispatchQueue.global(qos: .utility).async {
             for packet in packets {
                 guard let packet = packet as? HETEcgPulseOxPacket else {
@@ -112,8 +111,6 @@ class HETChestBodyChartView: ChartView, HETChartView {
                 self.data?.addEntry(waveThreeEntry, dataSetIndex: 3)
                 self.data?.addEntry(waveFourEntry, dataSetIndex: 4)
             }
-            
-            print("Adding packets to Pulse Ox Dataset Took: \(Date().timeIntervalSince(start))")
             
             DispatchQueue.main.async {
                 self.notifyDataSetChanged()

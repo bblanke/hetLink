@@ -89,7 +89,6 @@ class HETChestAccelChartView: ChartView, HETChartView {
     }
     
     func graph(packets: [HETPacket]) {
-        let start = Date()
         DispatchQueue.global(qos: .utility).async {
             for packet in packets {
                 guard let packet = packet as? HETBattAccelPacket else {
@@ -107,7 +106,6 @@ class HETChestAccelChartView: ChartView, HETChartView {
                 self.data?.addEntry(zEntry, dataSetIndex: 2)
                 
             }
-            print("Adding accel datasets took: \(Date().timeIntervalSince(start))")
             
             DispatchQueue.main.async {
                 self.notifyDataSetChanged()

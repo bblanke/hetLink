@@ -78,6 +78,7 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
         DispatchQueue.global(qos: .utility).async {
             var returnPackets: [HETPacket] = []
             let packets = recording.packets!.array as! [Packet]
+            print("There are \(packets.count) packets")
             for packet in packets {
                 switch HETParserType(rawValue: packet.parseType)!{
                 case .ecgPulseOx:

@@ -21,7 +21,6 @@ class SplitViewController: UISplitViewController{
     var masterVC: MasterViewController!
     var detailVC: DetailViewController!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setStatusBarStyle(UIStatusBarStyleContrast)
@@ -96,7 +95,9 @@ extension SplitViewController: MasterListDelegate {
 
 extension SplitViewController: ChartViewDelegate {
     func chartViewDidRequestExport() {
-        exportManager.beginExporting(packetArray: recordingManager.presentedRecordingPackets!, associatedRecording: recordingManager.presentedRecording!)
+        guard let presentedPackets = recordingManager.presentedRecordingPackets else { return }
+        guard let presentedRecording = recordingManager.presentedRecording else { return }
+        exportManager.beginExporting(packetArray: presentedPackets, associatedRecording: presentedRecording)
     }
     
     func chartView(didToggle recording: Bool) {
@@ -126,8 +127,7 @@ extension SplitViewController: RecordingManagerDelegate {
     }
     
     func recordingManagerDidMakePacketArray(packetArray: [HETPacket]) {
-        print("made the packet array")
-        self.chartManager.graph(packets: packetArray)
+        //self.chartManager.graph(packets: packetArray)
     }
 }
 

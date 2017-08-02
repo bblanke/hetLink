@@ -36,7 +36,6 @@ class HETBattAccelPacket: HETPacket {
         } else {
             return nil
         }
-        print(self.toCSV())
     }
     
     func toCSV() -> String {
