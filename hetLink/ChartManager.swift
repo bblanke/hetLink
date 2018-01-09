@@ -14,7 +14,7 @@ class ChartManager: NSObject {
     var currentDeviceType: HETDeviceType?
     
     func setupGraphView(for deviceType: HETDeviceType, frameView: UIView){
-        
+        print("setting up graph view for \(deviceType)")
         // Clear out the frame
         for view in frameView.subviews{
             view.removeFromSuperview()
@@ -29,9 +29,11 @@ class ChartManager: NSObject {
             chartViews.append(HETChestAccelChartView(frame: frames[1]))
             break
         case .watch:
-            let frames = createFrames(in: frameView.frame, number: 2)
-            chartViews.append(HETEnvironmentChartView(frame: frames[0]))
-            chartViews.append(HETChestAccelChartView(frame: frames[1]))
+            let frames = createFrames(in: frameView.frame, number: 4)
+            chartViews.append(HETWristOzoneChartView(frame: frames[0]))
+            chartViews.append(HETWristEnvironmentChartView(frame: frames[1]))
+            chartViews.append(HETWristAccelChartView(frame: frames[2]))
+            chartViews.append(HETWristPulseOxChartView(frame: frames[3]))
         }
         
         
@@ -50,25 +52,25 @@ class ChartManager: NSObject {
         switch currentDeviceType! {
         case .chest:
             switch packet.parser {
-            case .ecgPulseOx:
+            case .chest:
                 chartViews[0].graph(packet: packet)
-                break
-            case .battAccel:
                 chartViews[1].graph(packet: packet)
                 break
-            case .environment:
+            default:
                 break
             }
             break
         case .watch:
             switch packet.parser{
-            case .ecgPulseOx:
+            case .chest:
                 break
-            case .battAccel:
-                chartViews[1].graph(packet: packet)
-                break
-            case .environment:
+            case .wristOzone:
                 chartViews[0].graph(packet: packet)
+                break
+            case .wristEnvironment:
+                chartViews[1].graph(packet: packet)
+                chartViews[2].graph(packet: packet)
+                chartViews[3].graph(packet: packet)
                 break
             }
         }
@@ -81,30 +83,29 @@ class ChartManager: NSObject {
         
         switch currentDeviceType! {
         case .chest:
-            let pulseOxPackets = packets.filter { $0.parser == HETParserType.ecgPulseOx }
-            let accelPackets = packets.filter { $0.parser == HETParserType.battAccel }
-            chartViews[0].graph(packets: pulseOxPackets)
-            chartViews[1].graph(packets: accelPackets)
+            let chestPackets = packets.filter { $0.parser == HETParserType.chest }
+            chartViews[0].graph(packets: chestPackets)
+            chartViews[1].graph(packets: chestPackets)
             break
         case .watch:
-            let environmentPackets = packets.filter { $0.parser == HETParserType.environment }
-            let accelPackets = packets.filter { $0.parser == HETParserType.battAccel }
-            chartViews[0].graph(packets: environmentPackets)
-            chartViews[1].graph(packets: accelPackets)
+            let environmentPackets = packets.filter { $0.parser == HETParserType.wristEnvironment }
+            let ozonePackets = packets.filter { $0.parser == HETParserType.wristOzone }
+            chartViews[0].graph(packets: ozonePackets)
+            chartViews[1].graph(packets: environmentPackets)
+            chartViews[2].graph(packets: environmentPackets)
+            chartViews[3].graph(packets: environmentPackets)
         }
     }
     
     private func createFrames(in frame: CGRect, number: Int) -> [CGRect]{
         let padding = 20
         let width: Int = Int(frame.width)
-        let height: Int = (Int(frame.height) / number) - ((number - 1) * padding)
-        
-        let x: Int = Int(frame.minX)
+        let height: Int = (Int(frame.height) / number)
         
         var frames: [CGRect] = []
         for i in 0..<number {
-            let y: Int = height * i + padding * i
-            frames.append(CGRect(x: x, y: y, width: width, height: height))
+            let y: Int = height * i
+            frames.append(CGRect(x: 0, y: y, width: width, height: height))
         }
         
         return frames

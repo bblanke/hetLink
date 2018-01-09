@@ -12,16 +12,18 @@ import Charts
 class HETChestBodyChartView: ChartView, HETChartView {
     
     // Datasets
-    var ecgDataSet: LineChartDataSet!
+    var ecgOneDataSet: LineChartDataSet!
+    var ecgTwoDataSet: LineChartDataSet!
+    var ecgThreeDataSet: LineChartDataSet!
+    
     var waveOneDataSet: LineChartDataSet!
     var waveTwoDataSet: LineChartDataSet!
     var waveThreeDataSet: LineChartDataSet!
-    var waveFourDataSet: LineChartDataSet!
     
     var chartData: ChartData!
     var chartDataSets: [LineChartDataSet]!
     
-    let chartColors: [UIColor] = Array(Theme.graphColors[0...4])
+    let chartColors: [UIColor] = Array(Theme.graphColors[0...5])
     
     let range: Int = 200
     
@@ -36,13 +38,15 @@ class HETChestBodyChartView: ChartView, HETChartView {
     }
     
     func initChart(){
-        ecgDataSet = LineChartDataSet(values: [], label: "ECG")
+        ecgOneDataSet = LineChartDataSet(values: [], label: "ECG 1")
+        ecgTwoDataSet = LineChartDataSet(values: [], label: "ECG 2")
+        ecgThreeDataSet = LineChartDataSet(values: [], label: "ECG 3")
+        
         waveOneDataSet = LineChartDataSet(values: [], label: "W1")
         waveTwoDataSet = LineChartDataSet(values: [], label: "W2")
         waveThreeDataSet = LineChartDataSet(values: [], label: "W3")
-        waveFourDataSet = LineChartDataSet(values: [], label: "W4")
         
-        chartDataSets = [ecgDataSet, waveOneDataSet, waveTwoDataSet, waveThreeDataSet, waveFourDataSet]
+        chartDataSets = [ecgOneDataSet, ecgTwoDataSet, ecgThreeDataSet, waveOneDataSet, waveTwoDataSet, waveThreeDataSet]
         
         for (index, set) in chartDataSets.enumerated() {
             set.drawCirclesEnabled = false
@@ -58,23 +62,27 @@ class HETChestBodyChartView: ChartView, HETChartView {
     }
     
     func graph(packet: HETPacket) {
-        guard let packet = packet as? HETEcgPulseOxPacket else {
+        guard let packet = packet as? HETChestPacket else {
             return
         }
         
         let ts = packet.timestamp.timeIntervalSince1970
         
-        let ecgEntry = ChartDataEntry(x: ts, y: Double(packet.ecg))
+        let ecgOneEntry = ChartDataEntry(x: ts, y: Double(packet.ecgOne))
+        let ecgTwoEntry = ChartDataEntry(x: ts, y: Double(packet.ecgTwo))
+        let ecgThreeEntry = ChartDataEntry(x: ts, y: Double(packet.ecgThree))
+        
         let waveOneEntry = ChartDataEntry(x: ts, y: Double(packet.waveOne))
         let waveTwoEntry = ChartDataEntry(x: ts, y: Double(packet.waveTwo))
         let waveThreeEntry = ChartDataEntry(x: ts, y: Double(packet.waveThree))
-        let waveFourEntry = ChartDataEntry(x: ts, y: Double(packet.waveFour))
         
-        self.data?.addEntry(ecgEntry, dataSetIndex: 0)
-        self.data?.addEntry(waveOneEntry, dataSetIndex: 1)
-        self.data?.addEntry(waveTwoEntry, dataSetIndex: 2)
-        self.data?.addEntry(waveThreeEntry, dataSetIndex: 3)
-        self.data?.addEntry(waveFourEntry, dataSetIndex: 4)
+        self.data?.addEntry(ecgOneEntry, dataSetIndex: 0)
+        self.data?.addEntry(ecgTwoEntry, dataSetIndex: 1)
+        self.data?.addEntry(ecgThreeEntry, dataSetIndex: 2)
+        
+        self.data?.addEntry(waveOneEntry, dataSetIndex: 3)
+        self.data?.addEntry(waveTwoEntry, dataSetIndex: 4)
+        self.data?.addEntry(waveThreeEntry, dataSetIndex: 5)
         
         let first = self.data?.dataSets[0].entryForIndex(0)
         
@@ -86,6 +94,7 @@ class HETChestBodyChartView: ChartView, HETChartView {
             _ = self.data?.dataSets[2].removeFirst()
             _ = self.data?.dataSets[3].removeFirst()
             _ = self.data?.dataSets[4].removeFirst()
+            _ = self.data?.dataSets[5].removeFirst()
         }
         self.notifyDataSetChanged()
     }
@@ -93,23 +102,27 @@ class HETChestBodyChartView: ChartView, HETChartView {
     func graph(packets: [HETPacket]) {
         DispatchQueue.global(qos: .utility).async {
             for packet in packets {
-                guard let packet = packet as? HETEcgPulseOxPacket else {
+                guard let packet = packet as? HETChestPacket else {
                     return
                 }
                 
                 let ts = packet.timestamp.timeIntervalSince1970
                 
-                let ecgEntry = ChartDataEntry(x: ts, y: Double(packet.ecg))
+                let ecgOneEntry = ChartDataEntry(x: ts, y: Double(packet.ecgOne))
+                let ecgTwoEntry = ChartDataEntry(x: ts, y: Double(packet.ecgTwo))
+                let ecgThreeEntry = ChartDataEntry(x: ts, y: Double(packet.ecgThree))
+                
                 let waveOneEntry = ChartDataEntry(x: ts, y: Double(packet.waveOne))
                 let waveTwoEntry = ChartDataEntry(x: ts, y: Double(packet.waveTwo))
                 let waveThreeEntry = ChartDataEntry(x: ts, y: Double(packet.waveThree))
-                let waveFourEntry = ChartDataEntry(x: ts, y: Double(packet.waveFour))
                 
-                self.data?.addEntry(ecgEntry, dataSetIndex: 0)
-                self.data?.addEntry(waveOneEntry, dataSetIndex: 1)
-                self.data?.addEntry(waveTwoEntry, dataSetIndex: 2)
-                self.data?.addEntry(waveThreeEntry, dataSetIndex: 3)
-                self.data?.addEntry(waveFourEntry, dataSetIndex: 4)
+                self.data?.addEntry(ecgOneEntry, dataSetIndex: 0)
+                self.data?.addEntry(ecgTwoEntry, dataSetIndex: 1)
+                self.data?.addEntry(ecgThreeEntry, dataSetIndex: 2)
+                
+                self.data?.addEntry(waveOneEntry, dataSetIndex: 3)
+                self.data?.addEntry(waveTwoEntry, dataSetIndex: 4)
+                self.data?.addEntry(waveThreeEntry, dataSetIndex: 5)
             }
             
             DispatchQueue.main.async {

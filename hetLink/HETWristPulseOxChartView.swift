@@ -1,30 +1,30 @@
 //
-//  HETChestAccelChartView.swift
+//  HETWristEnvironmentChartView.swift
 //  hetLink
 //
-//  Created by Bailey Blankenship on 6/28/17.
+//  Created by Bailey Blankenship on 12/20/17.
 //  Copyright © 2017 Bailey Blankenship. All rights reserved.
 //
 
 import Foundation
 import Charts
 
-class HETChestAccelChartView: ChartView, HETChartView {
+class HETWristPulseOxChartView: ChartView, HETChartView {
     
     // Entries
-    var xEntries: [ChartDataEntry] = []
-    var yEntries: [ChartDataEntry] = []
-    var zEntries: [ChartDataEntry] = []
+    var waveOneEntries: [ChartDataEntry] = []
+    var waveTwoEntries: [ChartDataEntry] = []
+    var waveThreeEntries: [ChartDataEntry] = []
     
     // Datasets
-    var xDataSet: LineChartDataSet!
-    var yDataSet: LineChartDataSet!
-    var zDataSet: LineChartDataSet!
+    var waveOneSet: LineChartDataSet!
+    var waveTwoSet: LineChartDataSet!
+    var waveThreeSet: LineChartDataSet!
     
     var chartData: ChartData!
     var chartDataSets: [LineChartDataSet]!
     
-    let chartColors: [UIColor] = Array(Theme.graphColors[6...9])
+    let chartColors: [UIColor] = Array(Theme.graphColors[0...7])
     
     let range: Int = 100
     
@@ -39,12 +39,11 @@ class HETChestAccelChartView: ChartView, HETChartView {
     }
     
     func initChart(){
+        waveOneSet = LineChartDataSet(values: waveOneEntries, label: "W1")
+        waveTwoSet = LineChartDataSet(values: waveTwoEntries, label: "W2")
+        waveThreeSet = LineChartDataSet(values: waveThreeEntries, label: "W3")
         
-        xDataSet = LineChartDataSet(values: xEntries, label: "X")
-        yDataSet = LineChartDataSet(values: yEntries, label: "Y")
-        zDataSet = LineChartDataSet(values: zEntries, label: "Z")
-        
-        chartDataSets = [xDataSet, yDataSet, zDataSet]
+        chartDataSets = [waveOneSet, waveTwoSet, waveThreeSet]
         
         for (index, set) in chartDataSets.enumerated() {
             set.drawCirclesEnabled = false
@@ -62,20 +61,20 @@ class HETChestAccelChartView: ChartView, HETChartView {
     }
     
     func graph(packet: HETPacket) {
-        guard let packet = packet as? HETChestPacket else {
+        guard let packet = packet as? HETWristEnvironmentECG else {
             return
         }
         
         let ts = packet.timestamp.timeIntervalSince1970
         
-        let xEntry = ChartDataEntry(x: ts, y: Double(packet.x))
-        let yEntry = ChartDataEntry(x: ts, y: Double(packet.y))
-        let zEntry = ChartDataEntry(x: ts, y: Double(packet.z))
+        let waveOne = ChartDataEntry(x: ts, y: Double(packet.waveOne))
+        let waveTwo = ChartDataEntry(x: ts, y: Double(packet.waveTwo))
+        let waveThree = ChartDataEntry(x: ts, y: Double(packet.waveThree))
         
         
-        data?.addEntry(xEntry, dataSetIndex: 0)
-        data?.addEntry(yEntry, dataSetIndex: 1)
-        data?.addEntry(zEntry, dataSetIndex: 2)
+        data?.addEntry(waveOne, dataSetIndex: 0)
+        data?.addEntry(waveTwo, dataSetIndex: 1)
+        data?.addEntry(waveThree, dataSetIndex: 2)
         
         
         let first = data?.dataSets[0].entryForIndex(0)
@@ -94,20 +93,20 @@ class HETChestAccelChartView: ChartView, HETChartView {
     func graph(packets: [HETPacket]) {
         DispatchQueue.global(qos: .utility).async {
             for packet in packets {
-                guard let packet = packet as? HETChestPacket else {
+                guard let packet = packet as? HETWristEnvironmentECG else {
                     return
                 }
                 
                 let ts = packet.timestamp.timeIntervalSince1970
                 
-                let xEntry = ChartDataEntry(x: ts, y: Double(packet.x))
-                let yEntry = ChartDataEntry(x: ts, y: Double(packet.y))
-                let zEntry = ChartDataEntry(x: ts, y: Double(packet.z))
+                let waveOne = ChartDataEntry(x: ts, y: Double(packet.waveOne))
+                let waveTwo = ChartDataEntry(x: ts, y: Double(packet.waveTwo))
+                let waveThree = ChartDataEntry(x: ts, y: Double(packet.waveThree))
                 
                 
-                self.data?.addEntry(xEntry, dataSetIndex: 0)
-                self.data?.addEntry(yEntry, dataSetIndex: 1)
-                self.data?.addEntry(zEntry, dataSetIndex: 2)
+                self.data?.addEntry(waveOne, dataSetIndex: 0)
+                self.data?.addEntry(waveTwo, dataSetIndex: 1)
+                self.data?.addEntry(waveThree, dataSetIndex: 2)
             }
             
             DispatchQueue.main.async {

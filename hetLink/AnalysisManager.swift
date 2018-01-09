@@ -12,29 +12,29 @@ class AnalysisManager: NSObject {
     weak var delegate: AnalysisManagerDelegate!
     let bpmChunkSize: Int = 400
     
-    var ecgPulseOxPacketBuffer: [HETEcgPulseOxPacket] = []
+    var ecgBuffer: [HETChestPacket] = []
     
     func queueForAnalysis(packet: HETPacket){
         switch packet.parser {
-        case .ecgPulseOx:
-            let packet = packet as! HETEcgPulseOxPacket
-            ecgPulseOxPacketBuffer.append(packet)
-            if ecgPulseOxPacketBuffer.count >= bpmChunkSize {
+        case .chest:
+            let packet = packet as! HETChestPacket
+            ecgBuffer.append(packet)
+            if ecgBuffer.count >= bpmChunkSize {
                 self.calculateBPM()
             }
             break
-        case .battAccel:
+        case .wristEnvironment:
             break
-        case .environment:
+        case .wristOzone:
             break
         }
     }
     
     func calculateBPM(){
-        let times = ecgPulseOxPacketBuffer.map { $0.timestamp.timeIntervalSince1970 }
-        let ecg = ecgPulseOxPacketBuffer.map { Double($0.ecg) }
+        let times = ecgBuffer.map { $0.timestamp.timeIntervalSince1970 }
+        let ecg = ecgBuffer.map { Double($0.ecgOne) }
         let bpm: Double = analyzeECG(times, ecg)
-        ecgPulseOxPacketBuffer.removeFirst(bpmChunkSize)
+        ecgBuffer.removeFirst(bpmChunkSize)
         if bpm.isNaN {
             self.delegate.analysisManager(didUpdateBPM: 0)
         } else {

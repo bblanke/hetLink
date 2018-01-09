@@ -1,30 +1,28 @@
 //
-//  HETChestAccelChartView.swift
+//  HETWristEnvironmentChartView.swift
 //  hetLink
 //
-//  Created by Bailey Blankenship on 6/28/17.
+//  Created by Bailey Blankenship on 12/21/17.
 //  Copyright © 2017 Bailey Blankenship. All rights reserved.
 //
 
 import Foundation
 import Charts
 
-class HETChestAccelChartView: ChartView, HETChartView {
+class HETWristEnvironmentChartView: ChartView, HETChartView {
     
     // Entries
-    var xEntries: [ChartDataEntry] = []
-    var yEntries: [ChartDataEntry] = []
-    var zEntries: [ChartDataEntry] = []
+    var tempEntries: [ChartDataEntry] = []
+    var humidityEntries: [ChartDataEntry] = []
     
     // Datasets
-    var xDataSet: LineChartDataSet!
-    var yDataSet: LineChartDataSet!
-    var zDataSet: LineChartDataSet!
+    var tempSet: LineChartDataSet!
+    var humiditySet: LineChartDataSet!
     
     var chartData: ChartData!
     var chartDataSets: [LineChartDataSet]!
     
-    let chartColors: [UIColor] = Array(Theme.graphColors[6...9])
+    let chartColors: [UIColor] = Array(Theme.graphColors[0...7])
     
     let range: Int = 100
     
@@ -39,12 +37,10 @@ class HETChestAccelChartView: ChartView, HETChartView {
     }
     
     func initChart(){
+        tempSet = LineChartDataSet(values: tempEntries, label: "Temp")
+        humiditySet = LineChartDataSet(values: humidityEntries, label: "Humidity")
         
-        xDataSet = LineChartDataSet(values: xEntries, label: "X")
-        yDataSet = LineChartDataSet(values: yEntries, label: "Y")
-        zDataSet = LineChartDataSet(values: zEntries, label: "Z")
-        
-        chartDataSets = [xDataSet, yDataSet, zDataSet]
+        chartDataSets = [tempSet, humiditySet]
         
         for (index, set) in chartDataSets.enumerated() {
             set.drawCirclesEnabled = false
@@ -62,20 +58,18 @@ class HETChestAccelChartView: ChartView, HETChartView {
     }
     
     func graph(packet: HETPacket) {
-        guard let packet = packet as? HETChestPacket else {
+        guard let packet = packet as? HETWristEnvironmentECG else {
             return
         }
         
         let ts = packet.timestamp.timeIntervalSince1970
         
-        let xEntry = ChartDataEntry(x: ts, y: Double(packet.x))
-        let yEntry = ChartDataEntry(x: ts, y: Double(packet.y))
-        let zEntry = ChartDataEntry(x: ts, y: Double(packet.z))
+        let temp = ChartDataEntry(x: ts, y: Double(packet.temp))
+        let humidity = ChartDataEntry(x: ts, y: Double(packet.humidity))
         
         
-        data?.addEntry(xEntry, dataSetIndex: 0)
-        data?.addEntry(yEntry, dataSetIndex: 1)
-        data?.addEntry(zEntry, dataSetIndex: 2)
+        data?.addEntry(temp, dataSetIndex: 0)
+        data?.addEntry(humidity, dataSetIndex: 1)
         
         
         let first = data?.dataSets[0].entryForIndex(0)
@@ -85,7 +79,6 @@ class HETChestAccelChartView: ChartView, HETChartView {
         if (data?.dataSets[0].entryCount)! > range {
             _ = data?.dataSets[0].removeFirst()
             _ = data?.dataSets[1].removeFirst()
-            _ = data?.dataSets[2].removeFirst()
         }
         
         self.notifyDataSetChanged()
@@ -94,20 +87,17 @@ class HETChestAccelChartView: ChartView, HETChartView {
     func graph(packets: [HETPacket]) {
         DispatchQueue.global(qos: .utility).async {
             for packet in packets {
-                guard let packet = packet as? HETChestPacket else {
+                guard let packet = packet as? HETWristEnvironmentECG else {
                     return
                 }
                 
                 let ts = packet.timestamp.timeIntervalSince1970
                 
-                let xEntry = ChartDataEntry(x: ts, y: Double(packet.x))
-                let yEntry = ChartDataEntry(x: ts, y: Double(packet.y))
-                let zEntry = ChartDataEntry(x: ts, y: Double(packet.z))
+                let temp = ChartDataEntry(x: ts, y: Double(packet.temp))
+                let humidity = ChartDataEntry(x: ts, y: Double(packet.humidity))
                 
-                
-                self.data?.addEntry(xEntry, dataSetIndex: 0)
-                self.data?.addEntry(yEntry, dataSetIndex: 1)
-                self.data?.addEntry(zEntry, dataSetIndex: 2)
+                self.data?.addEntry(temp, dataSetIndex: 0)
+                self.data?.addEntry(humidity, dataSetIndex: 1)
             }
             
             DispatchQueue.main.async {
@@ -122,3 +112,4 @@ class HETChestAccelChartView: ChartView, HETChartView {
         notifyDataSetChanged()
     }
 }
+

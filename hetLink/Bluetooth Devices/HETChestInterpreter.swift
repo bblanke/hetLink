@@ -12,8 +12,7 @@ import CoreBluetooth
 class HETChestInterpreter: HETDeviceInterpreter {
     static private let dataServiceUUID = CBUUID(string: "FFF0")
     static private let enableCharacteristicUUID = CBUUID(string: "FFF1")
-    static private let ecgCharacteristicUUID = CBUUID(string: "FFF2")
-    static private let accelCharacteristicUUID = CBUUID(string: "FFF5")
+    static private let dataCharacteristicUUID = CBUUID(string: "FFF5")
     
     static private let enableBuffer = Data(bytes: [1])
     
@@ -25,20 +24,14 @@ class HETChestInterpreter: HETDeviceInterpreter {
         return [
             dataServiceUUID: [
                 enableCharacteristicUUID,
-                ecgCharacteristicUUID,
-                accelCharacteristicUUID
+                dataCharacteristicUUID
             ]
         ]
     }
     
     static func parseData(from characteristic: CBCharacteristic) -> HETPacket? {
-        if characteristic.uuid == accelCharacteristicUUID {
-            guard let packet = HETBattAccelPacket(data: characteristic.value!, date: Date()) else {
-                return nil
-            }
-            return packet
-        } else if characteristic.uuid == ecgCharacteristicUUID {
-            guard let packet = HETEcgPulseOxPacket(data: characteristic.value!, date: Date()) else {
+        if characteristic.uuid == dataCharacteristicUUID {
+            guard let packet = HETChestPacket(data: characteristic.value!, date: Date()) else {
                 return nil
             }
             return packet
@@ -51,9 +44,7 @@ class HETChestInterpreter: HETDeviceInterpreter {
         for char in characteristics {
             if char.uuid == enableCharacteristicUUID {
                 device.writeValue(enableBuffer, for: char, type: .withResponse)
-            } else if char.uuid == ecgCharacteristicUUID {
-                device.setNotifyValue(true, for: char)
-            } else if char.uuid == accelCharacteristicUUID {
+            } else if char.uuid == dataCharacteristicUUID {
                 device.setNotifyValue(true, for: char)
             }
         }

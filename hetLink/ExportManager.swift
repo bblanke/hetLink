@@ -57,30 +57,24 @@ class ExportManager: NSObject{
         switch device {
         case .chest:
             switch packet.parser {
-            case .ecgPulseOx:
-                line.append(packet.toCSV())
-                line.append(",,,")
-                break
-            case .battAccel:
-                line.append(",,,,,")
+            case .chest:
                 line.append(packet.toCSV())
                 break
-            case .environment:
-                line.append(packet.toCSV())
-                line.append(",,,")
+            case .wristOzone:
+                break
+            case .wristEnvironment:
                 break
             }
         case .watch:
             switch packet.parser {
-            case .environment:
-                line.append(packet.toCSV())
-                line.append(",,,")
+            case .chest:
                 break
-            case .battAccel:
-                line.append(",,,,")
+            case .wristOzone:
                 line.append(packet.toCSV())
                 break
-            case .ecgPulseOx:
+            case .wristEnvironment:
+                line.append(",,,,,")
+                line.append(packet.toCSV())
                 break
             }
         }
@@ -90,9 +84,9 @@ class ExportManager: NSObject{
     private func csvHeaderFor(device: HETDeviceType) -> String {
         switch device{
         case .chest:
-            return "Timestamp, ECG, Wave One, Wave Two, Wave Three, Wave Four, X, Y, Z"
+            return "Timestamp, Battery, ECG 1, ECG 2, ECG 3, Wave 1, Wave 2, Wave 3, X, Y, Z"
         case .watch:
-            return "Timestamp, COTS Ozone, ASSIST Ozone, Temperature, Humidity, X, Y, Z"
+            return "Timestamp, Oz 1, Oz 2, Oz 3, Oz 4, Battery, Wave 1, Wave 2, Wave 3, X, Y, Z, Temp, Humidity"
         }
     }
 }

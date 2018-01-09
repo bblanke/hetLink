@@ -71,12 +71,12 @@ class MasterViewController: UITableViewController {
                 cell.detailLabel.text = "Please switch on an HET device"
             }
         } else if indexPath.section == 1 {
-            let record = recordingManager.recording(at: indexPath.row)
+            /*let record = recordingManager.recording(at: indexPath.row)
             cell.textLabel?.text = record.title
             let timestampParser = DateFormatter()
             timestampParser.timeStyle = .long
             timestampParser.dateStyle = .short
-            cell.detailTextLabel?.text = timestampParser.string(from: record.timestamp! as Date)
+            cell.detailTextLabel?.text = timestampParser.string(from: record.timestamp! as Date)*/
         }
         
         return cell

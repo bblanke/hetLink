@@ -12,8 +12,8 @@ import CoreBluetooth
 class HETWatchInterpreter: HETDeviceInterpreter {
     static private let dataServiceUUID = CBUUID(string: "FFF0")
     static private let enableCharacteristicUUID = CBUUID(string: "FFF1")
-    static private let sensorsCharacteristicUUID = CBUUID(string: "FFF3")
-    static private let accelCharacteristicUUID = CBUUID(string: "FFF4")
+    static private let ozoneCharacteristicUUID = CBUUID(string: "FFF3")
+    static private let environmentCharacteristicUUID = CBUUID(string: "FFF4")
     
     static private let enableBuffer = Data(bytes: [1])
     
@@ -25,20 +25,20 @@ class HETWatchInterpreter: HETDeviceInterpreter {
         return [
             services[0]: [
                 enableCharacteristicUUID,
-                accelCharacteristicUUID,
-                sensorsCharacteristicUUID
+                ozoneCharacteristicUUID,
+                environmentCharacteristicUUID
             ]
         ]
     }
     
     static func parseData(from characteristic: CBCharacteristic) -> HETPacket? {
-        if characteristic.uuid == accelCharacteristicUUID {
-            guard let packet = HETBattAccelPacket(data: characteristic.value!, date: Date()) else {
+        if characteristic.uuid == ozoneCharacteristicUUID {
+            guard let packet = HETWristOzonePacket(data: characteristic.value!, date: Date()) else {
                 return nil
             }
             return packet
-        } else if characteristic.uuid == sensorsCharacteristicUUID {
-            guard let packet = HETEnvironmentPacket(data: characteristic.value!, date: Date()) else {
+        } else if characteristic.uuid == environmentCharacteristicUUID {
+            guard let packet = HETWristEnvironmentECG(data: characteristic.value!, date: Date()) else {
                 return nil
             }
             return packet
@@ -52,10 +52,10 @@ class HETWatchInterpreter: HETDeviceInterpreter {
             if char.uuid == enableCharacteristicUUID {
                 device.writeValue(enableBuffer, for: char, type: .withResponse)
             }
-            if char.uuid == accelCharacteristicUUID {
+            if char.uuid == ozoneCharacteristicUUID {
                 device.setNotifyValue(true, for: char)
             }
-            if char.uuid == sensorsCharacteristicUUID {
+            if char.uuid == environmentCharacteristicUUID {
                 device.setNotifyValue(true, for: char)
             }
         }

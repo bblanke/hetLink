@@ -33,6 +33,7 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
                 fatalError("Failed to load Core Data stack: \(error)")
             }
             self.managedObjectContext = persistentContainer.viewContext
+            self.managedObjectContext.undoManager = nil
             self.initializeFetchedRecordingsController()
         }
     }
@@ -81,14 +82,14 @@ class RecordingManager: NSObject, NSFetchedResultsControllerDelegate {
             print("There are \(packets.count) packets")
             for packet in packets {
                 switch HETParserType(rawValue: packet.parseType)!{
-                case .ecgPulseOx:
-                    returnPackets.append(HETEcgPulseOxPacket(data: packet.data! as Data, date: packet.timestamp! as Date)!)
+                case .chest:
+                    returnPackets.append(HETChestPacket(data: packet.data! as Data, date: packet.timestamp! as Date)!)
                     break
-                case .battAccel:
-                    returnPackets.append(HETBattAccelPacket(data: packet.data! as Data, date: packet.timestamp! as Date)!)
+                case .wristEnvironment:
+                    returnPackets.append(HETWristEnvironmentECG(data: packet.data! as Data, date: packet.timestamp! as Date)!)
                     break
-                case .environment:
-                    returnPackets.append(HETEnvironmentPacket(data: packet.data! as Data, date: packet.timestamp! as Date)!)
+                case .wristOzone:
+                    returnPackets.append(HETWristOzonePacket(data: packet.data! as Data, date: packet.timestamp! as Date)!)
                     break
                 }
             }
@@ -131,6 +132,7 @@ private extension RecordingManager {
         if context.hasChanges {
             do {
                 try context.save()
+                context.reset()
                 delegate?.recordingManagerDidSaveRecording()
             } catch {
                 // FIXME: – Replace this implementation with code to handle the error appropriately.

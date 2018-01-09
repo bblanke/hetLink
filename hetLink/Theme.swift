@@ -21,5 +21,5 @@ class Theme {
     
     static let graphViewBackground = UIColor.flatWhite
     
-    static let graphColors: [UIColor] = [.flatRed, .flatOrange, .flatYellow, .flatGreen, .flatMint, .flatSkyBlue, .flatPurple, .flatWatermelon]
+    static let graphColors: [UIColor] = [.flatRed, .flatOrange, .flatYellow, .flatGreen, .flatMint, .flatSkyBlue, .flatPurple, .flatWatermelon, .black, .flatBrown]
 }
